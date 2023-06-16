@@ -1,2 +1,52 @@
 @import './common';
 @import './example';
+@import './reset.scss';
+@import './header.scss';
+@import './support.scss';
+/* ---------- AUTHORIZATION PAGE -------------- */
+@import './authorization.scss';
+/* ---------- HOME PAGE -------------- */
+@import './categories.scss';
+@import './best-sellers.scss';
+@import './modal.scss';
+/* ---------- SHOPPING LIST PAGE -------------- */
+@import './shopping-list.scss';
+
+.container {
+    padding: 0 15px;
+    margin: 0 auto;
+  }
+  @media screen and (min-width: 320px) and (max-width: 768px) {
+    .container {
+      max-width: 335px;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    .container {
+      width: 704px;
+    }
+  }
+  @media screen and (min-width: 1440px) {
+    .container {
+      width: 1392px;
+    }
+  }
+  
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	white-space: nowrap;
+	clip-path: inset(100%);
+	clip: rect(0 0 0 0);
+	overflow: hidden;
+}
+.is-hidden {
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
