@@ -1,14 +1,12 @@
-/*const toggleToChangeTheme = document.querySelector('.toggle');
+const toggleToChangeTheme = document.querySelector('#toggle-button');
 
 function setDarkTheme(){
     document.body.classList.add('dark')
-    toggleToChangeTheme.textContent = 'Black'
     localStorage.theme = 'dark'
 }
 
 function setLightTheme(){
     document.body.classList.remove('dark')
-    toggleToChangeTheme.textContent = 'White'
     localStorage.theme = 'light'
 
 }
@@ -26,4 +24,4 @@ toggleToChangeTheme.addEventListener('click', () => {
 if (localStorage.theme === 'dark'){
     document.body.classList.add('dark')
     toggleToChangeTheme.textContent = 'Black'
-}*/
+}

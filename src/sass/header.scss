@@ -1,0 +1,89 @@
+/*header*/
+header{
+    transition: 1s;
+    position: fixed;
+    width: 1440px;
+    height: 72px;
+    left: 0px;
+    top: 0px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1.5px solid #111111;
+    border-radius: 0px 0px 8px 8px;
+}
+.header-container{
+    background-color: #DCDCDC;
+    display: flex;
+    border: 2px solid red;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.header-main {
+    display: flex;
+border: 2px solid green;
+width: 30%;
+}
+
+.header-main__toggle{
+    width: 50%;
+    height: 24px;
+
+
+}
+.header-main__toggle-container{
+    width: 40px;
+height: 24px;
+left: 1168px;
+top: 24px;
+
+
+}
+.toggle-button {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    margin: 0;
+    vertical-align: top;
+ 
+    border: 1px solid #bbc1e1;
+    border-radius: 30px;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: linear-gradient(180deg, #4F2EE8 0%, #DCDCDC 100%);
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1); 
+   }
+   .toggle-button::after {
+    content: "";
+    background: #ffffff;
+    display: inline-block;
+    position: absolute;
+    left: 3px;
+    top: 1.5px;
+  
+    width: 45px;
+    height: 45px;
+ 
+
+    border-radius: 50%;
+  
+    transform: translateX(0);
+  }
+  .toggle-button:checked::after {
+    transform: translateX(calc(100% + 3px));
+    background-color:#DCDCDC;
+
+  }
+  .toggle-button:checked {
+    background: linear-gradient(180deg, #4F2EE8 0%, #686868 100%);
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+ 
+  }
+
+  .header-main__user {
+width: 50%;
+  }
