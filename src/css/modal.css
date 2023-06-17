@@ -44,7 +44,7 @@ align-items: center;
 width: 24px;
 height: 24px;
 padding: 0;
-border: 1px solid #0000001A;
+border: none;
 fill: #f6f6f6;
 background-color: transparent;
 transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -63,7 +63,7 @@ align-items: center;
 width: 24px;
 height: 24px;
 padding: 0;
-border: 1px solid #0000001A;
+border: none;
 fill: #f6f6f6;
 background-color: transparent;
 transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -110,6 +110,19 @@ letter-spacing: -1px;
 text-transform: uppercase; 
 background-color: transparent;
 color: #111111;
-    }
+}
     
+}
+
+.cl-bl-icon {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 14px;
+    min-height: 14px;
+  padding: 8px;
+  
+  background-color: var(--accent-color);
+  /* outline: none; */
+  fill:3px #111;
 }
