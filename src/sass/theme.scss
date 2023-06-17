@@ -1,0 +1,22 @@
+:root {
+    --background-color: #FFFFFF;
+    --main-text-color: #000000;
+    --blue-hover-icon-color: #4F2EE8;
+    --grey-title-color: #B4AFAF;
+    --hover-navigation-color: #EAC645;
+}
+
+body {
+    transition: 1s;
+   background-color: var(--background-color);
+   color: var(--main-text-color);
+}
+
+
+body.dark {
+   --background-color: #111111;
+    --main-text-color: #FFFFFF;
+    --blue-hover-icon-color: #4F2EE8;
+    --grey-title-color: #B4AFAF;
+   --hover-navigation-color: #EAC645; 
+}
