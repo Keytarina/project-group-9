@@ -13,16 +13,16 @@ function renderPreview(image) {
 }
 
 function createPreviewMarkup({ title, author, img, text }) {
-    return `<div class='modal' 
-  <img src='${img}' alt='${title}'>
-    <h1>${title}>
+    return `<div class='modal'> 
+  <div class="picture"><img src='${img}' alt='${title}'></div>
+    <div class="info"><h1>${title}>
   <h2>${author}</h2>
   <p>${text}</p>
   <ul class="icons">
         <li class="icon-link"></li>
         <li class="icon-link"></li>
         <li class="icon-link"></li>
-    </ul>
+    </ul></div>
   </div>`;
 }
 
