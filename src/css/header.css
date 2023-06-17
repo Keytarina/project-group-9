@@ -21,8 +21,8 @@ header{
 
 .header-main {
     display: flex;
-border: 2px solid green;
-width: 30%;
+  border: 2px solid green;
+  width: 30%;
 }
 
 .header-main__toggle{
@@ -33,9 +33,9 @@ width: 30%;
 }
 .header-main__toggle-container{
     width: 40px;
-height: 24px;
-left: 1168px;
-top: 24px;
+    height: 24px;
+    left: 1168px;
+    top: 24px;
 
 
 }

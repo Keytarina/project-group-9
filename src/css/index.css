@@ -1,17 +1,17 @@
-@import './common';
-@import './reset.scss';
-@import './header.scss';
-@import './support.scss';
+@import './common.css';
+@import './reset.css';
+@import './header.css';
+@import './support.css';
 /* ---------- AUTHORIZATION PAGE -------------- */
-@import './authorization.scss';
+@import './authorization.css';
 /* ---------- HOME PAGE -------------- */
-@import './categories.scss';
-@import './best-sellers.scss';
-@import './modal.scss';
+@import './categories.css';
+@import './best-sellers.css';
+@import './modal.css';
 /* ---------- SHOPPING LIST PAGE -------------- */
-@import './shopping-list.scss';
+@import './shopping-list.css';
 /* --------theme-----*/
-@import './theme.scss';
+@import './theme.css';
 .container {
     padding: 0 15px;
     margin: 0 auto;
