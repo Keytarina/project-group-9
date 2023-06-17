@@ -8,8 +8,8 @@
 
 body {
    transition: 1s;
-   background-color: var(--background-color);
-   color: var(--main-text-color);
+   background-color: $background-color;
+   color: $main-text-color;
 }
 
 
