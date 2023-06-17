@@ -1,17 +1,19 @@
-@import './common.css';
-@import './reset.css';
-@import './header.css';
-@import './support.css';
+@import url('./common.css');
+@import url('./fonts.css');
+@import url('./reset.css');
+@import url('./header.css');
+@import url('./support.css');
 /* ---------- AUTHORIZATION PAGE -------------- */
-@import './authorization.css';
+@import url('./authorization.css');
 /* ---------- HOME PAGE -------------- */
-@import './categories.css';
-@import './best-sellers.css';
-@import './modal.css';
+@import url('./categories.css');
+@import url('./best-sellers.css');
+@import url('./modal.css');
 /* ---------- SHOPPING LIST PAGE -------------- */
-@import './shopping-list.css';
-/* --------theme-----*/
-@import './theme.css';
+@import url('./shopping-list.css');
+/* --------THEME-----*/
+@import url('./theme.css');
+
 .container {
     padding: 0 15px;
     margin: 0 auto;
