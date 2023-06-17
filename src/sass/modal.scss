@@ -1,0 +1,41 @@
+.modal {
+    width: 335px;
+    height: 762px;
+    border-radius: 18px;
+    padding-top: 40px;
+padding-right: 24px;
+padding-left: 24px;
+padding-bottom: 40px;
+border: 2px #111111;
+background-color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+    .modal {
+        width: 579px;
+    height: 465px;
+    background-color: #fff;
+    border-radius: 18px;
+    padding: 40px;
+    border: 2px #111111;
+    }
+    
+}
+
+// @media screen and (min-width: 768px) and (max-width: 1439.8px) {
+//   .modal {
+//     width: 579px;
+//     height: 465px;
+//     background-color: #fff;
+//     border-radius: 18px;
+//     padding: 40px;
+//     border: 2px #111111;
+//   }
+// }
+
+.btn-action {
+    display: flex;
+    width: 211px;
+    height: 46px;
+    
+}
