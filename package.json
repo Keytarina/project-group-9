@@ -5,7 +5,7 @@
   "homepage": "https://keytarina.github.io/project-group-9",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url project-group-9/"
+    "build": "parcel build src/*.html --public-url /project-group-9/"
   },
   "repository": {
     "type": "git",
