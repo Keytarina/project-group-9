@@ -1,0 +1,31 @@
+.see-more-btn {
+    display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 14px 28px;
+gap: 10px;
+
+width: 124px;
+height: 46px;
+
+border: 2px solid #4F2EE8;
+border-radius: 40px;
+flex: none;
+order: 1;
+flex-grow: 0;
+box-sizing: border-box;
+color: black;
+cursor: pointer;
+  display: inline-flex;
+  font-family: DM Sans;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
+
+
+
