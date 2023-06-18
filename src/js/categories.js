@@ -9,6 +9,6 @@ function markupList () {
     }).join('')
     category.insertAdjacentHTML('beforeend', markupCategoriesList);
   }).catch((error) => console.log(error))
-});
+};
 
 markupList();
