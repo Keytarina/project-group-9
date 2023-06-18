@@ -13,9 +13,16 @@ function toggleModal() {
   refs.modal.classList.toggle('is-hidden');
 }
 
+function imageClickHandler(event) {
+  const id = event.currentTarget.id;
+  if (event.target.nodeName === "IMG") {
+    renderModalWindow(event.target.book_image);
+  } 
+}
+
 function renderModalWindow(book_image) {
   const books = JSON.parse(localStorage.getItem('books'));
-  const book = books.find(({ image }) => image === 'IMG');
+  const book = books.find(({ image }) => image === book_image);
   const markup = createModalWindow(book);
   modal.insertAdjacentHTML('beforeend', markup);
 }
