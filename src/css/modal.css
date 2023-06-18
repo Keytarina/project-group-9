@@ -1,0 +1,148 @@
+.modal {
+position: relative;
+min-width: 320px;
+max-width: 335px;
+display: flex;
+flex-direction: column-reverse;
+/* max-width: 100%; */
+/* width: 335px; */
+height: 762px;
+border-radius: 18px;
+padding-top: 40px;
+padding-right: 24px;
+padding-left: 24px;
+padding-bottom: 40px;
+border: solid 2px #111111;
+background-color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+.modal {
+position: relative;
+/* min-width:336px;  */
+max-width: 579px;
+height: 465px;
+/* max-width: 100%; */
+background-color: #fff;
+border: solid 2px #111111;
+border-radius: 18px;
+padding: 40px;
+    }  
+}
+
+@media screen and (min-width: 1440px) {
+.modal {
+position: absolute;
+top: 400px;
+left: 431px;
+right: 430px;
+bottom: 437px;
+/* min-width:336px;  */
+max-width: 579px;
+height: 465px;
+/* max-width: 100%; */
+background-color: #fff;
+border: solid 2px #111111;
+border-radius: 18px;
+padding: 40px;
+    }  
+}
+
+.cls-button {
+position: absolute;
+top: 12px;
+right: 12px;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 24px;
+height: 24px;
+
+padding: 0;
+cursor: pointer;
+border: none;
+fill: #f6f6f6;
+background-color: transparent;
+transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+transition-duration: 250ms;
+transition-property: background-color, fill;
+}
+
+@media screen and (min-width: 768px) {
+.cls-button  {
+position: absolute;
+top: 24px;
+right: 24px;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 24px;
+height: 24px;
+padding: 0;
+border: none;
+fill: #f6f6f6;
+background-color: transparent;
+transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+transition-duration: 250ms;
+transition-property: background-color, fill;
+    }
+    
+}
+
+.btn-action.button {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 211px;
+height: 46px;
+/* max-width: 100%; */
+cursor: pointer;
+border-radius: 40px;
+border: 2px solid #4F2EE8;
+padding: 14px 28px 14px 28px;
+margin: 0 auto;
+font-size: 14px;
+font-weight: 700;
+line-height: 18px;
+letter-spacing: -1px;
+text-transform: uppercase; 
+background-color: transparent;
+color: #111111;
+}
+
+@media screen and (min-width: 768px) {
+.btn-action.button {
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+width: 499px;
+height: 64px;
+/* max-width: 100%; */
+border-radius: 40px;
+border: 2px solid #4F2EE8;
+padding: 20px 149.5px 20px 149.5px;
+margin: 0 auto;
+font-size: 18px;
+font-weight: 700;
+line-height: 24px;
+letter-spacing: -1px;
+text-transform: uppercase; 
+background-color: transparent;
+color: #111111;
+}
+    
+}
+
+.cl-bl-icon {
+display: flex;
+justify-content: center;
+align-items: center;
+min-width: 14px;
+min-height: 14px;
+ padding: 8px;
+  
+background-color: var(--accent-color);
+  /* outline: none; */
+fill:3px #111;
+}

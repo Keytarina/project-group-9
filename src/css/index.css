@@ -77,3 +77,15 @@ svg {
 	opacity: 0;
 	pointer-events: none;
 }
+
+.main-wraper {
+  padding-top: 112px;
+  padding-bottom: 72px;
+  display: flex;
+}
+
+.categories-support-wraper {
+  display: flex;
+  flex-direction: column;
+
+}
