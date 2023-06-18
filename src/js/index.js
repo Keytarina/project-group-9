@@ -1,5 +1,6 @@
 // import test from './test.js';
-<<<<<<< Updated upstream
+
 import './shopping-list';
-=======
->>>>>>> Stashed changes
+import './modal';
+import './books';
+af7779b0fa85b073f18ac9bdf460d671e3edde32
