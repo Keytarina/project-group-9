@@ -24,4 +24,4 @@ const renderBestSellersList = data => {
   return markup;
 };
 
-export default renderBestSellersList;
+// export default renderBestSellersList;
