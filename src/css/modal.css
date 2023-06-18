@@ -1,13 +1,13 @@
 .modal {
-    position: relative;
+position: relative;
 
 display: flex;
 flex-direction: column-reverse;
 
-    width: 335px;
-    height: 762px;
-    border-radius: 18px;
-    padding-top: 40px;
+width: 335px;
+height: 762px;
+border-radius: 18px;
+padding-top: 40px;
 padding-right: 24px;
 padding-left: 24px;
 padding-bottom: 40px;
@@ -16,23 +16,22 @@ background-color: #fff;
 }
 
 @media screen and (min-width: 768px) {
-    .modal {
-    position: relative;
-    width: 579px;
-    height: 465px;
-    background-color: #fff;
-    border: solid 2px #111111;
-    border-radius: 18px;
-    padding: 40px;
-    }
-    
+.modal {
+position: relative;
+width: 579px;
+height: 465px;
+background-color: #fff;
+border: solid 2px #111111;
+border-radius: 18px;
+padding: 40px;
+    }  
 }
 
 .btn-action {
-    display: flex;
-    width: 211px;
-    height: 46px;
-    cursor: pointer;
+display: flex;
+width: 211px;
+height: 46px;
+cursor: pointer;
 }
 
 .cls-button {
@@ -119,14 +118,14 @@ color: #111111;
 }
 
 .cl-bl-icon {
-    display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 14px;
-    min-height: 14px;
-  padding: 8px;
+display: flex;
+justify-content: center;
+align-items: center;
+min-width: 14px;
+min-height: 14px;
+ padding: 8px;
   
-  background-color: var(--accent-color);
+background-color: var(--accent-color);
   /* outline: none; */
-  fill:3px #111;
+fill:3px #111;
 }
