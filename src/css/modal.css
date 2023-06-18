@@ -32,7 +32,11 @@ padding: 40px;
 
 @media screen and (min-width: 1440px) {
 .modal {
-position: relative;
+position: absolute;
+top: 400px;
+left: 431px;
+right: 430px;
+bottom: 437px;
 /* min-width:336px;  */
 max-width: 579px;
 height: 465px;
