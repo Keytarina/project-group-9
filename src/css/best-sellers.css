@@ -1,21 +1,21 @@
-.see-more-btn {
-    display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 14px 28px;
-gap: 10px;
+.seeMoreBtn {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 14px 28px;
+  gap: 10px;
 
-width: 124px;
-height: 46px;
+  width: 124px;
+  height: 46px;
 
-border: 2px solid #4F2EE8;
-border-radius: 40px;
-flex: none;
-order: 1;
-flex-grow: 0;
-box-sizing: border-box;
-color: black;
-cursor: pointer;
+  border: 2px solid #4f2ee8;
+  border-radius: 40px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
   display: inline-flex;
   font-family: DM Sans;
   font-size: 14px;
@@ -24,8 +24,59 @@ cursor: pointer;
   justify-content: center;
   overflow: hidden;
 }
-
-
-
-
-
+.bestSellersSection {
+  padding-top: 40px;
+  padding-bottom: 72px;
+  font-family: 'DM Sans';
+}
+.bestSellersTitle {
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  color: #b4afaf;
+  text-transform: uppercase;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+.bestSellersList {
+  display: flex;
+  column-gap: 24px;
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 46px;
+}
+.bestSellersListItem {
+  max-width: 180px;
+}
+.bestSellersThumb {
+  max-width: 180px;
+  height: 256px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.bestSellersImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.bookDescriptionThumb {
+  padding-top: 14px;
+}
+.bookTitle {
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: #111111;
+  margin-bottom: 4px;
+  margin-top: 0;
+}
+.bookDescription {
+  color: #b4afaf;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.16;
+  font-style: italic;
+  margin: 0;
+}
