@@ -1,18 +1,47 @@
 <header>
-  <div class="header-container">
+  <div class="header-container container">
+    <nav class="header-main">
+      <a class="header-logo" href="./index.html">
+        <svg width="24" height="24">
+          <use href="#"></use>
+        </svg>
+        <svg width="77" height="13.27">
+          <use href="#"></use>
+        </svg>
+      </a>
+      <div class="heder-nav">
+        <div class="header-home">
+          <a href="./index.html">home</a>
+        </div>
+        <div class="header-shopping-list">
+          <a href="./shopping.html">shopping list</a>
+          <svg class="" width="20" height="20">
+            <use href="#"></use>
+          </svg>
+        </div>
+      </div>
+    </nav>
     <div class="header-main">
-      <div class="header-main__logo"></div>
-      <div class="header-main__home"></div>
-      <div class="header-main__shopping-list"></div>
-    </div>
-    <div class="header-main">
-      <div class="header-main__toggle">
-        <div class="header-main__toggle-container">
+      <div class="header-toggle">
+        <div class="header-toggle-container">
           <input type="checkbox" id="toggle-button" class="toggle-button" />
           <label for="toggle-button" class="text"></label>
         </div>
       </div>
-      <div class="header-main__user"></div>
+      <button class="burger-menu">
+        <svg class="burger-btn" width="28" height="28">
+          <use href="#"></use>
+        </svg>
+        <!-- </width=> -->
+      </button>
+      <button type="button" class="btn-login" data-authorization-open="">
+        <div class="btn-login-content">
+          <p class="btn-login-text">Sign up</p>
+          <svg class="btn-login-img" width="20" height="20">
+            <use href="#"></use>
+          </svg>
+        </div>
+      </button>
     </div>
   </div>
 </header>

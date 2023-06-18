@@ -31,6 +31,6 @@ function createModalWindow({ title, author, book_image, description }) {
             <li class="icon-link"></li>
             <li class="icon-link"></li>
         </ul>
-        </div>
+      </div>
     </div>`;
 }
