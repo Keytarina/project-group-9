@@ -13,19 +13,18 @@
     <link rel="stylesheet" href="css/index.css" />
   </head>
   <body>
-    <div class="wraper">
-      <a href="./authorization.html">Authorization link</a>
-      <a href="./shopping.html">Shopping link</a>
+    <include src="partials/authorization.html"></include>
 
-      <include src="partials/header.html"></include>
-      <div class="container">
+    <include src="partials/header.html"></include>
+    <div class="main-wraper container">
+      <div class="categories-support-wraper">
         <include src="partials/categories.html"></include>
         <include src="partials/support.html"></include>
-        <include src="partials/best-sellers.html"></include>
       </div>
-
-      <include src="partials/modal.html"></include>
+      <include src="partials/best-sellers.html"></include>
     </div>
+
+    <include src="partials/modal.html"></include>
 
     <script src="./js/index.js" type="module"></script>
     <script src="./js/categories.js" type="module"></script>
