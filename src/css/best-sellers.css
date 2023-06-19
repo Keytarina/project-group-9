@@ -1,31 +1,88 @@
 .see-more-btn {
-    display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 14px 28px;
-gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 14px 28px;
+  gap: 10px;
+  box-sizing: border-box;
 
-width: 124px;
-height: 46px;
+  width: 124px;
+  height: 46px;
 
-border: 2px solid #4F2EE8;
-border-radius: 40px;
-flex: none;
-order: 1;
-flex-grow: 0;
-box-sizing: border-box;
-color: black;
-cursor: pointer;
+  border: 2px solid #4f2ee8;
+  border-radius: 40px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  box-sizing: border-box;
+  color: #111111;
+  cursor: pointer;
   display: inline-flex;
   font-family: DM Sans;
   font-size: 14px;
   font-weight: 700;
-  line-height: 18px;
+  line-height: 1, 3 em;
   justify-content: center;
   overflow: hidden;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 3px;
+  padding: 0,10%;
+  background: #D0D0D0;
 }
+.books-section-fiction,
+.books-section-nonfiction,
+.books-section-hardcover-f,
+.books-section-hardcover-nf,
+.books-section-paper-tf,
+.books-section-paper-nf,
+.books-section-advice,
+.books-section-child {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background-color: B4AFAF;
+  padding: 0px;
+  gap: 32px;
+  border: 1px solid #b22222;
+  width: 996px;
+  height: 426px;
+  left: 420px;
+  top: 670px;
+ 
+}
+.see-more-btn-dark{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 14px 28px;
+  gap: 10px;
+  box-sizing: border-box;
+ 
 
+  width: 124px;
+  height: 46px;
 
-
-
+  border: 2px solid #4f2ee8;
+  border-radius: 40px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: DM Sans;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1, 3 em;
+  justify-content: center;
+  overflow: hidden;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 3px;
+  padding: 0,10%;
+  background: #D0D0D0;
+}
 
