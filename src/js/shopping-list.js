@@ -31,7 +31,7 @@ function renderBooksFromBusket() {
     renderCardFromStorage(id);
   });
 }
-renderBooksFromBusket(arrayOfBooksId);
+// renderBooksFromBusket(arrayOfBooksId);
 
 // -----запит данних із серверу----
 async function renderCardFromStorage(id) {
@@ -141,7 +141,7 @@ function renderMarkup(book) {
 
 // -------видалення книги із кошика---------
 
-list.addEventListener('click', deleteBook);
+// list.addEventListener('click', deleteBook);
 function deleteBook(event) {
   const menuItemsByTagName = document.querySelectorAll('.shopping-btn-dump');
   console.log(menuItemsByTagName);
