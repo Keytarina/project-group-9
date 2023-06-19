@@ -157,6 +157,12 @@ margin-bottom: 4px;
 @media screen and (min-width: 768px) {
 .titles {
 margin-bottom: 8px;
+color: #111111;
+font-size: 24px;
+font-weight: 700;
+line-height: 28px;
+letter-spacing: -4px;
+
     }  
 }
 
@@ -167,6 +173,12 @@ margin-bottom: 18px;
 @media screen and (min-width: 768px) {
 .authors {
 margin-bottom: 20px;
+color: #B4AFAF;
+font-size: 14px;
+font-weight: 400;
+font-style: italic;
+line-height: 18px;
+letter-spacing: -4px;
     }  
 }
 
@@ -177,6 +189,11 @@ margin-bottom: 20px;
 @media screen and (min-width: 768px) {
 .descriptions {
 margin-bottom: 20px;
+font-size: 14px;
+font-weight: 400;
+color: #111111;
+line-height: 18px;
+letter-spacing: -4px;
     }  
 }
 
