@@ -1,48 +1,77 @@
-    <header>
-      <div class="header-container container">
-        <nav class="header-main">
-          <a class="header-logo" href="./index.html">
-            <svg width="24" height="24">
-              <use href="./image/icons-sprite.svg#icon-logo1"></use>
+<header>
+  <div class="header-container container">
+    <nav class="header-main">
+      <a class="header-logo" href="./index.html">
+        <svg width="24" height="24">
+          <use href="./image/icons-sprite.svg#icon-logo1"></use>
+        </svg>
+        <svg width="77" height="13.27">
+          <use href="./image/icons-sprite.svg#icon-logo2"></use>
+        </svg>
+      </a>
+      <div class="header-nav" id="header-nav">
+        <div class="header-home">
+          <a href="./index.html">home</a>
+        </div>
+        <div class="header-shopping-list">
+          <a href="./shopping.html">shopping list</a>
+          <svg class="" width="20" height="20">
+            <use href="./image/icons-sprite.svg#icon-uil-cart"></use>
+          </svg>
+        </div>
+      </div>
+    </nav>
+    <div class="header-main">
+      <div class="header-toggle">
+        <div class="header-toggle-container">
+          <input type="checkbox" id="toggle-button" class="toggle-button" />
+          <label for="toggle-button" class="text"></label>
+        </div>
+      </div>
+      <ul>
+        <li>
+          <button class="burger-menu" id="burger">
+            <svg class="burger-btn-open" width="28" height="28">
+              <use href="./image/icons.svg#burger-menu"></use>
             </svg>
-            <svg width="77" height="13.27">
-              <use href="./image/icons-sprite.svg#icon-logo2"></use>
+            <svg class="burger-btn-close" width="18" height="18" fill="none">
+              <path
+                stroke="#111"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M16 2 2 16M2 2l14 14"
+              ></path>
             </svg>
-          </a>
-          <div class="heder-nav">
-            <div class="header-home">
-              <a href="./index.html">home</a>
-            </div>
-            <div class="header-shopping-list">
-              <a href="./shopping.html">shopping list</a>
-              <svg class="" width="20" height="20">
-                <use href="./image/icons-sprite.svg#icon-uil-cart"></use>
-              </svg>
-            </div>
-          </div>
-        </nav>
-        <div class="header-main">
-          <div class="header-toggle">
-            <div class="header-toggle-container">
-              <input type="checkbox" id="toggle-button" class="toggle-button" />
-              <label for="toggle-button" class="text"></label>
-            </div>
-          </div>
-          <button class="burger-menu">
-            <svg class="burger-btn" width="28" height="28">
-              <use href="./image/align-left.svg"></use>
-            </svg>
-              </width=>
           </button>
+        </li>
+        <li>
           <button type="button" class="btn-login" data-authorization-open="">
             <div class="btn-login-content">
               <p class="btn-login-text">Sign up</p>
               <svg class="btn-login-img" width="20" height="20">
-                <use href="./image/icons-sprite.svg#icon-arrow-narrow-right"></use>
+                <use
+                  href="./image/icons-sprite.svg#icon-arrow-narrow-right"
+                ></use>
               </svg>
             </div>
           </button>
-        </div>
-      </div>
-    </header>
-<script src="/src/js/theme.js" defer></script>
+        </li>
+        <li>
+          <button type="button" class="btn-logout" data-authorization-close="">
+            <div class="btn-logout-content">
+              <p class="btn-logout-text">Log out</p>
+              <svg class="btn-logout-img" width="20" height="20">
+                <use
+                  href="./image/icons-sprite.svg#icon-arrow-narrow-right"
+                ></use>
+              </svg>
+            </div>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+<script src="./js/theme.js" defer></script>
+<script src="./js/header.js" defer></script>
