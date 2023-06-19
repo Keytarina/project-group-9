@@ -10,6 +10,7 @@ header {
   background: #ffffff;
   border: 1.5px solid #111111;
   border-radius: 0px 0px 8px 8px;
+  z-index: 2;
 }
 @media screen and (min-width: 768px) {
   header {
