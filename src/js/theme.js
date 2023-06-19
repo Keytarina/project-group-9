@@ -8,9 +8,7 @@ function setDarkTheme(){
 function setLightTheme(){
     document.body.classList.remove('dark')
     localStorage.theme = 'light'
-
 }
-
 
 toggleToChangeTheme.addEventListener('click', () => {
    if( document.body.classList.contains('dark')){
@@ -23,5 +21,5 @@ toggleToChangeTheme.addEventListener('click', () => {
 
 if (localStorage.theme === 'dark'){
     document.body.classList.add('dark')
-    toggleToChangeTheme.textContent = 'Black'
+    toggleToChangeTheme.checked = true
 }

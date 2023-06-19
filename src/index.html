@@ -4,24 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bookshelf - Home</title>
+    <link rel="icon" type="images/x-icon" href="./image/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/index.css" />
   </head>
   <body>
-    <p>sdevshosivhsh</p>
-    <p>Hello world</p>
-    <div>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, quasi quo.
-      Perferendis, temporibus. Suscipit eos molestiae voluptate perferendis
-      impedit minima pariatur aliquam, illum ipsa neque. Ipsam rerum quasi
-      dolores quibusdam.
-    </div>
-    <a href="./authorization.html">link</a>
+    <include src="partials/authorization.html"></include>
+
     <include src="partials/header.html"></include>
-    <include src="partials/categories.html"></include>
-    <include src="partials/support.html"></include>
-    <include src="partials/best-sellers.html"></include>
+    <div class="main-wraper container">
+      <div class="categories-support-wraper">
+        <include src="partials/categories.html"></include>
+        <include src="partials/support.html"></include>
+      </div>
+      <include src="partials/best-sellers.html"></include>
+    </div>
+
     <include src="partials/modal.html"></include>
 
     <script src="./js/index.js" type="module"></script>
+    <script src="./js/categories.js" type="module"></script>
   </body>
 </html>
