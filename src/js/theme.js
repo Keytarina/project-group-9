@@ -1,25 +1,24 @@
 const toggleToChangeTheme = document.querySelector('#toggle-button');
 
-function setDarkTheme(){
-    document.body.classList.add('dark')
-    localStorage.theme = 'dark'
+function setDarkTheme() {
+  document.body.classList.add('dark');
+  localStorage.theme = 'dark';
 }
 
-function setLightTheme(){
-    document.body.classList.remove('dark')
-    localStorage.theme = 'light'
+function setLightTheme() {
+  document.body.classList.remove('dark');
+  localStorage.theme = 'light';
 }
 
 toggleToChangeTheme.addEventListener('click', () => {
-   if( document.body.classList.contains('dark')){
-    setLightTheme()
+  if (document.body.classList.contains('dark')) {
+    setLightTheme();
+  } else {
+    setDarkTheme();
+  }
+});
 
-   }else{
-    setDarkTheme()
-   }
-})
-
-if (localStorage.theme === 'dark'){
-    document.body.classList.add('dark')
-    toggleToChangeTheme.checked = true
+if (localStorage.theme === 'dark') {
+  document.body.classList.add('dark');
+  toggleToChangeTheme.checked = true;
 }
