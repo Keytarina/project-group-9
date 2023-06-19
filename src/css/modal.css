@@ -222,5 +222,6 @@ letter-spacing: -4px;
 }
 
 .icons {
+    display: flex;
     margin-bottom: 40px;
 }
