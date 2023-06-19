@@ -149,15 +149,37 @@ fill:3px #111;
     display: flex;
     flex-direction: column;
 }
+
 .titles {
 margin-bottom: 4px;
 }
+
+@media screen and (min-width: 768px) {
+.titles {
+margin-bottom: 8px;
+    }  
+}
+
 .authors {
 margin-bottom: 18px;
 }
+
+@media screen and (min-width: 768px) {
+.authors {
+margin-bottom: 20px;
+    }  
+}
+
 .descriptions {
     margin-bottom: 14px;
 }
+
+@media screen and (min-width: 768px) {
+.descriptions {
+margin-bottom: 20px;
+    }  
+}
+
 .icons {
     margin-bottom: 40px;
 }
