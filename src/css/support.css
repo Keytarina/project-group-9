@@ -37,7 +37,7 @@ li {
   z-index: 1;
 }
 .support {
-  position: absolute;
+  position: relative;
   width: 356px;
   height: 490px;
 
