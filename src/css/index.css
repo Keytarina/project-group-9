@@ -1,4 +1,5 @@
 @import url('./_reset.css');
+@import url('./_root-color.css');
 @import url('./header.css');
 @import url('./support.css');
 /* ---------- AUTHORIZATION PAGE -------------- */
@@ -9,8 +10,12 @@
 @import url('./modal.css');
 /* ---------- SHOPPING LIST PAGE -------------- */
 @import url('./shopping-list.css');
+
 /* --------THEME-----*/
 @import url('./theme.css');
+
+/* global styles */
+
 
 .container {
   padding: 0 20;
@@ -34,16 +39,20 @@
     padding: 0 24px;
   }
 }
-
-:root {
-  --transition-property: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 html {
   scroll-behavior: smooth;
 }
 body {
+  margin: 0;
+  min-width: 320px;
   font-family: DM Sans, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: calc(18 / 14);
+  letter-spacing: -0.02em;
+  background-color: var(--background-color-main);
+  color: var(--main-text-color);
+  transition: 1s;
 }
 button {
   transition: color var(--transition-property),
