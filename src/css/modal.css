@@ -146,3 +146,24 @@ background-color: var(--accent-color);
   /* outline: none; */
 fill:3px #111;
 }
+
+.modal-window {
+    display: flex;
+}
+.picture {
+    display: block;
+    margin-bottom: 14px;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+}
+.titles {
+margin-bottom: 4px;
+}
+.authors {
+margin-bottom: 18px;
+}
+.descriptions {
+    margin-bottom: 14px;
+}

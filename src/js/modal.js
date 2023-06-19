@@ -29,11 +29,11 @@ function renderModalWindow(book_image) {
 }
 
 function createModalWindow({id, title, author, book_image, description }) {
-  return `<div class='modal' data-id=${id}> 
+  return `<div class='modal-window' data-id=${id}> 
     <div class="picture"><img src='${book_image}' alt='${description}'></div>
-      <div class="info"><h1>${title}>
-      <h2>${author}</h2>
-      <p>${description}</p>
+      <div class="info"><h1 class="titles">${title}>
+      <h2 class="authors">${author}</h2>
+      <p class="descriptions">${description}</p>
       <ul class="icons">
             <li class="icon-link"></li>
             <li class="icon-link"></li>
