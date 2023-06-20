@@ -48,6 +48,16 @@ ul,li{
     color: rgba(17, 17, 17, 0.6);
 }
 
+body.dark .categories-list{
+    color: rgba(255, 255, 255, 0.6);;
+}
+
+body.dark
+.categories-list:hover,
+.categories-list:active{
+    color: var(--hover-navigation-color);
+}
+
 .categories-list:hover,
 .categories-list:active{
     font-family: 'DM Sans';
