@@ -5,7 +5,7 @@
         <svg width="24" height="24">
           <use href="./image/icons-sprite.svg#icon-logo1"></use>
         </svg>
-        <svg width="77" height="13.27">
+        <svg class="main-logo" width="77" height="13.27">
           <use href="./image/icons-sprite.svg#icon-logo2"></use>
         </svg>
       </a>
@@ -14,10 +14,12 @@
           <a href="./index.html">home</a>
         </div>
         <div class="header-shopping-list">
-          <a href="./shopping.html">shopping list</a>
-          <svg class="" width="20" height="20">
-            <use href="./image/icons-sprite.svg#icon-uil-cart"></use>
-          </svg>
+          <a href="./shopping.html"
+            >shopping list
+            <svg class="main-logo" width="20" height="20">
+              <use href="./image/icons-sprite.svg#icon-uil-cart"></use>
+            </svg>
+          </a>
         </div>
       </div>
     </nav>
@@ -46,7 +48,7 @@
           </button>
         </li>
         <li>
-          <button type="button" class="btn-login" data-authorization-open="">
+          <button type="button" class="btn-login">
             <div class="btn-login-content">
               <p class="btn-login-text">Sign up</p>
               <svg class="btn-login-img" width="20" height="20">
@@ -58,7 +60,7 @@
           </button>
         </li>
         <li>
-          <button type="button" class="btn-logout" data-authorization-close="">
+          <button type="button" class="btn-logout">
             <div class="btn-logout-content">
               <p class="btn-logout-text">Log out</p>
               <svg class="btn-logout-img" width="20" height="20">
@@ -70,12 +72,14 @@
           </button>
         </li>
         <li>
-          <button type="button" class="btn-client" data-authorization-client="">
+          <button type="button" class="btn-signed">
             <div class="btn-client-content">
-              <svg class="btn-client-img" width="19" height="19">
-                <use href="./image/icons-sprite.svg#icon-user"></use>
-              </svg>
-              <p class="btn-client-text">Username</p>
+              <div class="btn-client-logo">
+                <svg class="btn-client-img" width="19" height="19">
+                  <use href="./image/icons-sprite.svg#icon-user"></use>
+                </svg>
+              </div>
+              <p class="btn-login-text-signed">Username</p>
               <svg class="btn-client-caret" width="23" height="26">
                 <use href="./image/icons-sprite.svg#icon-caret-down"></use>
               </svg>
