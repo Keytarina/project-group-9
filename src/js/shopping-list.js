@@ -392,7 +392,7 @@ function renderMarkup(book, id) {
                     ><img
                       width="32px"
                       class="shopping-card-link-icon shopping-card-link-amazon"
-                      src="./shop-amazon-62x19px.7917bd99.png"
+                      src="./shop-amazon-62x19px.a7ec3af8.png"
                       alt="Amazon" loading="lazy"
                     />
                   </a>
@@ -409,7 +409,7 @@ function renderMarkup(book, id) {
                       width="16px"
                       height="16px"
                       class="shopping-card-link-icon"
-                      src="./shop-read-33x32px.d5fa78b5.png"
+                      src="./shop-read-33x32px.a9f158e0.png"
                       alt="Apple Books" loading="lazy"
                     />
                   </a>
@@ -426,7 +426,7 @@ function renderMarkup(book, id) {
                       width="16px"
                       height="16px"
                       class="shopping-card-link-icon shopping-card-link-shopbook"
-                      src="./shop-book-shop-38x36px.536ec7a9.png"
+                      src="./shop-book-shop-38x36px.eb5fbc1e.png"
                       alt="BookShop" loading="lazy"
                     />
                   </a>
@@ -434,7 +434,7 @@ function renderMarkup(book, id) {
               </ul>
               <button class="shopping-btn-dump" type="button" data-book="${id}">
                 <svg class="shopping-btn-dump-icon" width="16" height="16">
-                  <use href="./icons.61d18740.svg#dump"></use>
+                  <use href="./icons.d473670f.svg#dump"></use>
                 </svg>
               </button>
             </div>
