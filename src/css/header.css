@@ -173,24 +173,34 @@ header {
 }
 
 @media (max-width: 767px) {
+  .burger-wraper {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background: radial-gradient(
+      183.6% 183.01% at 59.76% -23.42%,
+      #4f2ee8 18.03%,
+      #fff 100%
+    );
+  }
   .header-nav {
     display: none;
     flex-direction: column;
     position: fixed;
     height: 100%;
     width: 100%;
-    top: 60px;
+    top: 0px;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 10;
+    z-index: 3;
     overflow-y: auto;
     margin-left: 0;
-    background: radial-gradient(
-      183.6% 183.01% at 59.76% -23.42%,
-      #4f2ee8 18.03%,
-      #fff 100%
-    );
     justify-content: flex-start;
   }
   .header-home {
@@ -212,6 +222,9 @@ header {
     z-index: 20;
   }
 }
+/* .header-nav.active {
+  display: block;
+} */
 .burger-btn-open {
   justify-content: center;
   align-items: center;
