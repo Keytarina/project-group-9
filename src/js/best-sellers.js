@@ -1,3 +1,6 @@
+//This function recieves parsed data from api and returns the markup of book-list
+//at the home page. Should be used after any of serviceApi functions in async code.
+
 export const renderBestSellersList = (data) => {
   const header =
     '<h1 class="bestSellersHeader">Best Sellers <span class="bestSellersAccent">Books</span></h1>';

@@ -1,6 +1,5 @@
-@import url('./common.css');
-@import url('./fonts.css');
-@import url('./reset.css');
+@import url('./_reset.css');
+@import url('./_root-color.css');
 @import url('./header.css');
 @import url('./support.css');
 /* ---------- AUTHORIZATION PAGE -------------- */
@@ -11,44 +10,91 @@
 @import url('./modal.css');
 /* ---------- SHOPPING LIST PAGE -------------- */
 @import url('./shopping-list.css');
+
 /* --------THEME-----*/
 @import url('./theme.css');
 
+/* global styles */
+
+
 .container {
-    padding: 0 15px;
-    margin: 0 auto;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  /* максимальний розмір не повинен співпадати з мінімальнип в наступному контейнері */
+  .container {
+    max-width: 335px;
   }
-  @media screen and (min-width: 320px) and (max-width: 768px) {
-    .container {
-      max-width: 335px;
-    }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    width: 704px;
+    padding: 0 32px;
   }
-  @media screen and (min-width: 768px) {
-    .container {
-      width: 704px;
-    }
+}
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 1392px;
+    padding: 0 24px;
   }
-  @media screen and (min-width: 1440px) {
-    .container {
-      width: 1392px;
-    }
-  }
-  
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: DM Sans, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: calc(18 / 14);
+  letter-spacing: -0.02em;
+  background-color: var(--background-color-main);
+  color: var(--main-text-color);
+  transition: 1s;
+}
+button {
+  transition: color var(--transition-property),
+    background-color var(--transition-property),
+    box-shadow var(--transition-property),
+    border-color var(--transition-property);
+}
+a {
+  transition: color var(--transition-property),
+    background-color var(--transition-property),
+    box-shadow var(--transition-property),
+    border-color var(--transition-property);
+}
+svg {
+  transition: fill var(--transition-property);
+}
 
 .visually-hidden {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	margin: -1px;
-	border: 0;
-	padding: 0;
-	white-space: nowrap;
-	clip-path: inset(100%);
-	clip: rect(0 0 0 0);
-	overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
 .is-hidden {
-	visibility: hidden;
-	opacity: 0;
-	pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.main-wraper {
+  padding-top: 112px;
+  padding-bottom: 72px;
+  display: flex;
+}
+
+.categories-support-wraper {
+  display: flex;
+  flex-direction: column;
 }
