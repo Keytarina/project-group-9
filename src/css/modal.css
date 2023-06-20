@@ -2,6 +2,10 @@
     position: relative;
 }
 
+body {
+    overflow: hidden;
+}
+
 .modal {
 position: absolute;
 opacity: 1;
@@ -82,7 +86,9 @@ transform: translate(-50%, -50%);
 
 
 .cls-button {
+display: block;
 position: absolute;
+
 top: 12px;
 right: 12px;
 display: flex;
@@ -116,7 +122,7 @@ border: none;
 background-color: transparent;
 transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 transition-duration: 250ms;
-/* transition-property: background-color, fill; */
+transition-property: background-color, fill;
     }
     
 }
@@ -275,7 +281,10 @@ letter-spacing: -4px;
 .icon-link {
 mix-blend-mode: luminosity;
 }
+.icon-link:not(:last-child) {
+margin-right: 20px;
+}
 
 .icon-link :hover { 
-  filter: drop-shadow(0px 3px 3px var(--shadow-color)); 
+filter: drop-shadow(0px 3px 3px var(--shadow-color)); 
 }
