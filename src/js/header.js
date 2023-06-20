@@ -1,7 +1,7 @@
-document.getElementById('burger').addEventListener('click', function () {
+document.querySelector('.burger-menu').addEventListener('click', function () {
   this.classList.toggle('active');
   document.querySelector('.btn-login').classList.toggle('active');
-  document.querySelector('.burger-wraper').classList.toggle('active');
+  document.querySelector('.burger-wraper').classList.toggle('open');
   document.querySelector('.btn-logout').classList.toggle('active');
-  document.getElementById('header-nav').classList.toggle('open');
+  document.querySelector('.header-nav').classList.toggle('open');
 });

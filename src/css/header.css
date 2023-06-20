@@ -3,6 +3,7 @@ body {
   position: relative;
 }
 header {
+  display: flex;
   transition: 1s;
   position: fixed;
   width: 100%;
@@ -15,11 +16,16 @@ header {
   border: 1.5px solid #111111;
   border-radius: 0px 0px 8px 8px;
   z-index: 2;
+  justify-content: center;
 }
 @media screen and (min-width: 768px) {
   header {
     height: 72px;
   }
+}
+
+header > .header-container {
+  margin: 0;
 }
 .header-container {
   position: relative;
@@ -27,6 +33,7 @@ header {
   display: flex;
   justify-content: space-between;
   height: 100%;
+  width: 100%;
 }
 
 .header-main {
@@ -108,6 +115,10 @@ header {
   text-decoration: none;
 }
 
+/* .btn-bloc {
+  margin-left: 144px;
+} */
+
 .header-toggle {
   width: 40px;
   height: 24px;
@@ -174,6 +185,7 @@ header {
 
 @media (max-width: 767px) {
   .burger-wraper {
+    display: none;
     position: fixed;
     height: 100%;
     width: 100%;
@@ -194,7 +206,7 @@ header {
     position: fixed;
     height: 100%;
     width: 100%;
-    top: 0px;
+    top: 64px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -301,4 +313,16 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.btn-client {
+  display: flex;
+  position: absolute;
+  width: 184px;
+  height: 45px;
+  left: 0px;
+  top: 72px;
+  background: #4f2ee8;
+  border-radius: 36px;
+  border-color: 0;
 }

@@ -21,7 +21,7 @@
         </div>
       </div>
     </nav>
-    <div class="header-main">
+    <div class="header-main btn-bloc">
       <div class="header-toggle">
         <div class="header-toggle-container">
           <input type="checkbox" id="toggle-button" class="toggle-button" />
@@ -69,10 +69,23 @@
             </div>
           </button>
         </li>
+        <li>
+          <button type="button" class="btn-client" data-authorization-client="">
+            <div class="btn-client-content">
+              <svg class="btn-client-img" width="19" height="19">
+                <use href="./image/icons-sprite.svg#icon-user"></use>
+              </svg>
+              <p class="btn-client-text">Username</p>
+              <svg class="btn-client-caret" width="23" height="26">
+                <use href="./image/icons-sprite.svg#icon-caret-down"></use>
+              </svg>
+            </div>
+          </button>
+        </li>
       </ul>
     </div>
   </div>
 </header>
 <div class="burger-wraper"></div>
 <script src="./js/theme.js" defer></script>
-<!-- <script src="./js/header.js" defer></script> -->
+<script src="./js/header.js" defer></script>
