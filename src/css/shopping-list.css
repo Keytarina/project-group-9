@@ -74,14 +74,19 @@ body {
 }
 
 /* // shoppingList styles */
+body.dark {
+  --background-color-main: #202024;
+  --main-text-color: #ffffff;
+}
+
 body.dark .wraper {
-  color: var(--main-text-color-dark);
+  /* color: var(--main-text-color-dark); */
   background-color: var(--background-color-dark);
 }
 
-body.dark ::-webkit-scrollbar-thumb {
+/* body.dark ::-webkit-scrollbar-thumb {
   background: var(--scroll-bar);
-}
+} */
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -351,8 +356,10 @@ body.dark .shopping-card-link-amazon {
   filter: brightness(0.05) invert(100%);
 }
 
+.shopping-card-link-icon:focus,
 .shopping-card-link-icon:hover {
   filter: drop-shadow(0px 3px 3px var(--shadow-color));
+  scale: 1.05;
 }
 
 .shopping-card-link-icon {
@@ -403,10 +410,28 @@ body.dark .shopping-card-link-amazon {
     top: 24px;
   }
 }
+.shopping-btn-dump:focus,
+.shopping-btn-dump:hover {
+  box-shadow: 2px 2px 10px 4px rgba(0, 0, 0, 0.35);
+  background-color: var(--border-color-dark);
+  scale: 1.1;
+  /* mix-blend-mode: difference; */
+}
 
+.shopping-btn-dump:active {
+  box-shadow: 2px 2px 10px 4px rgba(0, 0, 0, 0.35);
+  background-color: var(--scroll-bar);
+  scale: 1.2;
+}
 .shopping-btn-dump-icon {
   fill: var(--accent-bg-cl);
 }
+
+.shopping-btn-dump:hover .shopping-btn-dump-icon {
+  fill: var(--hover-navigation-color);
+  scale: 1.05;
+}
+
 @media screen and (min-width: 768px) {
   .shopping-btn-dump-icon {
     width: 18px;
@@ -414,6 +439,9 @@ body.dark .shopping-card-link-amazon {
   }
 }
 
+.shopping-btn-dump-icon:active {
+  fill: var(--background-color-dark);
+}
 /* ------- paginator --------- */
 .shopping-paginator-list {
   display: flex;
@@ -480,6 +508,15 @@ body.dark .shopping-paginator-btn {
   font-size: 18px;
   line-height: calc(22 / 18);
 }
+.shopping-paginator-btn:focus,
+.shopping-paginator-btn:hover {
+  text-shadow: var(--scroll-bar-dark) 1px 0 10px;
+  box-shadow: 2px 2px 10px 4px rgba(0, 0, 0, 0.35);
+  scale: 0.95;
+}
+.shopping-paginator-btn:active {
+  scale: 0.9;
+}
 
 @media screen and (max-width: 767px) {
   .btn-hidden {
@@ -490,8 +527,49 @@ body.dark .shopping-paginator-btn {
 .current-page {
   color: #fff;
   background-color: #111;
+  text-shadow: #fc0 1px 0 10px;
 }
 body.dark .current-page {
   color: #111;
   background-color: #fff;
+}
+
+.shopping-refresh {
+  border: 1px solid var(--background-color-dark);
+  border-radius: 18px;
+  filter: drop-shadow(0px 3px 3px var(--shadow-color));
+  width: 96px;
+  height: 28px;
+  position: absolute;
+  box-shadow: 2px 2px 10px 4px rgba(0, 0, 0, 0.35);
+}
+.shopping-refresh-btn {
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 1px 1px 2px rgb(61, 49, 49, 0.1), 0 0 1em rgb(99, 99, 120, 0.1),
+    0 0 0.2em rgb(74, 111, 116, 0.1);
+  font-size: 18px;
+  line-height: calc(20 / 18);
+  letter-spacing: -0.02em;
+  display: flex;
+  border: 2px solid var(--background-color-dark);
+  border-radius: 10px;
+
+  width: 96px;
+  height: 26px;
+  position: absolute;
+  box-shadow: 2px 2px 10px 4px rgba(0, 0, 0, 0.35);
+  /* background-image: url(../image/shopping/refresh.png); */
+  background-size: contain;
+}
+.shopping-refresh-btn:focus,
+.shopping-refresh-btn:hover {
+  filter: drop-shadow(0px 3px 3px var(--shadow-color));
+  mix-blend-mode: hard-light;
+  scale: 1.05;
+}
+.shopping-refresh-btn:active {
+  mix-blend-mode: luminosity;
+  scale: 0.95;
 }
