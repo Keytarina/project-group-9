@@ -1,7 +1,6 @@
 {
   "name": "project-group-9",
-  "version": "2.0.0",
-  "description": "",
+  "version": "3.0.0",
   "homepage": "https://keytarina.github.io/project-group-9",
   "scripts": {
     "start": "parcel src/*.html",
@@ -23,7 +22,12 @@
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
+<<<<<<< Updated upstream
     "parcel": "^2.6.0",
+=======
+    "buffer": "^6.0.3",
+    "parcel": "^2.9.2",
+>>>>>>> Stashed changes
     "parcel-reporter-clean-dist": "^1.0.4",
     "posthtml-include": "^1.7.4"
   },
