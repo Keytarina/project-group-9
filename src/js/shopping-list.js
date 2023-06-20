@@ -9,41 +9,36 @@ const secondBtn = document.querySelector('button[data-page="second"]');
 const thirdBtn = document.querySelector('.btn-hidden');
 
 // Імітація наповнення LocalStorage id-шниками книг -------
-const arrayOfId = [];
-arrayOfId.push(
-  '643282b1e85766588626a0dc',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a0dc',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a0dc',
-  '643282b1e85766588626a0dc',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a0dc',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a0dc',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a0dc',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a0dc',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a080'
-);
-localStorage.setItem('id', JSON.stringify(arrayOfId));
-// -----------
-
+// localStorage.clear();
 let arrayOfBooksId = [];
-let arrayOfBooksIdToPaginate = [];
-arrayOfBooksId = JSON.parse(localStorage.getItem('id'));
+arrayOfBooksId.push(
+  '643282b1e85766588626a0dc',
+  '643282b1e85766588626a080',
+  '643282b1e85766588626a0dc',
+  '643282b1e85766588626a080',
+  '643282b1e85766588626a0dc'
+);
+localStorage.setItem('id', JSON.stringify(arrayOfBooksId));
+// -----------
+// paginator - кількість книг, що буде відображатись на сторінці.
+// page - сторінка списку книг.
+// totalPages - скільки займатимуть сторінок книги з localStorage.
+
+let paginator = 3;
+let page = 1;
+let totalPages = 1;
+
+function checkCurrentPage() {
+  if (Number.parseInt(localStorage.getItem('page')) > 0) {
+    page = JSON.parse(localStorage.getItem('page'));
+    console.log(`now is page ${page}`);
+  } else page = 1;
+}
+checkCurrentPage();
 
 // формування повідомлення про пустий кошик----
 function showMessageIfEmpty() {
-  if (arrayOfBooksId.length > 0) {
+  if (JSON.parse(localStorage.getItem('id')).length > 0) {
     dummyMessage.classList.add('visually-hidden');
   } else {
     list.classList.add('visually-hidden');
@@ -56,14 +51,21 @@ function showMessageIfEmpty() {
 // ---------
 
 // -----Функція що збирає з localStorage id-шники для пагінації-----
-arrayOfBooksIdToPaginate = JSON.parse(localStorage.getItem('id'));
-let paginator = 3;
-let page = 1;
-let totalPages = 1;
-checkNumberBooksPerPage();
-checkTotalPages();
+function fetchArrayOfBookId() {
+  return (arrayOfBooksId = JSON.parse(localStorage.getItem('id')));
+}
+fetchArrayOfBookId();
+// --------Функція, що повертає кількість книг, що вміщує сторінка і загальну кількість сторінок,
+//   яку при цьому займуть книги у кошику------
 
-function checkNumberBooksPerPage() {
+fetchPaginator();
+
+function fetchPaginator() {
+  refreshNumberBooksPerPage();
+  refreshTotalPages();
+}
+
+function refreshNumberBooksPerPage() {
   if (getComputedStyle(thirdBtn).display == 'none') {
     // console.log('3 on page');
     return (paginator = 3);
@@ -72,40 +74,49 @@ function checkNumberBooksPerPage() {
     return (paginator = 4);
   }
 }
-function checkTotalPages() {
-  checkNumberBooksPerPage();
+function refreshTotalPages() {
   totalPages = Math.ceil(
     JSON.parse(localStorage.getItem('id')).length / paginator
   );
   return totalPages;
 }
+// ---------------------------------------------
 
-function renderFirstPage(page, paginator) {
-  checkNumberBooksPerPage();
-  checkTotalPages();
+/////////////Фуекція, що перезаписує значення поточної сторінки із зберігає його у localStorage
+function changePage(adduct) {
+  page += adduct;
+  localStorage.page = page;
+  console.log(page);
+  return page;
+}
+// ------------------------------------
+
+function renderLastSession() {
+  renderPage(page, paginator);
+  pageNumeration(page);
+}
+renderLastSession();
+
+function renderPage(page, paginator) {
+  // fetchPaginator();
   renderBooksFromBusket(page, paginator);
 }
-renderFirstPage(page, paginator);
 
 function makeArrayToPaginate(page, paginator) {
   console.log(`при создании массива ${page} p[age]`);
   console.log(`при создании массив ${totalPages} total pages`);
-  arrayOfBooksIdToPaginate = JSON.parse(localStorage.getItem('id'));
+  fetchArrayOfBookId();
 
-  const arrayOfBooksToPaginate = arrayOfBooksIdToPaginate.splice(
+  const arrayOfBooksToPaginate = arrayOfBooksId.splice(
     (page - 1) * paginator,
     paginator
   );
-  arrayOfBooksIdToPaginate = JSON.parse(localStorage.getItem('id'));
-
   return arrayOfBooksToPaginate;
 }
 
 function changeNumeration(weight) {
   firstBtn.textContent = Number.parseInt(firstBtn.textContent) + weight;
-  console.log(secondBtn.textContent);
   secondBtn.textContent = Number.parseInt(secondBtn.textContent) + weight;
-  console.log(secondBtn.textContent);
   thirdBtn.textContent = Number.parseInt(thirdBtn.textContent) + weight;
 }
 function pageNumeration(page) {
@@ -115,11 +126,11 @@ function pageNumeration(page) {
 }
 
 function paginate(event) {
+  fetchPaginator();
   console.log(`'this is page ${page}`);
   console.log(`event check ${totalPages} total pages`);
-  checkNumberBooksPerPage();
-  checkTotalPages();
-  if (JSON.parse(localStorage.getItem('id')).length <= paginator) {
+
+  if (fetchArrayOfBookId().length <= paginator) {
     return;
   }
 
@@ -132,78 +143,43 @@ function paginate(event) {
   }
   if (event.target.dataset.page === 'start') {
     if (page > 1) {
-      startBtnAction();
-      return;
+      return startBtnAction();
     }
   }
   if (event.target.dataset.page === 'last') {
-    if (page <= 1) {
-      return;
-    }
-    if (getComputedStyle(thirdBtn).display == 'none') {
-      lastBtnActionWithThreeBooksPerPage();
-    } else {
-      lastBtnActionWithFourBooksPerPage();
-    }
+    return lastBtnAction();
   }
   if (event.target.dataset.page === 'first') {
-    actionByNumeredBtns(firstBtn);
-    return;
+    return actionByNumeredBtns(firstBtn);
   }
 
   if (event.target.dataset.page === 'second') {
-    checkTotalPages();
     if (totalPages >= 2) {
-      actionByNumeredBtns(secondBtn);
-      return;
+      return actionByNumeredBtns(secondBtn);
     }
   }
   if (event.target.dataset.page === 'third') {
-    checkTotalPages();
     if (totalPages >= 3) {
-      actionByNumeredBtns(thirdBtn);
-      return;
+      return actionByNumeredBtns(thirdBtn);
     }
   }
   if (event.target.dataset.page === 'more') {
-    checkNumberBooksPerPage();
-    moreBtnAction(paginator);
-    return;
+    return moreBtnAction(paginator);
+  }
+
+  if (event.target.dataset.page === 'next') {
+    return nextBtnAction();
   }
   if (event.target.dataset.page === 'end') {
-    checkTotalPages();
-    console.log(page);
-    console.log(totalPages);
-    if (page != totalPages) {
-      console.log('hoor');
-      removingCurrentBtnStyle();
-      firstBtn.classList.add('current-page');
-      page = totalPages;
-      pageNumeration(page);
-      renderFirstPage(page, paginator);
-      return;
-    }
-  }
-  if (event.target.dataset.page === 'next') {
-    checkTotalPages();
-    if (page >= totalPages) {
-      return;
-    }
-    if (getComputedStyle(thirdBtn).display == 'none') {
-      nextBtnActionWithThreeBooksPerPage();
-      return;
-    } else {
-      nextBtnActionWithFourBooksPerPage();
-      return;
-    }
+    return endBtnAction();
   }
 }
 
 function actionByNumeredBtns($numeredBtn) {
-  page = Number.parseInt($numeredBtn.textContent);
+  changePage(Number.parseInt($numeredBtn.textContent) - page);
   removingCurrentBtnStyle();
   $numeredBtn.classList.add('current-page');
-  renderFirstPage(page, paginator);
+  renderPage(page, paginator);
 }
 
 function removingCurrentBtnStyle() {
@@ -215,99 +191,130 @@ function removingCurrentBtnStyle() {
 function startBtnAction() {
   removingCurrentBtnStyle();
   pageNumeration(1);
-  page = 1;
-
+  changePage(-page + 1);
   firstBtn.classList.add('current-page');
-  renderFirstPage(1, paginator);
+  renderPage(1, paginator);
   return;
 }
 
-function moreBtnAction(paginator) {
-  checkNumberBooksPerPage();
-  checkTotalPages();
-
-  if (Number.parseInt(firstBtn.textContent) + paginator - 1 <= totalPages) {
-    removingCurrentBtnStyle();
-    firstBtn.classList.add('current-page');
-    changeNumeration(3);
-    page = firstBtn.textContent;
-    renderFirstPage(page, paginator);
+function lastBtnAction() {
+  if (page <= 1) {
     return;
   }
+  if (page === 2) {
+    return startBtnAction();
+  }
+  if (paginator === 3) {
+    lastBtnActionWithThreeBooksPerPage();
+  } else {
+    lastBtnActionWithFourBooksPerPage();
+  }
+  changePage(-1);
+  return renderPage(page, paginator);
 }
 
 function lastBtnActionWithThreeBooksPerPage() {
-  if (Number.parseInt(firstBtn.textContent) <= 2) {
-    startBtnAction();
-    return;
-  }
+  // if (Number.parseInt(firstBtn.textContent) <= 2) {
+  //   return startBtnAction();
+  // }
   if (firstBtn.classList.contains('current-page')) {
-    firstBtn.classList.remove('current-page');
+    removingCurrentBtnStyle();
     secondBtn.classList.add('current-page');
     changeNumeration(-2);
   } else if (secondBtn.classList.contains('current-page')) {
-    secondBtn.classList.remove('current-page');
+    removingCurrentBtnStyle();
     firstBtn.classList.add('current-page');
   } else {
     changeNumeration(-1);
   }
-  page -= 1;
-  renderFirstPage(page, paginator);
 }
 
 function lastBtnActionWithFourBooksPerPage() {
-  if (Number.parseInt(firstBtn.textContent) <= 4) {
-    startBtnAction();
-    return;
-  }
   if (firstBtn.classList.contains('current-page')) {
-    firstBtn.classList.remove('current-page');
+    removingCurrentBtnStyle();
     thirdBtn.classList.add('current-page');
     changeNumeration(-3);
   } else if (secondBtn.classList.contains('current-page')) {
-    secondBtn.classList.remove('current-page');
+    removingCurrentBtnStyle();
     firstBtn.classList.add('current-page');
   } else if (thirdBtn.classList.contains('current-page')) {
+    removingCurrentBtnStyle();
     secondBtn.classList.add('current-page');
-    thirdBtn.classList.remove('current-page');
   } else {
     changeNumeration(-1);
   }
-  page -= 1;
-  renderFirstPage(page, paginator);
+}
+
+function nextBtnAction() {
+  if (page >= totalPages) {
+    return;
+  }
+  if (paginator === 3) {
+    return nextBtnActionWithThreeBooksPerPage();
+  } else {
+    nextBtnActionWithFourBooksPerPage();
+  }
+  changePage(1);
+  renderPage(page, paginator);
+}
+function moreBtnAction(paginator) {
+  if (Number.parseInt(firstBtn.textContent) + paginator - 1 <= totalPages) {
+    removingCurrentBtnStyle();
+    firstBtn.classList.add('current-page');
+    if (paginator === 4) {
+      changeNumeration(3);
+    } else {
+      changeNumeration(2);
+    }
+    changePage(firstBtn.textContent - page);
+    return renderPage(page, paginator);
+  }
 }
 
 function nextBtnActionWithThreeBooksPerPage() {
   if (firstBtn.classList.contains('current-page')) {
-    firstBtn.classList.remove('current-page');
+    removingCurrentBtnStyle();
     secondBtn.classList.add('current-page');
   } else if (secondBtn.classList.contains('current-page')) {
-    secondBtn.classList.remove('current-page');
+    removingCurrentBtnStyle();
     firstBtn.classList.add('current-page');
     changeNumeration(2);
   } else {
     changeNumeration(1);
   }
-  page += 1;
-  renderFirstPage(page, paginator);
 }
 
 function nextBtnActionWithFourBooksPerPage() {
   if (firstBtn.classList.contains('current-page')) {
-    firstBtn.classList.remove('current-page');
+    removingCurrentBtnStyle();
     secondBtn.classList.add('current-page');
   } else if (secondBtn.classList.contains('current-page')) {
-    secondBtn.classList.remove('current-page');
+    removingCurrentBtnStyle();
     thirdBtn.classList.add('current-page');
   } else if (thirdBtn.classList.contains('current-page')) {
-    moreBtnAction(paginator);
-    return;
+    return moreBtnAction(paginator);
   } else {
     changeNumeration(1);
   }
-  page += 1;
+}
 
-  renderFirstPage(page, paginator);
+function endBtnAction() {
+  if (totalPages === 2) {
+    return nextBtnAction();
+  }
+  if (page != totalPages) {
+    removingCurrentBtnStyle();
+    if (paginator === 4) {
+      thirdBtn.classList.add('current-page');
+      pageNumeration(totalPages - 2);
+    } else {
+      secondBtn.classList.add('current-page');
+      pageNumeration(totalPages - 1);
+    }
+
+    changePage(totalPages - page);
+    renderPage(page, paginator);
+  }
 }
 // --------------------
 
@@ -318,6 +325,8 @@ function renderBooksFromBusket(page, paginator) {
   makeArrayToPaginate(page, paginator).forEach(id => {
     renderCardFromStorage(id);
   });
+  list.addEventListener('click', deleteBook, { once: 'true' });
+  controller.addEventListener('click', paginate);
 }
 
 // -----запит данних із серверу----
@@ -327,6 +336,11 @@ async function renderCardFromStorage(id) {
     renderMarkup(data, id);
   } catch (error) {
     console.log(error);
+    showMessageIfEmpty();
+    dummyMessage.firstElementChild.textContent =
+      'Server is not available right now. Please, try later';
+    controller.classList.add('visually-hidden');
+    dummyMessage.classList.remove('visually-hidden');
   }
 }
 // ----------формування шаблону-----------
@@ -358,7 +372,7 @@ function renderMarkup(book, id) {
             alt="book cover"
             width="100px"
             height="142px" loading="lazy"
-          />          
+          />
           <div class="shopping-list-card-info">
             <h2 class="shopping-card-title">${title}</h2>
             <p class="shopping-card-category">${list_name}</p>
@@ -378,7 +392,7 @@ function renderMarkup(book, id) {
                     ><img
                       width="32px"
                       class="shopping-card-link-icon shopping-card-link-amazon"
-                      src="./shop-amazon-62x19px.7917bd99.png"
+                      src="./shop-amazon-62x19px.a7ec3af8.png"
                       alt="Amazon" loading="lazy"
                     />
                   </a>
@@ -395,7 +409,7 @@ function renderMarkup(book, id) {
                       width="16px"
                       height="16px"
                       class="shopping-card-link-icon"
-                      src="./shop-read-33x32px.d5fa78b5.png"
+                      src="./shop-read-33x32px.a9f158e0.png"
                       alt="Apple Books" loading="lazy"
                     />
                   </a>
@@ -412,7 +426,7 @@ function renderMarkup(book, id) {
                       width="16px"
                       height="16px"
                       class="shopping-card-link-icon shopping-card-link-shopbook"
-                      src="./shop-book-shop-38x36px.536ec7a9.png"
+                      src="./shop-book-shop-38x36px.eb5fbc1e.png"
                       alt="BookShop" loading="lazy"
                     />
                   </a>
@@ -420,7 +434,7 @@ function renderMarkup(book, id) {
               </ul>
               <button class="shopping-btn-dump" type="button" data-book="${id}">
                 <svg class="shopping-btn-dump-icon" width="16" height="16">
-                  <use href="./icons.61d18740.svg#dump"></use>
+                  <use href="./icons.d473670f.svg#dump"></use>
                 </svg>
               </button>
             </div>
@@ -428,9 +442,7 @@ function renderMarkup(book, id) {
         </div>`;
 
   list.insertAdjacentHTML('beforeend', markup);
-  list.addEventListener('click', deleteBook);
-
-  controller.addEventListener('click', paginate);
+  controller.classList.remove('visually-hidden');
 }
 // ------------
 
@@ -442,20 +454,30 @@ function deleteBook(event) {
     event.target.nodeName === 'svg' ||
     event.target.nodeName === 'BUTTON'
   ) {
-    const idToDelete = event.target.dataset.book;
-    const index = arrayOfBooksId.indexOf(idToDelete);
-    arrayOfBooksId.splice(index, 1);
-    localStorage.setItem('id', JSON.stringify(arrayOfBooksId));
-    checkNumberBooksPerPage();
-    checkTotalPages();
-    if (page > totalPages) {
-      page = totalPages;
-    }
-    // thirdBtn.textContent = Number.parseInt(thirdBtn.textContent) - 1;
-    console.log(page),
-      console.log(paginator),
-      renderBooksFromBusket(page, paginator);
+    procedureDeletingBook(event);
   }
-
   return;
+}
+
+const refresh = document.querySelector('.shopping-refresh');
+refresh.addEventListener('click', refreshPage);
+
+function refreshPage() {
+  return renderLastSession();
+}
+
+function procedureDeletingBook(event) {
+  const idToDelete = event.target.dataset.book;
+  const index = arrayOfBooksId.indexOf(idToDelete);
+  fetchArrayOfBookId();
+  arrayOfBooksId.splice(index, 1);
+  localStorage.setItem('id', JSON.stringify(arrayOfBooksId));
+  fetchPaginator();
+  if (arrayOfBooksId.length === 0) {
+    return renderBooksFromBusket(page, paginator);
+  }
+  if (page > totalPages) {
+    return lastBtnAction();
+  }
+  renderBooksFromBusket(page, paginator);
 }
