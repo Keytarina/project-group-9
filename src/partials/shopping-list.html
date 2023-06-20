@@ -4,25 +4,20 @@
       Shopping <span class="shopping-title-span">List</span>
     </h1>
     <ul class="shopping-list-list list">
-      <li class="shopping-list-item">
+      <li class="shopping-list-item" data-book-id="">
         <div class="shopping-list-item-card">
+          <button class="shopping-btn-dump" type="button">
+            <svg class="shopping-btn-dump-icon" width="16" height="16">
+              <use href="./image/shopping/icons.svg#dump"></use>
+            </svg>
+          </button>
           <img
             class="shopping-card-img"
-            src="./image/shopping/support2.png"
+            src="./image/shopping/dummy-book-tr.png"
             alt="book cover"
             width="100px"
             height="142px"
           />
-          <svg
-            class="burger-menu-icon visually-hidden"
-            width="28"
-            height="28"
-            viewBox="0 0 28 28"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <use href="./image/shopping/icons.svg#dummy-book"></use>
-          </svg>
           <div class="shopping-list-card-info">
             <h2 class="shopping-card-title">DAISY JONES & THE SIX</h2>
             <p class="shopping-card-category">Hardcover fiction</p>
@@ -32,6 +27,9 @@
               5th grade at Beecher Prep, he wants nothing more than to be
               treated as an ordinary kid—but his new classmates can’t get past
               Auggie’s extraordinary face.
+            </p>
+            <p class="visually-hidden">
+              Description is not available for that book
             </p>
             <div class="shopping-card-bottom-container">
               <p class="shopping-card-author">Taylor Jenkins Reid</p>
@@ -57,14 +55,14 @@
                     href=""
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Amazon link"
+                    aria-label="Apple Books link"
                   >
                     <img
                       width="16px"
                       height="16px"
                       class="shopping-card-link-icon"
                       src="./image/shopping/shop-read-33x32px.png"
-                      alt="reader"
+                      alt="Apple Books"
                     />
                   </a>
                 </li>
@@ -86,116 +84,22 @@
                   </a>
                 </li>
               </ul>
-              <button class="shopping-btn-dump" type="button">
-                <svg class="shopping-btn-dump-icon" width="16" height="16">
-                  <use href="./image/shopping/icons.svg#dump"></use>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="shopping-list-item">
-        <div class="shopping-list-item-card">
-          <img
-            class="shopping-card-img"
-            src="./image/shopping/support2.png"
-            alt="book cover"
-            width="100px"
-            height="142px"
-          />
-          <svg
-            class="burger-menu-icon visually-hidden"
-            width="28"
-            height="28"
-            viewBox="0 0 28 28"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <use href="./image/shopping/icons.svg#dummy-book"></use>
-          </svg>
-          <div class="shopping-list-card-info">
-            <h2 class="shopping-card-title">DAISY JONES & THE SIX</h2>
-            <p class="shopping-card-category">Hardcover fiction</p>
-            <p class="shopping-card-descr">
-              August Pullman was born with a facial difference that, up until
-              now, has prevented him from going to a mainstream school. Starting
-              5th grade at Beecher Prep, he wants nothing more than to be
-              treated as an ordinary kid—but his new classmates can’t get past
-              Auggie’s extraordinary face.
-            </p>
-            <div class="shopping-card-bottom-container">
-              <p class="shopping-card-author">Taylor Jenkins Reid</p>
-              <ul class="shopping-card-shop-list">
-                <li>
-                  <a
-                    class="shopping-card-shop-link"
-                    href=""
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Amazon link"
-                    ><img
-                      width="32px"
-                      class="shopping-card-link-icon shopping-card-link-amazon"
-                      src="./image/shopping/shop-amazon-62x19px.png"
-                      alt="amazon"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="shopping-card-shop-link"
-                    href=""
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Amazon link"
-                  >
-                    <img
-                      width="16px"
-                      height="16px"
-                      class="shopping-card-link-icon"
-                      src="./image/shopping/shop-read-33x32px.png"
-                      alt="reader"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="shopping-card-shop-link"
-                    href=""
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="ShopBook link"
-                  >
-                    <img
-                      width="16px"
-                      height="16px"
-                      class="shopping-card-link-icon shopping-card-link-shopbook"
-                      src="./image/shopping/shop-book-shop-38x36px.png"
-                      alt="ShopBook"
-                    />
-                  </a>
-                </li>
-              </ul>
-              <button class="shopping-btn-dump" type="button">
-                <svg class="shopping-btn-dump-icon" width="16" height="16">
-                  <use href="./image/shopping/icons.svg#dump"></use>
-                </svg>
-              </button>
             </div>
           </div>
         </div>
       </li>
     </ul>
-    <p class="shopping-text">
-      This page is empty, add some books and proceed to order.
-    </p>
+    <div class="shopping-dummy-message">
+      <p class="shopping-text">
+        This page is empty, add some books and proceed to order.
+      </p>
 
-    <img
-      class="shopping-empty-img"
-      width="265"
-      src="./image/shopping/shopping-list-empty-w265-h198.png"
-      alt="column of four different books"
-    />
+      <img
+        class="shopping-empty-img"
+        width="265"
+        src="./image/shopping/shopping-list-empty-w265-h198.png"
+        alt="column of four different books"
+      />
+    </div>
   </div>
 </section>
