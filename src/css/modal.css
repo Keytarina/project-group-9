@@ -5,18 +5,17 @@
 .modal {
 position: absolute;
 opacity: 1;
-overflow-y:scroll;
+overflow-y: scroll;
 /* top: 50%;
 left: 50%;
 transform: translate(-50%, -50%); */
- top: 1346px;
+top: 1346px;
 bottom: 460px;
 left: 20px;
 right: 20px;
-
 width: 335px;
 display: flex;
-flex-direction: column-reverse;
+/* flex-direction: column-reverse; */
 height: 762px;
 border-radius: 18px;
 padding-top: 40px;
@@ -275,4 +274,8 @@ letter-spacing: -4px;
 }
 .icon-link {
 mix-blend-mode: luminosity;
+}
+
+.icon-link :hover { 
+  filter: drop-shadow(0px 3px 3px var(--shadow-color)); 
 }

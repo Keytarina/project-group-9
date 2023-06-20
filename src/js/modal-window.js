@@ -21,7 +21,7 @@ function createModalWindow({id, title, author, book_image, description }) {
       <p class="descriptions">${description}</p>
       <ul class="icons">
             <li class="icon-link"><a href="https://www.amazon.com/">
-            <img src="./image/shopping/shop-amazon-62x19px.png"></a>
+            <img src="./image/Amazon-min.png"></a>
             </li>
             <li class="icon-link"><a href="https://https://www.ebay.com/">
             <img src="./image/List-min.png"></a>
