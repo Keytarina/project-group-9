@@ -1,3 +1,5 @@
+import {fetchBookById} from './serviceApi.js'
+
 function imageClickHandler(event) {
   const id = event.currentTarget.id;
   if (event.target.nodeName === "IMG") {
