@@ -1,6 +1,6 @@
-/* .main-wraper.container {
+/* /* .main-wraper.container {
     position: relative;
-}
+} */
 
 .modal {
 position: absolute;
@@ -32,7 +32,7 @@ transform: translate(-50%, -25%);
 .modal {
 width: 579px;
 height: 465px;
-top: 120%;
+top: 100%;
 left: 50%;
 /* top: 923px;
 left: 95px;
