@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { startLoader, stopLoader } from './loader';
 
 //Базовий URL для axios
 axios.defaults.baseURL = 'https://books-backend.p.goit.global/books/';
@@ -22,7 +23,9 @@ async function fetchBooksCategoryList() {
 //"title" - назва книги
 async function fetchTopBooks() {
   try {
+    startLoader();
     const { data } = await axios('top-books');
+    stopLoader();
     return data;
   } catch (error) {
     console.log(error);
@@ -38,11 +41,13 @@ async function fetchTopBooks() {
 //"title" - назва книги
 async function fetchBooksByCategory(category) {
   try {
+    startLoader();
     const { data } = await axios('category', {
       params: {
         category,
       },
     });
+    stopLoader();
     return data;
   } catch (error) {
     console.log(error);
@@ -60,7 +65,9 @@ async function fetchBooksByCategory(category) {
 
 async function fetchBookById(bookId) {
   try {
+    startLoader();
     const { data } = await axios(`${bookId}`);
+    stopLoader();
     return data;
   } catch (error) {
     console.log(error);
