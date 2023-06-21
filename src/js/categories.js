@@ -33,10 +33,12 @@ async function renderCategories(e) {
       clearMarkup();
       container.insertAdjacentHTML('beforeend', markup);
   
-  } catch (error) {
+    }
+    catch (error) {
     console.log(error);
-  }
-}
+  };
+};
+
 async function renderTopBooks (e) {
   if (e.target.textContent === "All categories") {
     try {
@@ -44,16 +46,9 @@ async function renderTopBooks (e) {
       const markup = renderBestSellersList(data);
       clearMarkup();
       container.insertAdjacentHTML('beforeend', markup);
-    } catch (error) {
+    }
+    catch (error) {
       console.log(error);
     }
-}
-  }
-
-  
-// const { height: imageHeight } = container.firstElementChild.getBoundingClientRect();
-
-// window.scrollBy({
-// top: imageHeight * 2,
-// behavior: 'smooth',
-// });
+  };
+};
