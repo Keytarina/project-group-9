@@ -1,5 +1,9 @@
-const apiUrl = 'https://books-backend.p.goit.global/books/';
 
+There are a few issues with the code you provided. Here's the corrected version:
+
+javascript
+Copy code
+const apiUrl = 'https://books-backend.p.goit.global/books/';
 const category = document.querySelector('.categories-item');
 const list = document.querySelector('.categories-list');
 const gallery = document.querySelector('.categories');
@@ -11,7 +15,7 @@ let currentIndex = 0;
 
 async function fetchBooksByCategory(category) {
   try {
-    const { data } = await axios('category', {
+    const { data } = await axios.get(apiUrl, {
       params: {
         category,
       },
@@ -24,7 +28,7 @@ async function fetchBooksByCategory(category) {
 }
 
 function displayBooks(books) {
-  books.slice(currentIndex, currentIndex + booksPerPage).forEach(book => {
+  books.slice(currentIndex, currentIndex + booksPerPage).forEach((book) => {
     const bookElement = document.createElement('div');
     bookElement.textContent = book.title;
     bookListElement.appendChild(bookElement);
@@ -33,19 +37,18 @@ function displayBooks(books) {
   currentIndex += booksPerPage;
 
   if (currentIndex >= books.length) {
-    loadMoreBtn.style.display = 'none';
+    seeMoreBtn.style.display = 'none';
   }
 }
 
-async function loadMoreBooks(caregory) {
+async function loadMoreBooks(category) {
   const books = await fetchBooksByCategory(category);
   displayBooks(books);
 }
 
-loadMoreBtn.addEventListener('click', () => {
-  const category = '$(category)';
-
-  loadMoreBooks(category);
+seeMoreBtn.addEventListener('click', () => {
+  const selectedCategory = category.value;
+  loadMoreBooks(selectedCategory);
 });
 
-
+loadMoreBooks(category.value);
