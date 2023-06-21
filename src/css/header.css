@@ -1,17 +1,4 @@
 /*header*/
-body {
-  position: relative;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
-  color: #111111;
-  background-color: #d0d0d0;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
 header {
   display: flex;
   transition: 1s;
@@ -31,11 +18,6 @@ header {
   header {
     height: 72px;
   }
-}
-
-.visit {
-  background: #eac645;
-  border-radius: 36px;
 }
 
 .header-container {
@@ -107,12 +89,18 @@ header {
   }
 }
 
+.visit {
+  color: #111111;
+  background: #eac645;
+}
 .header-home {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 72px;
   height: 34px;
+  color: var(--main-text-color);
+  border-radius: 36px;
 }
 
 .header-home a {
@@ -120,6 +108,7 @@ header {
   color: inherit;
   font: optional;
 }
+
 .header-shopping-list {
   display: flex;
   align-items: center;
@@ -127,6 +116,8 @@ header {
   gap: 8px;
   width: 156px;
   height: 34px;
+  color: var(--main-text-color);
+  border-radius: 36px;
 }
 .header-shopping-list a {
   display: flex;
@@ -134,10 +125,6 @@ header {
   text-decoration: none;
   align-items: center;
 }
-
-/* .btn-bloc {
-  margin-left: 144px;
-} */
 
 .header-toggle {
   width: 40px;
@@ -254,9 +241,7 @@ header {
     z-index: 20;
   }
 }
-/* .header-nav.active {
-  display: block;
-} */
+
 .burger-btn-open {
   justify-content: center;
   align-items: center;
@@ -351,13 +336,13 @@ header {
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .btn-signed {
     left: 552px;
-    top: 60px;
+    top: 14px;
   }
 }
 @media (min-width: 1440px) {
   .btn-signed {
     left: 1232px;
-    top: 60px;
+    top: 14px;
   }
 }
 
