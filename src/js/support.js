@@ -55,4 +55,4 @@ import 'slick-carousel';
       slidesToShow: 6,
       slidesToScroll: 1,
       vertical: true
-    });8
+    });
