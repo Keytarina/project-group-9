@@ -15,7 +15,6 @@ ul,li{
     margin-left: auto;
 
     overflow: auto;
-    padding-top: 40px;
 }
 
 @media screen and (min-width: 768px) {
@@ -23,7 +22,6 @@ ul,li{
         width: 337px;
         height: 472px;
         padding-left: 32px;
-        padding-top: 40px;
         margin-left: 0;
     }
 }
@@ -34,7 +32,6 @@ ul,li{
         height: 472px;
         display: flex;
         padding-left: 24px;
-        padding-top: 40px;
     }
 }
 
@@ -45,14 +42,14 @@ ul,li{
     font-size: 18px;
     line-height: 24px;
     padding-bottom: 32px;
+    cursor: pointer;
 
     letter-spacing: -0.02em;
     color: rgba(17, 17, 17, 0.6);
 }
 
-body.dark
-.categories-list{
-    color: rgba(255, 255, 255, 0.6);
+body.dark .categories-list{
+    color: rgba(255, 255, 255, 0.6);;
 }
 
 body.dark

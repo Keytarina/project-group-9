@@ -1,14 +1,15 @@
-import './shopping-list';
-import { fetchTopBooks } from './serviceApi';
-import './authorization';
+import './serviceApi';
 import './modal';
+import './authorization';
+
 import './header';
-import './support';
 import './categories';
+import './support';
 import './books';
 
-import { renderBestSellersList } from './best-sellers';
-import './shopping-list';
+import './best-sellers';
 import './shopping-list';
 import './btn-see-more';
+
+
 
