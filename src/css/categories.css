@@ -22,7 +22,6 @@ ul,li{
         width: 337px;
         height: 472px;
         padding-left: 32px;
-        padding-top: 40px;
         margin-left: 0;
     }
 }
@@ -33,7 +32,6 @@ ul,li{
         height: 472px;
         display: flex;
         padding-left: 24px;
-        padding-top: 40px;
     }
 }
 
