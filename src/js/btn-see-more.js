@@ -1,9 +1,7 @@
 
-There are a few issues with the code you provided. Here's the corrected version:
 
-javascript
-Copy code
 const apiUrl = 'https://books-backend.p.goit.global/books/';
+
 const category = document.querySelector('.categories-item');
 const list = document.querySelector('.categories-list');
 const gallery = document.querySelector('.categories');
@@ -46,9 +44,9 @@ async function loadMoreBooks(category) {
   displayBooks(books);
 }
 
-seeMoreBtn.addEventListener('click', () => {
-  const selectedCategory = category.value;
-  loadMoreBooks(selectedCategory);
-});
+seeMoreBtn.addEventListener('click', renderBooksByCategory) 
 
-loadMoreBooks(category.value);
+
+
+ 
+
