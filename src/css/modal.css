@@ -1,16 +1,12 @@
-.main-wraper.container {
+/* /* .main-wraper.container {
     position: relative;
-}
-
-body {
-    overflow: hidden;
-}
+} */
 
 .modal {
 position: absolute;
 opacity: 1;
 overflow-y: scroll;
-top: 50%;
+top: 150%;
 left: 50%;
 transform: translate(-50%, -50%);
 /* top: 1346px;
@@ -29,16 +25,19 @@ padding-bottom: 40px;
 border: solid 2px #111111;
 background-color: #fff;
 transition: transform 250ms;
+transform: translate(-50%, -25%);
 }
 
 @media screen and (min-width: 768px) and (max-width: 1439.8px) {
 .modal {
 width: 579px;
 height: 465px;
-top: 923px;
+top: 100%;
+left: 50%;
+/* top: 923px;
 left: 95px;
 right: 94px;
-bottom: 200px;
+bottom: 200px; */
 background-color: #fff;
 border: solid 2px #111111;
 border-radius: 18px;
@@ -46,14 +45,15 @@ padding: 40px;
 margin: 0;
     }  
 }
-
 @media screen and (min-width: 1440px) {
 .modal {
 position: absolute;
-top: 400px;
+top: 75%;
+left: 50%;
+/* top: 400px;
 left: 431px;
 right: 430px;
-bottom: 437px;
+bottom: 437px; */
 width: 579px;
 height: 465px;
 background-color: #fff;
@@ -70,7 +70,7 @@ left: 0;
 z-index: 1000;
 width: 100%;
 height: 100%;
-background-color: rgba(46, 47, 66, 0.4);
+background-color: rgba(46, 47, 66, 0.5);
 transition: opacity 250ms, visibility 250ms;
 }
 .backdrop.is-hidden {
@@ -83,6 +83,10 @@ opacity: 0;
 transition-delay: 250ms;
 transform: translate(-50%, -50%);
 }
+.no-scroll{
+overflow: hidden;
+}
+
 
 .cls-button {
 display: block;

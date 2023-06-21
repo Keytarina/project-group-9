@@ -63,4 +63,3 @@ import 'slick-carousel';
         </svg>
     </button>`
     });
-
