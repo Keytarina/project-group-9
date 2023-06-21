@@ -78,7 +78,7 @@ function createModalWindow({ id, title, author, book_image, description }) {
         <li class="icon-link">
           <a
             class="card-link"
-            href="https://www.amazon.com/"
+            href="${amazonUrl}"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -88,7 +88,7 @@ function createModalWindow({ id, title, author, book_image, description }) {
         <li class="icon-link">
           <a
             class="card-link"
-            href="https://books.apple.com/"
+            href="${appleUrl}"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -98,7 +98,7 @@ function createModalWindow({ id, title, author, book_image, description }) {
         <li class="icon-link">
           <a
             class="card-link"
-            href="https://bookshop.org/"
+            href="${bookShopUrl}"
             target="_blank"
             rel="noopener noreferrer"
           >
