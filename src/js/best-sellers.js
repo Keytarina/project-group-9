@@ -51,3 +51,15 @@ export const renderBooksByCategory = (data) => {
   return `<h1 class="bestSellersHeader">${categoryTitle}</h1>
      <ul class="bookCategoryList">${markup}</ul>`;
 };
+const container = document.querySelector('#container-best');
+const foo = async() => {
+  try {
+    const data = await fetchTopBooks();
+    const markup = renderBestSellersList(data);
+    container.insertAdjacentHTML('beforeend', markup);
+  } catch (err) {
+console.log(err);
+  }
+
+};
+foo();
