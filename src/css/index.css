@@ -52,7 +52,7 @@
     padding-top: 112px;
   }
   .categories-support-wraper {
-    /* gap: 32px; */
+    gap: 32px;
     flex-direction: row;
     flex-wrap: nowrap;
   }
@@ -64,10 +64,11 @@
   }
   .main-wraper {
     padding-top: 112px;
+    flex-wrap: nowrap;
     /* flex-direction: column; */
   }
   .categories-support-wraper {
-    gap: 32px;
+    gap: 86px;
   }
 }
 html {
