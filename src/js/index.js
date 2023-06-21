@@ -1,7 +1,6 @@
 import './serviceApi';
 import './header';
 import './categories';
-import './support';
 
 import './books';
 
@@ -11,3 +10,5 @@ import './btn-see-more';
 
 import './modal';
 import './authorization';
+
+import './support';
