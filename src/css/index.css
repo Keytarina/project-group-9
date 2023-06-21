@@ -25,6 +25,10 @@
   padding-top: 104px;
   padding-bottom: 72px;
   display: flex;
+  flex-direction: row;
+}
+.categories-support-wraper {
+  gap: 40px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
@@ -40,6 +44,7 @@
   }
   .main-wraper {
     padding-top: 112px;
+
   }
 }
 @media screen and (min-width: 1440px) {
@@ -49,6 +54,11 @@
   }
   .main-wraper {
     padding-top: 112px;
+    flex-direction: column;
+  }
+  .categories-support-wraper {
+
+    gap: 32px;
   }
 }
 html {
