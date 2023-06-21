@@ -3,6 +3,16 @@
     <h1 class="shopping-title">
       Shopping <span class="shopping-title-span">List</span>
     </h1>
+    <button class="shopping-refresh-btn">
+      Refresh
+      <img
+        class="shopping-refresh"
+        width="100px"
+        src="./image/shopping/refresh.png"
+        alt=""
+      />
+    </button>
+
     <ul class="shopping-list-list list">
       <li class="shopping-list-item" data-book-id="">
         <div class="shopping-list-item-card">
@@ -17,6 +27,7 @@
             alt="book cover"
             width="100px"
             height="142px"
+            loading="lazy"
           />
           <div class="shopping-list-card-info">
             <h2 class="shopping-card-title">DAISY JONES & THE SIX</h2>
@@ -46,6 +57,7 @@
                       class="shopping-card-link-icon shopping-card-link-amazon"
                       src="./image/shopping/shop-amazon-62x19px.png"
                       alt="amazon"
+                      loading="lazy"
                     />
                   </a>
                 </li>
@@ -63,6 +75,7 @@
                       class="shopping-card-link-icon"
                       src="./image/shopping/shop-read-33x32px.png"
                       alt="Apple Books"
+                      loading="lazy"
                     />
                   </a>
                 </li>
@@ -80,6 +93,7 @@
                       class="shopping-card-link-icon shopping-card-link-shopbook"
                       src="./image/shopping/shop-book-shop-38x36px.png"
                       alt="ShopBook"
+                      loading="lazy"
                     />
                   </a>
                 </li>
@@ -87,6 +101,92 @@
             </div>
           </div>
         </div>
+      </li>
+    </ul>
+    <ul class="shopping-paginator-list visually-hidden">
+      <li class="shopping-paginator-backward">
+        <ul class="shopping-paginator-backward-list">
+          <li class="shopping-paginator-backward-item">
+            <button
+              class="shopping-paginator-btn"
+              data-page="start"
+              type="button"
+            >
+              &lt&lt
+            </button>
+          </li>
+          <li class="shopping-paginator-backward-item">
+            <button
+              class="shopping-paginator-btn"
+              data-page="last"
+              type="button"
+            >
+              &lt
+            </button>
+          </li>
+        </ul>
+      </li>
+      <li class="shopping-paginator-pages">
+        <ul class="shopping-paginator-pages-list">
+          <li class="shopping-paginator-pages-item">
+            <button
+              class="shopping-paginator-btn current-page"
+              data-page="first"
+              type="button"
+            >
+              1
+            </button>
+          </li>
+          <li class="shopping-paginator-pages-item">
+            <button
+              class="shopping-paginator-btn"
+              data-page="second"
+              type="button"
+            >
+              2
+            </button>
+          </li>
+          <li class="shopping-paginator-pages-item">
+            <button
+              class="shopping-paginator-btn btn-hidden"
+              data-page="third"
+              type="button"
+            >
+              3
+            </button>
+          </li>
+          <li class="shopping-paginator-pages-item">
+            <button
+              class="shopping-paginator-btn"
+              data-page="more"
+              type="button"
+            >
+              ...
+            </button>
+          </li>
+        </ul>
+      </li>
+      <li class="shopping-paginator-forkward">
+        <ul class="shopping-paginator-forward-list">
+          <li class="shopping-paginator-forward-item">
+            <button
+              class="shopping-paginator-btn"
+              data-page="next"
+              type="button"
+            >
+              &gt
+            </button>
+          </li>
+          <li class="shopping-paginator-forward-item">
+            <button
+              class="shopping-paginator-btn"
+              data-page="end"
+              type="button"
+            >
+              &gt&gt
+            </button>
+          </li>
+        </ul>
       </li>
     </ul>
     <div class="shopping-dummy-message">
@@ -99,6 +199,7 @@
         width="265"
         src="./image/shopping/shopping-list-empty-w265-h198.png"
         alt="column of four different books"
+        loading="lazy"
       />
     </div>
   </div>
