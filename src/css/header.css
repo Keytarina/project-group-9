@@ -92,6 +92,9 @@ header {
   color: #111111;
   background: #eac645;
 }
+.visit > a {
+  color: #111111;
+}
 .header-home {
   display: flex;
   align-items: center;
@@ -104,7 +107,7 @@ header {
 
 .header-home a {
   text-decoration: none;
-  color: inherit;
+  /* color: inherit; */
   font: optional;
 }
 
@@ -246,7 +249,11 @@ header {
   align-items: center;
   padding-top: 5px;
   border-color: inherit;
-  color: var(--main-text-color);
+  color: var(--background-color);
+}
+.buger-btn-open-ico {
+  color: var(--background-color);
+  fill: var(--main-text-color);
 }
 .burger-btn-close {
   display: none;
