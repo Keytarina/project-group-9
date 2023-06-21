@@ -1,6 +1,7 @@
 import './serviceApi';
 import './theme.js';
 import './modal';
+import './authorization';
 
 import './header';
 import './categories';
