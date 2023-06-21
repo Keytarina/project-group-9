@@ -102,6 +102,7 @@
 .book-title {
   display: block;
   max-width: 100%;
+  padding-top: 14px;
 }
 .book-description {
   color: #b4afaf;
@@ -109,6 +110,7 @@
   font-size: 12px;
   line-height: 1.16;
   font-style: italic;
+  padding-top: 4px;
 }
 .book-list-wrapper {
   margin-bottom: 40px;
