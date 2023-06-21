@@ -8,6 +8,8 @@ const firstBtn = document.querySelector('button[data-page="first"]');
 const secondBtn = document.querySelector('button[data-page="second"]');
 const thirdBtn = document.querySelector('.btn-hidden');
 
+const mediaQuery = window.matchMedia('(min-width: 768px)');
+
 // Імітація наповнення LocalStorage id-шниками книг -------
 // localStorage.clear();
 let arrayOfBooksId = [];
@@ -66,12 +68,12 @@ function fetchPaginator() {
 }
 
 function refreshNumberBooksPerPage() {
-  if (getComputedStyle(thirdBtn).display == 'none') {
-    // console.log('3 on page');
-    return (paginator = 3);
-  } else {
+  if (mediaQuery.matches) {
     // console.log('4 on page');
     return (paginator = 4);
+  } else {
+    // console.log('3 on page');
+    return (paginator = 3);
   }
 }
 function refreshTotalPages() {
@@ -86,7 +88,6 @@ function refreshTotalPages() {
 function changePage(adduct) {
   page += adduct;
   localStorage.page = page;
-  console.log(page);
   return page;
 }
 // ------------------------------------
@@ -103,8 +104,6 @@ function renderPage(page, paginator) {
 }
 
 function makeArrayToPaginate(page, paginator) {
-  console.log(`при создании массива ${page} p[age]`);
-  console.log(`при создании массив ${totalPages} total pages`);
   fetchArrayOfBookId();
 
   const arrayOfBooksToPaginate = arrayOfBooksId.splice(
@@ -127,8 +126,6 @@ function pageNumeration(page) {
 
 function paginate(event) {
   fetchPaginator();
-  console.log(`'this is page ${page}`);
-  console.log(`event check ${totalPages} total pages`);
 
   if (fetchArrayOfBookId().length <= paginator) {
     return;
@@ -214,9 +211,6 @@ function lastBtnAction() {
 }
 
 function lastBtnActionWithThreeBooksPerPage() {
-  // if (Number.parseInt(firstBtn.textContent) <= 2) {
-  //   return startBtnAction();
-  // }
   if (firstBtn.classList.contains('current-page')) {
     removingCurrentBtnStyle();
     secondBtn.classList.add('current-page');
@@ -325,7 +319,7 @@ function renderBooksFromBusket(page, paginator) {
   makeArrayToPaginate(page, paginator).forEach(id => {
     renderCardFromStorage(id);
   });
-  list.addEventListener('click', deleteBook, { once: 'true' });
+  list.addEventListener('click', deleteBook);
   controller.addEventListener('click', paginate);
 }
 
@@ -365,7 +359,7 @@ function renderMarkup(book, id) {
   }
 
   let markup = '';
-  markup = `<li class="shopping-list-item"><div class="shopping-list-item-card">
+  markup = `<li class="shopping-list-item"><div class="shopping-list-item-card" data-book="${id}">
           <img
             class="shopping-card-img"
             src="${book_image}"
@@ -481,3 +475,5 @@ function procedureDeletingBook(event) {
   }
   renderBooksFromBusket(page, paginator);
 }
+
+export { list };
