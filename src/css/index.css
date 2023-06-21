@@ -21,6 +21,13 @@
   padding: 0 20px;
   margin: 0 auto;
 }
+
+.main-wraper {
+  padding-top: 104px;
+  padding-bottom: 72px;
+  display: flex;
+}
+
 @media screen and (min-width: 320px) and (max-width: 767px) {
   /* максимальний розмір не повинен співпадати з мінімальнип в наступному контейнері */
   .container {
@@ -32,11 +39,17 @@
     width: 704px;
     padding: 0 32px;
   }
+  .main-wraper {
+    padding-top: 112px;
+  }
 }
 @media screen and (min-width: 1440px) {
   .container {
     width: 1392px;
     padding: 0 24px;
+  }
+  .main-wraper {
+    padding-top: 112px;
   }
 }
 html {
@@ -86,12 +99,6 @@ svg {
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
-}
-
-.main-wraper {
-  padding-top: 112px;
-  padding-bottom: 72px;
-  display: flex;
 }
 
 .categories-support-wraper {

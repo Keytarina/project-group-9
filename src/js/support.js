@@ -49,10 +49,10 @@
 import $ from 'jquery';
 import 'slick-carousel';
 
-    $('.single-item').slick({
-      infinite: true,
-      dots: true,
-      slidesToShow: 6,
-      slidesToScroll: 1,
-      vertical: true
-    });
+$('.single-item').slick({
+  infinite: true,
+  dots: true,
+  slidesToShow: 6,
+  slidesToScroll: 1,
+  vertical: true,
+});
