@@ -157,7 +157,7 @@ header {
   margin: 0;
   vertical-align: top;
 
-  border: 1px solid #bbc1e1;
+  border: 1px solid var(--grey-title-color);
   border-radius: 30px;
   outline: none;
   cursor: pointer;
@@ -193,7 +193,7 @@ header {
 
 /* Burger menu */
 .burger-menu {
-  background-color: #fff;
+  background-color: var(--background-color);
   border: 0;
 }
 @media screen and (min-width: 768px) {
@@ -261,6 +261,8 @@ header {
   justify-content: center;
   align-items: center;
   padding-top: 5px;
+  border-color: inherit;
+  color: var(--main-text-color);
 }
 .burger-btn-close {
   display: none;

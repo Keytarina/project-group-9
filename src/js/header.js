@@ -12,5 +12,5 @@ document.querySelector('header-home').addEventListener('click', function () {
 document
   .querySelector('header-shopping-list')
   .addEventListener('click', function () {
-    this.classList.toggle('visit');
+    this.classList.toggle('.visit');
   });
