@@ -46,13 +46,13 @@
 //     img: null,
 //   },
 // ]
-// import $ from 'jquery';
-// import 'slick-carousel';
+import $ from 'jquery';
+import 'slick-carousel';
 
-//     $('.single-item').slick({
-//       infinite: true,
-//       dots: true,
-//       slidesToShow: 6,
-//       slidesToScroll: 1,
-//       vertical: true
-//     });8
+    $('.single-item').slick({
+      infinite: true,
+      dots: true,
+      slidesToShow: 6,
+      slidesToScroll: 1,
+      vertical: true
+    });8
