@@ -84,11 +84,9 @@ transition-delay: 250ms;
 transform: translate(-50%, -50%);
 }
 
-
 .cls-button {
 display: block;
 position: absolute;
-
 top: 12px;
 right: 12px;
 display: flex;
@@ -175,8 +173,8 @@ color: #111111;
 
 .btn-action.button:hover,
 .btn-action.button:focus {
-    background-color: #4F2EE8;
-    color: #fff;
+background-color: #4F2EE8;
+color: #fff;
 }
 
 .cl-bl-icon {
@@ -191,11 +189,11 @@ fill:3px #111;
 }
 
 .modal-window {
-    display: flex;
+display: flex;
 }
 .picture {
-    display: block;
-    margin-bottom: 14px;
+display: block;
+margin-bottom: 14px;
 }
 
 @media screen and (min-width: 768px) {
@@ -206,8 +204,8 @@ margin-bottom: 40px;
 }
 
 .info {
-    display: flex;
-    flex-direction: column;
+display: flex;
+flex-direction: column;
 }
 
 .titles {
@@ -274,8 +272,8 @@ letter-spacing: -4px;
 }
 
 .icons {
-    display: flex;
-    margin-bottom: 40px;
+display: flex;
+margin-bottom: 40px;
     
 }
 .icon-link {
