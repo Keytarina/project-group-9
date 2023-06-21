@@ -6,11 +6,11 @@ document.querySelector('.burger-menu').addEventListener('click', function () {
   document.querySelector('.header-nav').classList.toggle('open');
 });
 
-document.querySelector('header-home').addEventListener('click', function () {
-  this.classList.toggle('visit');
+document.querySelector('.header-home').addEventListener('click', function () {
+  this.classList.toggle('.visit');
 });
 document
-  .querySelector('header-shopping-list')
+  .querySelector('.header-shopping-list')
   .addEventListener('click', function () {
     this.classList.toggle('.visit');
   });
