@@ -15,7 +15,6 @@ ul,li{
     margin-left: auto;
 
     overflow: auto;
-    padding-top: 40px;
 }
 
 @media screen and (min-width: 768px) {

@@ -1,7 +1,8 @@
 import './serviceApi';
 import './header';
-import './support';
 import './categories';
+import './support';
+
 import './books';
 
 import './best-sellers';
