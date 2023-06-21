@@ -62,4 +62,5 @@ console.log(err);
   }
 
 };
+export const clearMarkup = () => container.innerHTML = "";
 foo();
