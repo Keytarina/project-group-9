@@ -1,21 +1,10 @@
-:root {
-  --background-color: #ffffff;
-  --main-text-color: #000000;
-  --blue-hover-icon-color: #4f2ee8;
-  --grey-title-color: #b4afaf;
-  --hover-navigation-color: #eac645;
-}
-
 body {
-  transition: 1s;
-  background-color: var(--background-color);
+  transition: 1s;  background-color: var(--background-color-main);
   color: var(--main-text-color);
 }
-
 body.dark {
-  --background-color: #111111;
+  --background-color-main: #202024;  
   --main-text-color: #ffffff;
-  --blue-hover-icon-color: #4f2ee8;
-  --grey-title-color: #b4afaf;
-  --hover-navigation-color: #eac645;
-}
+  --header-background-color: #111;
+  --header-border-color: #ffffff;
+} 
