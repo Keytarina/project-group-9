@@ -4,27 +4,27 @@ import {fetchTopBooks} from './serviceApi.js'
 
 export const renderBestSellersList = (data) => {
   const header =
-    '<h1 class="bestSellersHeader">Best Sellers <span class="bestSellersAccent">Books</span></h1>';
+    '<h1 class="best-sellers-header">Best Sellers <span class="best-sellers-accent">Books</span></h1>';
   const markup = header.concat(
     [...data]
       .map((list) => {
         const { list_name: listName, books } = list;
-        return `<div class="bookListWrapper"><h2 class="bestSellersTitle">${listName}</h2>
-     <ul class="bestSellersList">${books
+        return `<div class="book-list-wrapper"><h2 class="best-sellers-title">${listName}</h2>
+     <ul class="best-sellers-list">${books
        .map((book) => {
          const { _id: id, author, book_image, title } = book;
-         return `<li class="bestSellersListItem" data-id=${id}>
-              <div class="bestSellersThumb"><img class="bestSellersImage" src=${book_image} alt=${title}/></div>
-              <div class="bookDescriptionThumb"><h3 class="bookTitle">${
+         return `<li class="best-sellers-list-item" data-id=${id}>
+              <div class="best-sellers-thumb"><img class="best-sellers-image" src=${book_image} alt=${title}/></div>
+              <div class="book-description-thumb"><h3 class="book-title">${
                 title.length > 18 ? title.slice(0, 18) + "..." : title
               }</h3>
-              <p class="bookDescription">${author}</p></div>
+              <p class="book-description">${author}</p></div>
     
           </li>`;
        })
        .join(
          ""
-       )}</ul><button class="seeMoreBtn" type="button">See More</button></div>`;
+       )}</ul><button class="see-more-btn" type="button">See More</button></div>`;
       })
       .join("")
   );
@@ -38,18 +38,18 @@ export const renderBooksByCategory = (data) => {
     .map((book) => {
       const { _id: id, author, book_image, title, list_name: listName } = book;
       categoryTitle = listName;
-      return `<li class="bookCategoryListItem" data-id=${id}>
-            <div class="bestSellersThumb"><img class="bestSellersImage" src=${book_image} alt=${title}/></div>
-            <div class="bookDescriptionThumb"><h3 class="bookTitle">${
+      return `<li class="book-category-list-item" data-id=${id}>
+            <div class="best-sellers-thumb"><img class="best-sellers-image" src=${book_image} alt=${title}/></div>
+            <div class="book-description-thumb"><h3 class="book-title">${
               title.length > 18 ? title.slice(0, 18) + "..." : title
             }</h3>
-            <p class="bookDescription">${author}</p></div>
+            <p class="book-description">${author}</p></div>
         </li>`;
     })
     .join("");
 
-  return `<h1 class="bestSellersHeader">${categoryTitle}</h1>
-     <ul class="bookCategoryList">${markup}</ul>`;
+  return `<h1 class="best-sellers-header">${categoryTitle}</h1>
+     <ul class="book-category-list">${markup}</ul>`;
 };
 const container = document.querySelector('#container-best');
 const foo = async() => {

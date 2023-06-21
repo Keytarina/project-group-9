@@ -1,4 +1,4 @@
-.seeMoreBtn {
+.see-more-btn {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -28,7 +28,7 @@
   bottom: 0;
   right: 0;
 }
-.bestSellersHeader {
+.best-sellers-header {
   font-weight: 700;
   font-size: 32px;
   color: #111111;
@@ -36,10 +36,10 @@
   line-height: 1.18;
   margin-bottom: 40px;
 }
-.bestSellersAccent {
+.best-sellers-accent {
   color: #4f2ee8;
 }
-.bestSellersTitle {
+.best-sellers-title {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.28;
@@ -49,18 +49,18 @@
   margin-bottom: 18px;
 }
 
-.bestSellersList,
-.bookCategoryList {
+.best-sellers-list,
+.book-category-list {
   list-style: none;
   padding-left: 0;
 }
 
-.bestSellersThumb {
+.best-sellers-thumb {
   height: 485px;
   overflow: hidden;
   border-radius: 8px;
 }
-.bestSellersImage {
+.best-sellers-image {
   display: block;
   max-width: 100%;
   height: auto;
@@ -96,11 +96,11 @@
   margin-bottom: 4px;
   margin-top: 0;
 }
-.bookTitle {
+.book-title {
   display: block;
   max-width: 100%;
 }
-.bookDescription {
+.book-description {
   color: #b4afaf;
   font-weight: 400;
   font-size: 12px;
@@ -114,7 +114,7 @@
   margin-left: auto;
   margin-right: auto;
 }
-.bookListWrapper {
+.book-list-wrapper {
   margin-bottom: 40px;
   position: relative;
   height: 625px;
@@ -125,7 +125,7 @@
   .mobile-hidden {
     display: none;
   }
-  .bestSellersListItem:not(:first-child) {
+  .best-sellers-list-item:not(:first-child) {
     display: none;
   }
 }
@@ -135,10 +135,10 @@
   .tablet-hidden {
     display: none;
   }
-  .bestSellersListItem:not(:nth-child(-n + 3)) {
+  .best-sellers-list-item:not(:nth-child(-n + 3)) {
     display: none;
   }
-  .bookListWrapper {
+  .book-list-wrapper {
     height: 474px;
   }
 }
@@ -146,34 +146,34 @@
   .container {
     max-width: 768px;
   }
-  .bookCategoryList {
+  .book-category-list {
     display: flex;
     column-gap: 20px;
     max-width: 704px;
   }
-  .bookCategoryList {
+  .book-category-list {
     display: flex;
     flex-wrap: wrap;
     column-gap: 25px;
     row-gap: 40px;
   }
-  .bestSellersListItem,
-  .bookCategoryListItem {
+  .best-sellers-list-item,
+  .book-category-list-item {
     max-width: 218px;
   }
-  .bestSellersThumb {
+  .best-sellers-thumb {
     height: 316px;
     max-width: 100%;
   }
-  .bestSellersHeader {
+  .best-sellers-header {
     font-size: 48px;
     line-height: 1.08;
     margin-bottom: 40px;
   }
-  .bestSellersTitle {
+  .best-sellers-title {
     line-height: 1.7;
   }
-  .bookListWrapper {
+  .book-list-wrapper {
     max-width: 704px;
     height: 474px;
   }
@@ -182,22 +182,22 @@
   .container {
     max-width: 1440px;
   }
-  .bookListWrapper {
+  .book-list-wrapper {
     max-width: 996px;
   }
-  .bookCategoryList {
+  .book-category-list {
     max-width: 996px;
     column-gap: 24px;
   }
-  .bestSellersListItem,
-  .bookCategoryListItem {
+  .best-sellers-list-item,
+  .book-category-list-item {
     max-width: 180px;
   }
-  .bestSellersThumb {
+  .best-sellers-thumb {
     height: 256px;
     max-width: 180px;
   }
-  .bestSellersList {
+  .best-sellers-list {
     column-gap: 24px;
   }
 }
@@ -209,7 +209,7 @@
   margin-right: auto;
 
 }
-.bookListWrapper {
+.book-list-wrapper {
   margin-bottom: 40px;
   position: relative;
   height: 625px;
@@ -219,7 +219,7 @@
   .mobile-hidden {
       display: none;
   }
-  .bestSellersListItem:not(:first-child) {
+  .best-sellers-list-item:not(:first-child) {
       display: none;
   }
   /* .bestSellersHeader:not(:first-of-type) {
@@ -232,10 +232,10 @@
   .tablet-hidden {
       display: none;
   }
-  .bestSellersListItem:not(:nth-child(-n+3)) {
+  .best-sellers-list-item:not(:nth-child(-n+3)) {
       display: none;
   }
-  .bookListWrapper {
+  .book-list-wrapper {
       height: 474px;
   }
 
@@ -244,29 +244,29 @@
   .container {
       max-width: 768px;
   }
-  .bestSellersList {
+  .best-sellers-list {
       display: flex;
       column-gap: 20px;
   }
-  .bestSellersListItem {
+  .best-sellers-list-item {
       max-width: 218px;
     }
-    .bestSellersThumb {
+    .best-sellers-thumb {
       height: 316px;
       max-width: 218px;
     }
-    .bestSellersHeader {
+    .best-sellers-header {
       font-size: 48px;
       line-height: 1.08;
       margin-bottom: 40px;
     }
-    .bestSellersTitle {
+    .best-sellers-title {
       line-height: 1.7;
     }
-    .bookListWrapper {
+    .book-list-wrapper {
       max-width: 704px;
   }
-  .bookListWrapper {
+  .book-list-wrapper {
       height: 474px;
   }
 }
@@ -274,17 +274,17 @@
   .container {
       max-width: 1440px;
   }
-  .bookListWrapper {
+  .book-list-wrapper {
       max-width: 996px;
   }
-  .bestSellersListItem {
+  .best-sellers-list-item {
       max-width: 180px;
     }
-    .bestSellersThumb {
+    .best-sellers-thumb {
       height: 256px;
       max-width: 180px;
     }
-    .bestSellersList {
+    .best-sellers-list {
       column-gap: 24px;
     }
 }
