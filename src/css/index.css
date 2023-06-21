@@ -25,26 +25,36 @@
   padding-top: 104px;
   padding-bottom: 72px;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
 }
 .categories-support-wraper {
+  display: flex;
   gap: 40px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
-  /* максимальний розмір не повинен співпадати з мінімальнип в наступному контейнері */
   .container {
     max-width: 375px;
   }
+  .categories-support-wraper {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
 }
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 768px;
+    max-width: 769px;
     padding: 0 32px;
   }
   .main-wraper {
     padding-top: 112px;
-
+  }
+  .categories-support-wraper {
+    /* gap: 32px; */
+    flex-direction: row;
+    flex-wrap: nowrap;
   }
 }
 @media screen and (min-width: 1440px) {
@@ -54,10 +64,9 @@
   }
   .main-wraper {
     padding-top: 112px;
-    flex-direction: column;
+    /* flex-direction: column; */
   }
   .categories-support-wraper {
-
     gap: 32px;
   }
 }
