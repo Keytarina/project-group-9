@@ -1,52 +1,57 @@
 
 
-const apiUrl = 'https://books-backend.p.goit.global/books/';
+import { renderBooksByCategory, renderBestSellersList, clearMarkup } from './best-sellers.js';
 
-const category = document.querySelector('.categories-item');
-const list = document.querySelector('.categories-list');
-const gallery = document.querySelector('.categories');
+
+
+async function fetchTopBooks() {
+  try {
+    startLoader(); 
+    const { data } = await axios('top-books'); 
+    stopLoader(); 
+    return data; 
+  } catch (error) {
+    console.log(error); 
+  }
+}
+
+
+const container = document.querySelector('#container-best');
 const seeMoreBtn = document.querySelector('.seeMoreBtn');
 
-const booksPerPage = 5;
-const bookListElement = document.getElementById('container-best');
-let currentIndex = 0;
-
-async function fetchBooksByCategory(category) {
+async function  fetchAndRenderBooks () {
   try {
-    const { data } = await axios.get(apiUrl, {
-      params: {
-        category,
-      },
-    });
-    return data;
-  } catch (error) {
-    console.log('Error fetching books:', error);
-    return [];
+    const data = await fetchTopBooks();
+    const markup = renderBestSellersList(data);
+    container.insertAdjacentHTML('beforeend', markup);
+  } catch (err) {
+    console.log(err);
   }
-}
+};
 
-function displayBooks(books) {
-  books.slice(currentIndex, currentIndex + booksPerPage).forEach((book) => {
-    const bookElement = document.createElement('div');
-    bookElement.textContent = book.title;
-    bookListElement.appendChild(bookElement);
-  });
-
-  currentIndex += booksPerPage;
-
-  if (currentIndex >= books.length) {
-    seeMoreBtn.style.display = 'none';
+async function loadBooksByCategory  (category) {
+  try {
+    clearMarkup();
+    const data = await fetchBooksByCategory(category);
+    const markup = renderBooksByCategory(data);
+    container.insertAdjacentHTML('beforeend', markup);
+  } catch (err) {
+    console.log(err);
   }
-}
+};
 
-async function loadMoreBooks(category) {
-  const books = await fetchBooksByCategory(category);
-  displayBooks(books);
-}
+seeMoreBtn.addEventListener('click', (event) => {
+  if (event.target.classList.contains('seeMoreBtn')) {
+    const categoryElement = event.target.closest('.book-list-wrapper');
+    const category = categoryElement.dataset.category;
+    loadBooksByCategory(category);
+  }
+});
 
-seeMoreBtn.addEventListener('click', renderBooksByCategory) 
+fetchAndRenderBooks();
+console.log(seeMoreBtn);
 
 
 
- 
+
 
