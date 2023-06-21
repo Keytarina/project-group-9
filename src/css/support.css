@@ -92,3 +92,30 @@
 .support-svg {
   margin-bottom: 4px;
 }
+
+@media screen and (min-width: 320px) and (max-width: 767px){
+  .support {
+  width: 335px;
+  height: 352px;
+  padding: 24px 40px 14px 40px;
+  margin-bottom: 40px;
+}
+.support .support-btn {
+  width: 32px;
+  height: 32px;
+}
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1439px){
+  .support {
+  width: 335px;
+  height: 472px;
+
+}
+
+.support-content {
+  height: 30px;
+}
+
+}
