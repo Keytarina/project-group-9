@@ -16,7 +16,6 @@
 
 /* global styles */
 
-
 .container {
   padding: 0 20px;
   margin: 0 auto;
@@ -31,12 +30,12 @@
 @media screen and (min-width: 320px) and (max-width: 767px) {
   /* максимальний розмір не повинен співпадати з мінімальнип в наступному контейнері */
   .container {
-    max-width: 335px;
+    max-width: 375px;
   }
 }
 @media screen and (min-width: 768px) {
   .container {
-    width: 704px;
+    max-width: 768px;
     padding: 0 32px;
   }
   .main-wraper {
@@ -45,7 +44,7 @@
 }
 @media screen and (min-width: 1440px) {
   .container {
-    width: 1392px;
+    max-width: 1440px;
     padding: 0 24px;
   }
   .main-wraper {
