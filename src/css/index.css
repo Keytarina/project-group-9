@@ -17,6 +17,7 @@
 /* global styles */
 
 .container {
+  max-width: 375px;
   padding: 0 20px;
   margin: 0 auto;
 }
@@ -31,17 +32,8 @@
 .categories-support-wraper {
   display: flex;
   gap: 40px;
-}
-
-@media screen and (min-width: 320px) and (max-width: 767px) {
-  .container {
-    max-width: 375px;
-  }
-  .categories-support-wraper {
-    flex-direction: column;
-    flex-wrap: wrap;
-  }
-
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 @media screen and (min-width: 768px) {
   .container {
@@ -118,9 +110,4 @@ svg {
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
-}
-
-.categories-support-wraper {
-  display: flex;
-  flex-direction: column;
 }
