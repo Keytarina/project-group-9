@@ -11,8 +11,8 @@ header {
   top: 0px;
   z-index: 2;
   box-sizing: border-box;
-  background: #ffffff;
-  border: 1.5px solid #111111;
+  background: var(--header-background-color);
+  border: 1.5px solid var(--header-border-color);
   border-radius: 0px 0px 8px 8px;
   z-index: 2;
 }
