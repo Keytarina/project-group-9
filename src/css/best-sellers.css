@@ -28,6 +28,9 @@
   bottom: 0;
   right: 0;
 }
+.best-sellers-section {
+  padding-top: 40px;
+}
 .best-sellers-header {
   font-weight: 700;
   font-size: 32px;
@@ -107,13 +110,6 @@
   line-height: 1.16;
   font-style: italic;
 }
-.container {
-  max-width: 375px;
-  padding-right: 20px;
-  padding-left: 20px;
-  margin-left: auto;
-  margin-right: auto;
-}
 .book-list-wrapper {
   margin-bottom: 40px;
   position: relative;
@@ -132,6 +128,9 @@
 
 /* -----------------------------------tablet styles--------------------------------------------------------------------------- */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
+  .best-sellers-section {
+    padding-top: 100px;
+  }
   .tablet-hidden {
     display: none;
   }
@@ -143,8 +142,8 @@
   }
 }
 @media screen and (min-width: 768px) {
-  .container {
-    max-width: 768px;
+  .best-sellers-section {
+    padding-top: 100px;
   }
   .book-category-list {
     display: flex;
@@ -179,8 +178,8 @@
   }
 }
 @media screen and (min-width: 1440px) {
-  .container {
-    max-width: 1440px;
+  .best-sellers-section {
+    padding-top: 0px;
   }
   .book-list-wrapper {
     max-width: 996px;
@@ -200,14 +199,6 @@
   .best-sellers-list {
     column-gap: 24px;
   }
-}
-.container {
-  max-width: 375px;
-  padding-right: 20px;
-  padding-left: 20px;
-  margin-left: auto;
-  margin-right: auto;
-
 }
 .book-list-wrapper {
   margin-bottom: 40px;
@@ -241,9 +232,6 @@
 
 }
 @media screen and  (min-width: 768px) {
-  .container {
-      max-width: 768px;
-  }
   .best-sellers-list {
       display: flex;
       column-gap: 20px;
@@ -271,9 +259,9 @@
   }
 }
 @media screen and (min-width: 1440px) {
-  .container {
+  /* .container {
       max-width: 1440px;
-  }
+  } */
   .book-list-wrapper {
       max-width: 996px;
   }

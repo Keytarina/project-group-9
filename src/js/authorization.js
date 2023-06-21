@@ -271,8 +271,7 @@ function initApp() {
   auth.onAuthStateChanged(function (user) {
     if (user) {
       // User is signed in.
-      // refs.headerNav.classList.remove('visually-hidden'); // показати кнопки "Home" та "ShoppingList"
-      refs.headerList.classList.remove('visually-hidden'); // показати кнопки "Home" та "ShoppingList"
+      refs.headerNav.classList.remove('visually-hidden'); // показати кнопки "Home" та "ShoppingList"
       console.log('User is signed in.');
     } else {
       // User is signed out.
