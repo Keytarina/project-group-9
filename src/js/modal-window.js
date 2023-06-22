@@ -6,9 +6,12 @@ const containerBest = document.getElementById('container-best');
 const congratsMessage = document.querySelector('.modal-window-text');
 const closeModalBtn = document.querySelector('.cls-button');
 const backdrop = document.querySelector('[data-modal-backdrop]');
+<<<<<<< Updated upstream
 
 let storageOfBooksId = ['643282b1e85766588626a0dc', '643282b1e85766588626a080'];
 localStorage.setItem('id', JSON.stringify(storageOfBooksId));
+=======
+>>>>>>> Stashed changes
 
 function closeModalByEscape(event) {
   if (event.code === 'Escape') {
@@ -58,16 +61,21 @@ function checkBookStatus(id) {
 
 // -------------Фуекція що визиває модальне вікно--------------
 containerBest.addEventListener('click', imageClickHandler);
-function imageClickHandler(event) {
-  const idToCallModal = event.target.dataset.idImg;
-  hiddenAll();
-  renderModalWindow(idToCallModal);
-  checkBookStatus(idToCallModal);
 
-  modalCard.addEventListener('click', addOrDeleteBook);
-  event.target.textContent = 'remove from the shopping list';
-  document.addEventListener('keydown', closeModalByEscape, { once: 'true' });
-  closeModalBtn.addEventListener('click', closeModalWindow, { once: 'true' });
+function imageClickHandler(event) {
+  if (event.target.nodeName === 'IMG') {
+    const idToCallModal = event.target.dataset.idImg;
+    hiddenAll();
+    renderModalWindow(idToCallModal);
+    checkBookStatus(idToCallModal);
+
+    modalCard.addEventListener('click', addOrDeleteBook);
+    event.target.textContent = 'remove from the shopping list';
+    document.addEventListener('keydown', closeModalByEscape, { once: 'true' });
+    closeModalBtn.addEventListener('click', closeModalWindow, {
+      once: 'true',
+    });
+  }
 }
 // -------------------------------------
 

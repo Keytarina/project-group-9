@@ -12,6 +12,7 @@ const mediaQuery = window.matchMedia('(min-width: 768px)');
 
 // Імітація наповнення LocalStorage id-шниками книг -------
 // localStorage.clear();
+<<<<<<< Updated upstream
 let arrayOfBooksId = [];
 // arrayOfBooksId.push(
 //   '643282b1e85766588626a0dc',
@@ -22,6 +23,19 @@ let arrayOfBooksId = [];
 //   '643282b1e85766588626a0dc'
 // );
 // localStorage.setItem('id', JSON.stringify(arrayOfBooksId));
+=======
+
+function checkLocalStorageNotEmptyShopping() {
+  if (!JSON.parse(localStorage.getItem('id'))) {
+    let storageOfBooksId = [];
+    return localStorage.setItem('id', JSON.stringify(storageOfBooksId));
+  } else {
+    storageOfBooksId = JSON.parse(localStorage.getItem('id'));
+  }
+}
+checkLocalStorageNotEmptyShopping();
+
+>>>>>>> Stashed changes
 // -----------
 // paginator - кількість книг, що буде відображатись на сторінці.
 // page - сторінка списку книг.
