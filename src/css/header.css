@@ -253,11 +253,14 @@ header {
 }
 .buger-btn-open-ico {
   color: var(--background-color);
-  fill: var(--main-text-color);
+  /* fill: var(--main-text-color); */
 }
 .burger-btn-close {
   display: none;
   padding: 5px 5px;
+}
+.buger-btn-close-ico {
+  stroke: var(--main-text-color);
 }
 .active .burger-btn-close {
   display: flex;
