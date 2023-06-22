@@ -1,5 +1,6 @@
 import './serviceApi';
-import './theme.js';
+import './theme';
+
 import './header';
 import './support';
-// import './authorization';
+import './shopping-list';
