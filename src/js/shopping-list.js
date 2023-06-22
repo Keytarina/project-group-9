@@ -12,7 +12,7 @@ const mediaQuery = window.matchMedia('(min-width: 768px)');
 const mediaQuerySupport = window.matchMedia('(max-width: 1439px)');
 const support = document.querySelector('.support');
 support.style.position = "static");
-if (mediaQuery.matches) {support.classList.add('visually-hidden')  }
+if (mediaQuerySupport.matches) {support.classList.add('visually-hidden')  }
 
 // Імітація наповнення LocalStorage id-шниками книг -------
 // localStorage.clear();
