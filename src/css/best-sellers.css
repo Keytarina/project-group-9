@@ -277,7 +277,8 @@
     }
     .book-overlay-text {
       opacity: 0;
-      transition: opacity;
+      transition: opacity var(--trasition-duration)
+      var(--transition-timing-function);
     }
     .best-sellers-list-item:hover .book-overlay-text,
     .best-sellers-list-item:focus .book-overlay-text,
