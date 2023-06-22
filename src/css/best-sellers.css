@@ -10,11 +10,10 @@
   height: 54px;
 
   border: 2px solid #4f2ee8;
-  border-radius: 40px;
+  border-radius: 35px;
   flex: none;
   order: 1;
   flex-grow: 0;
-  box-sizing: border-box;
   color: #111111;
   cursor: pointer;
   font-family: DM Sans;
@@ -25,8 +24,10 @@
   overflow: hidden;
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: 15px;
   text-transform: uppercase;
+  
+
 }
 .seeMoreBtn:hover,
 .seeMoreBtn:focus

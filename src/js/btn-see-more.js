@@ -6,7 +6,7 @@ import { fetchBooksByCategory, fetchTopBooks } from './serviceApi.js'
 
 
 
-async function fetchTopBooks() {
+async function fetchTopBooksMore() {
   try {
     startLoader(); 
     const { data } = await axios('top-books'); 
