@@ -31,14 +31,14 @@
   }
 }
 
-.support-shopping-page {
+/* .support-shopping-page {
   position: static;
 }
 @media screen and (max-width: 1439px) {
   .support-shopping-page {
     display: none;
   }
-}
+} */
 
 /* // shoppingList styles */
 body.dark {
