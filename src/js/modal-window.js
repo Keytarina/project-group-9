@@ -201,39 +201,27 @@ function checkLocalStorageNotEmpty() {
 
 function changeBookStatus(id, event) {
   checkLocalStorageNotEmpty();
-  console.log('check');
   if (storageOfBooksId.includes(id)) {
-    console.log(id);
-    console.log(localStorage.id);
-
     return (event.target.dataset.modalSubmit = 'del');
   }
 }
 
 function addOrDeleteBook(event) {
-  console.log(localStorage.id);
   if (event.target.classList.contains('btn-action')) {
     const idChoosenBook = event.target.dataset.id;
     changeBookStatus(idChoosenBook, event);
     if (event.target.dataset.modalSubmit === 'add') {
-      console.log('add');
       addingBookToBusket(idChoosenBook);
-      console.log('after adding');
       event.target.textContent = 'remove from the shopping list';
       congratsMessage.textContent =
         'Сongratulations! You have added the book to the shopping list. To delete, press the button &quotRemove from the shopping list&quot.';
       congratsMessage.classList.remove('is-hidden');
       event.target.dataset.modalSubmit = 'del';
-      console.log(localStorage.id);
     } else {
-      console.log('del');
       deletingBookFromBusket(idChoosenBook);
-
       event.target.textContent = 'add to shopping list';
       congratsMessage.classList.add('is-hidden');
       event.target.dataset.modalSubmit = 'add';
-      console.log(localStorage.id);
-      console.log('we here6');
     }
   }
 }
@@ -249,7 +237,6 @@ function addingBookToBusket(idChoosenBook) {
   if (storageOfBooksId.includes(idChoosenBook)) {
     console.log('this book already in a busket');
   } else {
-    console.log('adding right now');
     storageOfBooksId.push(idChoosenBook);
     localStorage.setItem('id', JSON.stringify(storageOfBooksId));
   }
@@ -257,10 +244,8 @@ function addingBookToBusket(idChoosenBook) {
 }
 
 function deletingBookFromBusket(idChoosenBook) {
-  console.log('deleting');
   checkLocalStorageNotEmpty();
   storageOfBooksId = JSON.parse(localStorage.getItem('id'));
-  console.log('we here');
   if (storageOfBooksId.includes(idChoosenBook)) {
     const index = storageOfBooksId.indexOf(idChoosenBook);
     storageOfBooksId.splice(index, 1);
@@ -268,5 +253,4 @@ function deletingBookFromBusket(idChoosenBook) {
 
     return;
   }
-  console.log('we here3');
 }
