@@ -1,20 +1,72 @@
 import { fetchBookById } from './serviceApi.js';
 
 const modal = document.querySelector('.modal');
+const modalCard = document.querySelector('.modal-card');
 const containerBest = document.getElementById('container-best');
-// modal.classList.toggle('is-hidden');
-// const addToShoppingListBtn = document.querySelector(
-//   'button[data-modal-submit="add"]'
-// );
-modal.classList.add('is-hidden');
+const congratsMessage = document.querySelector('.modal-window-text');
+const closeModalBtn = document.querySelector('.cls-button');
+const backdrop = document.querySelector('[data-modal-backdrop]');
 
+
+function closeModalByEscape(event) {
+  if (event.code === 'Escape') {
+    modalCard.removeEventListener('click', addOrDeleteBook);
+    closeModalBtn.removeEventListener('click', closeModalWindow, {
+      once: 'true',
+    });
+    return hiddenAll();
+  }
+}
+function closeModalWindow(event) {
+  if (event.currentTarget.nodeName === 'BUTTON') {
+    document.removeEventListener('keydown', closeModalByEscape, {
+      once: 'true',
+    });
+    modalCard.removeEventListener('click', addOrDeleteBook);
+    return hiddenAll();
+  }
+}
+
+function hiddenAll() {
+  toggleModalHidden();
+  toggleBacdropHidden();
+  toggleScroll();
+}
+function toggleScroll() {
+  document.body.classList.toggle('stop-scrolling');
+}
+
+function toggleModalHidden() {
+  modal.classList.toggle('is-hidden');
+}
+
+function toggleBacdropHidden() {
+  backdrop.classList.toggle('is-hidden');
+}
+
+function checkBookStatus(id) {
+  checkLocalStorageNotEmpty();
+  storageOfBooksId = JSON.parse(localStorage.getItem('id'));
+  if (storageOfBooksId.includes(id)) {
+    congratsMessage.textContent = 'This book is already in your cart';
+    congratsMessage.classList.remove('is-hidden');
+  }
+}
+
+// -------------Фуекція що визиває модальне вікно-------------
 containerBest.addEventListener('click', imageClickHandler);
 function imageClickHandler(event) {
-  console.log(event.target);
   const idToCallModal = event.target.dataset.idImg;
+  hiddenAll();
   renderModalWindow(idToCallModal);
-  modal.classList.remove('is-hidden');
+  checkBookStatus(idToCallModal);
+
+  modalCard.addEventListener('click', addOrDeleteBook);
+  event.target.textContent = 'remove from the shopping list';
+  document.addEventListener('keydown', closeModalByEscape, { once: 'true' });
+  closeModalBtn.addEventListener('click', closeModalWindow, { once: 'true' });
 }
+// -------------------------------------
 
 async function renderModalWindow(id) {
   try {
@@ -27,8 +79,6 @@ async function renderModalWindow(id) {
 
 function renderMarkupModalWindow(book, id) {
   let {
-    title = 'Title unknown',
-    author = 'Author unknown',
     book_image = './image/shopping/dummy-book-tr.png',
     description,
     buy_links,
@@ -51,22 +101,27 @@ function renderMarkupModalWindow(book, id) {
     author,
     book_image,
     description,
+    amazonUrl,
+    appleUrl,
+    bookShopUrl,
   });
-  // const books = JSON.parse(localStorage.getItem('books'));
-  // const book = books.find(({ image }) => image === book_image);
-  // const markup = createModalWindow(book);
-  modal.innerHTML = '';
+  modalCard.innerHTML = '';
 
-  return modal.insertAdjacentHTML('afterbegin', markup);
+  return modalCard.insertAdjacentHTML('afterbegin', markup);
 }
 
-function createModalWindow({ id, title, author, book_image, description }) {
-  return `<button class="cls-button" data-modal-close>
-        <svg xmlns="http://www.w3.org/2000/svg"  width="18" height="18"
-       fill="none"><path stroke="#111" stroke-linecap="round"
-        stroke-linejoin="round" stroke-width="2.5" 
-        d="M16 2 2 16M2 2l14 14"/></svg></button>
-  <div class="modal-window" data-id=${id}>
+function createModalWindow({
+  id,
+  title,
+  author,
+  book_image,
+  description,
+  amazonUrl,
+  appleUrl,
+  bookShopUrl,
+}) {
+  return `
+  <div class="modal-window">
     <div class="picture">
       <img class="card-img" src="${book_image}" alt="${description}" />
     </div>
@@ -77,38 +132,120 @@ function createModalWindow({ id, title, author, book_image, description }) {
       <ul class="icons">
         <li class="icon-link">
           <a
-            class="card-link"
-            href="${amazonUrl}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src="./image/Amazon-min.png"
-          /></a>
-        </li>
-        <li class="icon-link">
-          <a
-            class="card-link"
-            href="${appleUrl}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src="./image/List-min.png"
-          /></a>
-        </li>
-        <li class="icon-link">
-          <a
-            class="card-link"
-            href="${bookShopUrl}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src="./image/Book-min.png"
-          /></a>
+                    class="shopping-card-shop-link"
+                    href="${amazonUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Amazon link"
+                    ><img
+                      width="62px"
+                      class="shopping-card-link-icon shopping-card-link-amazon"
+                      src="./shop-amazon-62x19px.a7ec3af8.png"
+                      alt="Amazon" loading="lazy"
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="shopping-card-shop-link"
+                    href="${appleUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Apple Books link"
+                  >
+                    <img
+                      width="32px"
+                      height="32px"
+                      class="shopping-card-link-icon"
+                      src="./shop-read-33x32px.a9f158e0.png"
+                      alt="Apple Books" loading="lazy"
+                    />
+                  </a></li>
+                <li>
+                  <a
+                    class="shopping-card-shop-link"
+                    href="${bookShopUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="BookShop link"
+                  >
+                    <img
+                      width="38px"
+                      height="36px"
+                      class="shopping-card-link-icon shopping-card-link-shopbook"
+                      src="./shop-book-shop-38x36px.eb5fbc1e.png"
+                      alt="BookShop" loading="lazy"
+                    />
+                  </a>
         </li>
       </ul>
     </div>
-    <button class="btn-action button pointer" data-modal-submit="add" type="submit">
-        add to shopping list
-      </button>
+    <button
+    class="btn-action button pointer"
+    data-modal-submit="add" data-id=${id}
+    type="button">add to shopping list</button>
   </div>`;
+}
+
+function checkLocalStorageNotEmpty() {
+  if (!JSON.parse(localStorage.getItem('id'))) {
+    storageOfBooksId = [];
+    return localStorage.setItem('id', JSON.stringify(storageOfBooksId));
+  }
+}
+
+function changeBookStatus(id, event) {
+  checkLocalStorageNotEmpty();
+  if (storageOfBooksId.includes(id)) {
+    return (event.target.dataset.modalSubmit = 'del');
+  }
+}
+
+function addOrDeleteBook(event) {
+  if (event.target.classList.contains('btn-action')) {
+    const idChoosenBook = event.target.dataset.id;
+    changeBookStatus(idChoosenBook, event);
+    if (event.target.dataset.modalSubmit === 'add') {
+      addingBookToBusket(idChoosenBook);
+      event.target.textContent = 'remove from the shopping list';
+      congratsMessage.textContent =
+        'Сongratulations! You have added the book to the shopping list. To delete, press the button &quotRemove from the shopping list&quot.';
+      congratsMessage.classList.remove('is-hidden');
+      event.target.dataset.modalSubmit = 'del';
+    } else {
+      deletingBookFromBusket(idChoosenBook);
+      event.target.textContent = 'add to shopping list';
+      congratsMessage.classList.add('is-hidden');
+      event.target.dataset.modalSubmit = 'add';
+    }
+  }
+}
+
+function addingBookToBusket(idChoosenBook) {
+  if (!JSON.parse(localStorage.getItem('id'))) {
+    storageOfBooksId = [];
+    storageOfBooksId.push(idChoosenBook);
+    return localStorage.setItem('id', JSON.stringify(storageOfBooksId));
+  }
+  storageOfBooksId = JSON.parse(localStorage.getItem('id'));
+
+  if (storageOfBooksId.includes(idChoosenBook)) {
+    console.log('this book already in a busket');
+  } else {
+    storageOfBooksId.push(idChoosenBook);
+    localStorage.setItem('id', JSON.stringify(storageOfBooksId));
+  }
+  return;
+}
+
+function deletingBookFromBusket(idChoosenBook) {
+  checkLocalStorageNotEmpty();
+  storageOfBooksId = JSON.parse(localStorage.getItem('id'));
+  if (storageOfBooksId.includes(idChoosenBook)) {
+    const index = storageOfBooksId.indexOf(idChoosenBook);
+    storageOfBooksId.splice(index, 1);
+    localStorage.setItem('id', JSON.stringify(storageOfBooksId));
+
+    return;
+  }
 }
