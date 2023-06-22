@@ -2,14 +2,14 @@
   "name": "project-group-9",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://keytarina.github.io/project-group-9",
+  "homepage": "https://keytarina.github.io/project-group-9/",
   "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /project-group-9/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Keytarina/project-group-9.git"
+    "url": "git+https://github.com/Keytarina/project-group-9"
   },
   "keywords": [],
   "author": "Kateryna Yakubych <kateryna.yakubych@gmail.com>",
@@ -19,7 +19,8 @@
   },
   "dependencies": {
     "axios": "^1.4.0",
-    "firebase": "^9.22.2",
+    "buffer": "^6.0.3",
+    "flatpickr": "^4.6.13",
     "jquery": "^3.7.0",
     "modern-normalize": "^1.1.0",
     "notiflix": "^3.2.6",
@@ -27,11 +28,9 @@
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
-    "buffer": "^6.0.3",
     "parcel": "^2.6.0",
     "parcel-reporter-clean-dist": "^1.0.4",
-    "posthtml-include": "^1.7.4",
-    "process": "^0.11.10"
+    "posthtml-include": "^1.7.4"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead"
 }
