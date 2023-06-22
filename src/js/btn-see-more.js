@@ -20,7 +20,7 @@ async function fetchTopBooks() {
 
 
 const container = document.querySelector('#container-best');
-const seeMoreBtn = document.querySelector('.seeMoreBtn');
+const seeMoreBtn = document.querySelector('.see-more-btn');
 
 async function  fetchAndRenderBooks () {
   try {
@@ -32,7 +32,7 @@ async function  fetchAndRenderBooks () {
   }
 };
 
-async function loadBooksByCategory  (category) {
+export async function loadBooksByCategory  (category) {
   try {
     clearMarkup();
     const data = await fetchBooksByCategory(category);
@@ -43,16 +43,25 @@ async function loadBooksByCategory  (category) {
   }
 };
 
-seeMoreBtn.addEventListener('click', (event) => {
-  if (event.target.classList.contains('seeMoreBtn')) {
-    const categoryElement = event.target.closest('.book-list-wrapper');
-    const category = categoryElement.dataset.category;
+container.addEventListener('click', (event) => {
+  if (event.target.nodeName === "BUTTON") {
+    console.log(event.target.parentNode.firstChild.textContent);
+    category = event.target.parentNode.firstChild.textContent;
+    clearMarkup();
     loadBooksByCategory(category);
   }
 });
+// seeMoreBtn.addEventListener('click', (event) => {
+//   if (event.target.classList.contains('.see-more-btn')) {
+//     const categoryElement = event.target.closest('.book-list-wrapper');
+//     console.log(categoryElement);
+//     const category = categoryElement.dataset.category;
+//     loadBooksByCategory(category);
+//   }
+// });
 
 fetchAndRenderBooks();
-console.log(seeMoreBtn);
+
 
 
 
