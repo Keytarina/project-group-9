@@ -48,6 +48,7 @@ ul,li{
     color: rgba(17, 17, 17, 0.6);
 }
 
+
 body.dark .categories-list{
     color: rgba(255, 255, 255, 0.6);;
 }
@@ -56,17 +57,28 @@ body.dark
 .categories-list:hover,
 .categories-list:active{
     color: var(--hover-navigation-color);
+    text-transform: uppercase;
 }
 
 .categories-list:hover,
 .categories-list:active{
-    font-family: 'DM Sans';
     font-weight: 700;
     font-size: 18px;
     line-height: 24px;
 
     letter-spacing: -0.02em;
     text-transform: uppercase;
-
     color: var(--blue-hover-icon-color);
+}
+
+.activies{
+    color: var(--blue-hover-icon-color);
+    font-weight: 700;
+   
+}
+
+body.dark
+.activies{
+    color: var(--hover-navigation-color);
+    font-weight: 700;
 }
