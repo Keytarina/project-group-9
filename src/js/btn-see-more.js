@@ -5,6 +5,9 @@ import {
 } from './best-sellers';
 import { fetchBooksByCategory, fetchTopBooks } from './serviceApi.js';
 
+
+
+
 async function fetchTopBooks() {
   try {
     startLoader();
@@ -15,6 +18,8 @@ async function fetchTopBooks() {
     console.log(error);
   }
 }
+
+
 
 const container = document.querySelector('#container-best');
 const seeMoreBtn = document.querySelector('.see-more-btn');
