@@ -13,14 +13,15 @@ const mediaQuery = window.matchMedia('(min-width: 768px)');
 // Імітація наповнення LocalStorage id-шниками книг -------
 // localStorage.clear();
 let arrayOfBooksId = [];
-arrayOfBooksId.push(
-  '643282b1e85766588626a0dc',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a0dc',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a0dc'
-);
-localStorage.setItem('id', JSON.stringify(arrayOfBooksId));
+// arrayOfBooksId.push(
+//   '643282b1e85766588626a0dc',
+//   '643282b1e85766588626a080',
+//   '643282b1e85766588626a0dc',
+//   '643282b1e85766588626a080',
+//   '643282b1e85766588626a0ba/',
+//   '643282b1e85766588626a0dc'
+// );
+// localStorage.setItem('id', JSON.stringify(arrayOfBooksId));
 // -----------
 // paginator - кількість книг, що буде відображатись на сторінці.
 // page - сторінка списку книг.
@@ -54,6 +55,10 @@ function showMessageIfEmpty() {
 
 // -----Функція що збирає з localStorage id-шники для пагінації-----
 function fetchArrayOfBookId() {
+  if (!JSON.parse(localStorage.getItem('id'))) {
+    storageOfBooksId = [];
+    return localStorage.setItem('id', JSON.stringify(storageOfBooksId));
+  }
   return (arrayOfBooksId = JSON.parse(localStorage.getItem('id')));
 }
 fetchArrayOfBookId();
@@ -428,7 +433,7 @@ function renderMarkup(book, id) {
               </ul>
               <button class="shopping-btn-dump" type="button" data-book="${id}">
                 <svg class="shopping-btn-dump-icon" width="16" height="16">
-                  <use href="./icons.d473670f.svg#dump"></use>
+                  <use href="./icons.d47e670f.svg#dump"></use>
                 </svg>
               </button>
             </div>
@@ -448,7 +453,8 @@ function deleteBook(event) {
     event.target.nodeName === 'svg' ||
     event.target.nodeName === 'BUTTON'
   ) {
-    procedureDeletingBook(event);
+    const idToDelete = event.target.dataset.book;
+    procedureDeletingBook(idToDelete);
   }
   return;
 }
@@ -460,8 +466,7 @@ function refreshPage() {
   return renderLastSession();
 }
 
-function procedureDeletingBook(event) {
-  const idToDelete = event.target.dataset.book;
+function procedureDeletingBook(idToDelete) {
   const index = arrayOfBooksId.indexOf(idToDelete);
   fetchArrayOfBookId();
   arrayOfBooksId.splice(index, 1);
@@ -475,5 +480,3 @@ function procedureDeletingBook(event) {
   }
   renderBooksFromBusket(page, paginator);
 }
-
-export { list };

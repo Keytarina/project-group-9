@@ -14,7 +14,7 @@ bottom: 460px;
 left: 20px;
 right: 20px; */
   width: 335px;
-  display: flex;
+  /* display: flex; */
 
   /* flex-direction: column-reverse; */
   height: 762px;
@@ -283,4 +283,13 @@ button.cls-button :focus {
 
 .icon-link :hover {
   filter: drop-shadow(0px 3px 3px var(--shadow-color));
+}
+.scrollable-place {
+  height: 3000px;
+}
+
+.stop-scrolling {
+  height: 100%;
+
+  overflow: hidden;
 }
