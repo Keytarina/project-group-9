@@ -1,5 +1,4 @@
 import { fetchTopBooks } from './serviceApi.js';
-import { loadBooksByCategory } from './btn-see-more.js';
 //This function recieves parsed data from api and returns the markup of book-list
 //at the home page. Should be used after any of serviceApi functions in async code.
 
