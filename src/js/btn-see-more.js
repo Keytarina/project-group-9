@@ -1,6 +1,8 @@
 
 
-import { renderBooksByCategory, renderBestSellersList, clearMarkup } from './best-sellers.js';
+import { renderBooksByCategory, renderBestSellersList, clearMarkup } from './best-sellers';
+import { fetchBooksByCategory, fetchTopBooks } from './serviceApi.js'
+
 
 
 
@@ -14,6 +16,7 @@ async function fetchTopBooks() {
     console.log(error); 
   }
 }
+
 
 
 const container = document.querySelector('#container-best');
