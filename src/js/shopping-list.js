@@ -9,6 +9,8 @@ const secondBtn = document.querySelector('button[data-page="second"]');
 const thirdBtn = document.querySelector('.btn-hidden');
 
 const mediaQuery = window.matchMedia('(min-width: 768px)');
+const support = document.querySelector('.support');
+if (mediaQuery.matches) {support.classList.add('visually-hidden')  }
 
 // Імітація наповнення LocalStorage id-шниками книг -------
 // localStorage.clear();
