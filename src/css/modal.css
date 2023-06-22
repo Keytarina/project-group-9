@@ -203,8 +203,15 @@ button.cls-button :focus {
   }
 }
 
+.card-img {
+  display: block;
+  width: 192px;
+  object-fit: cover;
+}
+
 .info {
   /* display: flex; */
+  width: 270px;
   flex-direction: column;
 }
 

@@ -1,21 +1,26 @@
-import { renderBooksByCategory, renderBestSellersList, clearMarkup } from './best-sellers';
-import { fetchBooksByCategory, fetchTopBooks } from './serviceApi.js'
+import {
+  renderBooksByCategory,
+  renderBestSellersList,
+  clearMarkup,
+} from './best-sellers';
+import { fetchBooksByCategory, fetchTopBooks } from './serviceApi.js';
 
 async function fetchTopBooks() {
   try {
-    startLoader(); 
-    const { data } = await axios('top-books'); 
-    stopLoader(); 
-    return data; 
+    startLoader();
+    const { data } = await axios('top-books');
+    stopLoader();
+    return data;
   } catch (error) {
-    console.log(error); 
+    console.log(error);
   }
 }
 
 const container = document.querySelector('#container-best');
 const seeMoreBtn = document.querySelector('.see-more-btn');
+console.log(seeMoreBtn);
 
-async function  fetchAndRenderBooks () {
+async function fetchAndRenderBooks() {
   try {
     const data = await fetchTopBooks();
     const markup = renderBestSellersList(data);
@@ -23,9 +28,9 @@ async function  fetchAndRenderBooks () {
   } catch (err) {
     console.log(err);
   }
-};
+}
 
-export async function loadBooksByCategory  (category) {
+export async function loadBooksByCategory(category) {
   try {
     clearMarkup();
     const data = await fetchBooksByCategory(category);
@@ -34,10 +39,10 @@ export async function loadBooksByCategory  (category) {
   } catch (err) {
     console.log(err);
   }
-};
+}
 
-container.addEventListener('click', (event) => {
-  if (event.target.nodeName === "BUTTON") {
+container.addEventListener('click', event => {
+  if (event.target.nodeName === 'BUTTON') {
     console.log(event.target.parentNode.firstChild.textContent);
     category = event.target.parentNode.firstChild.textContent;
     clearMarkup();
@@ -54,9 +59,3 @@ container.addEventListener('click', (event) => {
 // });
 
 fetchAndRenderBooks();
-
-
-
-
-
-
