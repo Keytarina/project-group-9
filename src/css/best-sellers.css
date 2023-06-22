@@ -28,6 +28,16 @@
   right: 0;
   text-transform: uppercase;
 }
+.seeMoreBtn:hover,
+.seeMoreBtn:focus
+{
+background-color: #4f2ee8;
+color:#ffffff;
+}
+
+
+
+
 .bestSellersHeader {
   font-weight: 700;
   font-size: 32px;
