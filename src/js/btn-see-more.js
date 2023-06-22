@@ -1,5 +1,10 @@
+
+
 import { renderBooksByCategory, renderBestSellersList, clearMarkup } from './best-sellers';
 import { fetchBooksByCategory, fetchTopBooks } from './serviceApi.js'
+
+
+
 
 async function fetchTopBooks() {
   try {
@@ -11,6 +16,8 @@ async function fetchTopBooks() {
     console.log(error); 
   }
 }
+
+
 
 const container = document.querySelector('#container-best');
 const seeMoreBtn = document.querySelector('.see-more-btn');
