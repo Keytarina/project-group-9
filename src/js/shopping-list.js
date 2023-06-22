@@ -12,8 +12,6 @@ const support = document.querySelector('.support');
 const mediaQuery = window.matchMedia('(min-width: 768px)');
 const mediaQuerySupport = window.matchMedia('(max-width: 1439px)');
 
-}
-
 // Імітація наповнення LocalStorage id-шниками книг -------
 // localStorage.clear();
 let arrayOfBooksId = [];
