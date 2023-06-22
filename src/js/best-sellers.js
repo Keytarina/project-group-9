@@ -59,6 +59,7 @@ export const renderBooksByCategory = data => {
     }
   });
 };
+
 const container = document.querySelector('#container-best');
 const foo = async () => {
   try {
