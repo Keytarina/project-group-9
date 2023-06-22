@@ -14,6 +14,7 @@ export const renderBestSellersList = data => {
        .map(book => {
          const { _id: id, author, book_image, title } = book;
          return `<li class="best-sellers-list-item">
+              <div class="best-sellers-thumb"><img class="best-sellers-image" src=${book_image} alt=${title} data-id=${id}/><div class="book-thumb-overlay"><p class="book-overlay-text">quick view</p></div></div>
               <div class="book-description-thumb"><h3 class="book-title">${
                 title.length > 18 ? title.slice(0, 18) + '...' : title
               }</h3>
