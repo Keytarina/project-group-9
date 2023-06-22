@@ -19,7 +19,8 @@
   order: 1;
   flex-grow: 0;
   box-sizing: border-box;
-  color: #111111;
+  color: var(--main-text-color);
+  background-color: var(--background-color-main);
   cursor: pointer;
   display: inline-flex;
   font-family: DM Sans;
@@ -38,6 +39,7 @@
 .best-sellers-header {
   font-weight: 700;
   font-size: 32px;
+  color: var(---main-text-color);
   letter-spacing: -0.04em;
   line-height: 1.18;
   margin-bottom: 40px;
