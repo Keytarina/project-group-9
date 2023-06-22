@@ -273,12 +273,15 @@ header {
 
 /* кнопра реєстрації клієнта */
 @media screen and (max-width: 767px) {
-  .btn-login {
-    visibility: hidden;
+  .btn-login.active {
+    display: flex;
     position: absolute;
+    align-items: center;
+    justify-content: center;
   }
 }
 .btn-login {
+  display: none;
   width: 184px;
   height: 48px;
   padding-left: 14px;
@@ -304,6 +307,23 @@ header {
   letter-spacing: -0.04em;
   color: #ffffff;
 }
+
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .btn-logout.close {
+    visibility: visible;
+    width: 184px;
+    top: 60px;
+    left: 552px;
+  }
+}
+@media (min-width: 1440px) {
+  .btn-logout.close {
+    visibility: visible;
+    width: 184px;
+    left: 1232px;
+    top: 60px;
+  }
+}
 .btn-logout {
   visibility: hidden;
   position: absolute;
@@ -318,6 +338,7 @@ header {
   border-radius: 18px;
   cursor: pointer;
 }
+
 .btn-logout-text {
   font-weight: 500;
   font-size: 14px;
