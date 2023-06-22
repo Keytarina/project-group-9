@@ -8,6 +8,16 @@ const firstBtn = document.querySelector('button[data-page="first"]');
 const secondBtn = document.querySelector('button[data-page="second"]');
 const thirdBtn = document.querySelector('.btn-hidden');
 
+const support = document.querySelector('.support');
+const mediaQuery = window.matchMedia('(min-width: 768px)');
+const mediaQuerySupport = window.matchMedia('(max-width: 1439px)');
+
+if (mediaQuerySupport.matchesSupport) {
+  support.style.position = 'static';
+} else {
+  support.classList.add('visually-hiden');
+}
+
 // Імітація наповнення LocalStorage id-шниками книг -------
 // localStorage.clear();
 let arrayOfBooksId = [];
@@ -66,12 +76,12 @@ function fetchPaginator() {
 }
 
 function refreshNumberBooksPerPage() {
-  if (getComputedStyle(thirdBtn).display == 'none') {
-    // console.log('3 on page');
-    return (paginator = 3);
-  } else {
+  if (mediaQuery.matches) {
     // console.log('4 on page');
     return (paginator = 4);
+  } else {
+    // console.log('3 on page');
+    return (paginator = 3);
   }
 }
 function refreshTotalPages() {
