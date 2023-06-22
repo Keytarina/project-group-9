@@ -6,7 +6,7 @@ const containerBest = document.getElementById('container-best');
 const congratsMessage = document.querySelector('.modal-window-text');
 const closeModalBtn = document.querySelector('.cls-button');
 const backdrop = document.querySelector('[data-modal-backdrop]');
-
+const hidenModalBtn = document.querySelector('.btn-action');
 
 function closeModalByEscape(event) {
   if (event.code === 'Escape') {
@@ -48,6 +48,7 @@ function checkBookStatus(id) {
   checkLocalStorageNotEmpty();
   storageOfBooksId = JSON.parse(localStorage.getItem('id'));
   if (storageOfBooksId.includes(id)) {
+    hidenModalBtn.textContent = 'remove from the shopping list';
     congratsMessage.textContent = 'This book is already in your cart';
     congratsMessage.classList.remove('is-hidden');
   }
@@ -79,6 +80,8 @@ async function renderModalWindow(id) {
 
 function renderMarkupModalWindow(book, id) {
   let {
+    title,
+    author,
     book_image = './image/shopping/dummy-book-tr.png',
     description,
     buy_links,
