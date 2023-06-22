@@ -7,6 +7,7 @@ const controller = document.querySelector('.shopping-paginator-list');
 const firstBtn = document.querySelector('button[data-page="first"]');
 const secondBtn = document.querySelector('button[data-page="second"]');
 const thirdBtn = document.querySelector('.btn-hidden');
+const mediaQuery = window.matchMedia('(min-width: 768px)');
 
 // Імітація наповнення LocalStorage id-шниками книг -------
 // localStorage.clear();
