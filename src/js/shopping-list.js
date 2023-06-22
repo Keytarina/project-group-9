@@ -470,6 +470,7 @@ function deleteBook(event) {
     event.target.nodeName === 'svg' ||
     event.target.nodeName === 'BUTTON'
   ) {
+    console.log('but');
     procedureDeletingBook(event);
   }
   return;
