@@ -7,8 +7,6 @@ const congratsMessage = document.querySelector('.modal-window-text');
 const closeModalBtn = document.querySelector('.cls-button');
 const backdrop = document.querySelector('[data-modal-backdrop]');
 
-let storageOfBooksId = ['643282b1e85766588626a0dc', '643282b1e85766588626a080'];
-localStorage.setItem('id', JSON.stringify(storageOfBooksId));
 
 function closeModalByEscape(event) {
   if (event.code === 'Escape') {
@@ -21,7 +19,6 @@ function closeModalByEscape(event) {
 }
 function closeModalWindow(event) {
   if (event.currentTarget.nodeName === 'BUTTON') {
-    console.log(event.currentTarget.nodeName);
     document.removeEventListener('keydown', closeModalByEscape, {
       once: 'true',
     });
@@ -82,8 +79,6 @@ async function renderModalWindow(id) {
 
 function renderMarkupModalWindow(book, id) {
   let {
-    title = 'Title unknown',
-    author = 'Author unknown',
     book_image = './image/shopping/dummy-book-tr.png',
     description,
     buy_links,
