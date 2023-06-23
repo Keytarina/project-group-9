@@ -6,17 +6,10 @@ const containerBest = document.getElementById('container-best');
 const congratsMessage = document.querySelector('.modal-window-text');
 const closeModalBtn = document.querySelector('.cls-button');
 const backdrop = document.querySelector('[data-modal-backdrop]');
+const hidenModalBtn = document.querySelector('.btn-action');
 
 let storageOfBooksIdModal = [];
-
-function checkLocalStorageNotEmpty() {
-  if (!JSON.parse(localStorage.getItem('id'))) {
-    storageOfBooksIdModal = [];
-    return localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
-  } else {storageOfBooksIdModal = JSON.parse(localStorage.getItem('id'));}
-}
 checkLocalStorageNotEmpty();
-
 function closeModalByEscape(event) {
   if (event.code === 'Escape') {
     modalCard.removeEventListener('click', addOrDeleteBook);
@@ -55,29 +48,27 @@ function toggleBacdropHidden() {
 
 function checkBookStatus(id) {
   checkLocalStorageNotEmpty();
-  storageOfBooksIdModal = JSON.parse(localStorage.getItem('id'));
-  if (storageOfBooksIdModal.includes(id)) {
+  storageOfBooksId = JSON.parse(localStorage.getItem('id'));
+  if (storageOfBooksId.includes(id)) {
+    hidenModalBtn.textContent = 'remove from the shopping list';
     congratsMessage.textContent = 'This book is already in your cart';
     congratsMessage.classList.remove('is-hidden');
   }
 }
 
 // -------------Фуекція що визиває модальне вікно-------------
-containerBest.addEventListener('click', imageClickHandler);
 function imageClickHandler(event) {
-  if (event.target.nodeName === 'IMG') {
-    const idToCallModal = event.target.dataset.idImg;
-    hiddenAll();
-    renderModalWindow(idToCallModal);
-    checkBookStatus(idToCallModal);
+  const idToCallModal = event.target.dataset.idImg;
+  hiddenAll();
+  renderModalWindow(idToCallModal);
+  checkBookStatus(idToCallModal);
 
-    modalCard.addEventListener('click', addOrDeleteBook);
-    event.target.textContent = 'remove from the shopping list';
-    document.addEventListener('keydown', closeModalByEscape, { once: 'true' });
-    closeModalBtn.addEventListener('click', closeModalWindow, { once: 'true' });
-  }
+  modalCard.addEventListener('click', addOrDeleteBook);
+  event.target.textContent = 'remove from the shopping list';
+  document.addEventListener('keydown', closeModalByEscape, { once: 'true' });
+  closeModalBtn.addEventListener('click', closeModalWindow, { once: 'true' });
 }
-  // -------------------------------------
+// -------------------------------------
 
   async function renderModalWindow(id) {
     try {
@@ -153,12 +144,12 @@ function imageClickHandler(event) {
                     ><img
                       width="62px"
                       class="shopping-card-link-icon shopping-card-link-amazon"
-                      src="./image/shopping/shop-amazon-62x19px.png"
+                      src="./shop-amazon-62x19px.a7ec3af8.png"
                       alt="Amazon" loading="lazy"
                     />
                   </a>
                 </li>
-                <li class="icon-link">
+                <li>
                   <a
                     class="shopping-card-shop-link"
                     href="${appleUrl}"
@@ -174,7 +165,7 @@ function imageClickHandler(event) {
                       alt="Apple Books" loading="lazy"
                     />
                   </a></li>
-                <li class="icon-link">
+                <li>
                   <a
                     class="shopping-card-shop-link"
                     href="${bookShopUrl}"
@@ -200,19 +191,19 @@ function imageClickHandler(event) {
   </div>`;
   }
 
-  function checkLocalStorageNotEmpty() {
-    if (!JSON.parse(localStorage.getItem('id'))) {
-      storageOfBooksIdModal = [];
-      return localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
-    }
+function checkLocalStorageNotEmpty() {
+  if (!JSON.parse(localStorage.getItem('id'))) {
+    storageOfBooksId = [];
+    return localStorage.setItem('id', JSON.stringify(storageOfBooksId));
   }
+}
 
-  function changeBookStatus(id, event) {
-    checkLocalStorageNotEmpty();
-    if (storageOfBooksIdModal.includes(id)) {
-      return (event.target.dataset.modalSubmit = 'del');
-    }
+function changeBookStatus(id, event) {
+  checkLocalStorageNotEmpty();
+  if (storageOfBooksId.includes(id)) {
+    return (event.target.dataset.modalSubmit = 'del');
   }
+}
 
   function addOrDeleteBook(event) {
     if (event.target.classList.contains('btn-action')) {
@@ -234,30 +225,30 @@ function imageClickHandler(event) {
     }
   }
 
-  function addingBookToBusket(idChoosenBook) {
-    if (!JSON.parse(localStorage.getItem('id'))) {
-      storageOfBooksIdModal = [];
-      storageOfBooksIdModal.push(idChoosenBook);
-      return localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
-    }
-    storageOfBooksIdModal = JSON.parse(localStorage.getItem('id'));
-
-    if (storageOfBooksIdModal.includes(idChoosenBook)) {
-      console.log('this book already in a busket');
-    } else {
-      storageOfBooksIdModal.push(idChoosenBook);
-      localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
-    }
-    return;
+function addingBookToBusket(idChoosenBook) {
+  if (!JSON.parse(localStorage.getItem('id'))) {
+    storageOfBooksId = [];
+    storageOfBooksId.push(idChoosenBook);
+    return localStorage.setItem('id', JSON.stringify(storageOfBooksId));
   }
+  storageOfBooksId = JSON.parse(localStorage.getItem('id'));
 
-  function deletingBookFromBusket(idChoosenBook) {
-    checkLocalStorageNotEmpty();
-    storageOfBooksIdModal = JSON.parse(localStorage.getItem('id'));
-    if (storageOfBooksIdModal.includes(idChoosenBook)) {
-      const index = storageOfBooksIdModal.indexOf(idChoosenBook);
-      storageOfBooksIdModal.splice(index, 1);
-      localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
+  if (storageOfBooksId.includes(idChoosenBook)) {
+    console.log('this book already in a busket');
+  } else {
+    storageOfBooksId.push(idChoosenBook);
+    localStorage.setItem('id', JSON.stringify(storageOfBooksId));
+  }
+  return;
+}
+
+function deletingBookFromBusket(idChoosenBook) {
+  checkLocalStorageNotEmpty();
+  storageOfBooksId = JSON.parse(localStorage.getItem('id'));
+  if (storageOfBooksId.includes(idChoosenBook)) {
+    const index = storageOfBooksId.indexOf(idChoosenBook);
+    storageOfBooksId.splice(index, 1);
+    localStorage.setItem('id', JSON.stringify(storageOfBooksId));
 
       return;
     }
