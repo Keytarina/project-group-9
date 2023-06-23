@@ -35,7 +35,7 @@ export async function loadBooksByCategory(category) {
 container.addEventListener('click', event => {
   if (event.target.nodeName === 'BUTTON') {
     console.log(event.target.parentNode.firstChild.textContent);
-    category = event.target.parentNode.firstChild.textContent;
+    const category = event.target.parentNode.firstChild.textContent;
     clearMarkup();
     loadBooksByCategory(category);
   }

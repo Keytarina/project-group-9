@@ -55,6 +55,7 @@ function checkBookStatus(id) {
 }
 
 // -------------Фуекція що визиває модальне вікно-------------
+containerBest.addEventListener('click', imageClickHandler);
 function imageClickHandler(event) {
   if (event.target.nodeName === 'IMG') {
     const idToCallModal = event.target.dataset.idImg;
