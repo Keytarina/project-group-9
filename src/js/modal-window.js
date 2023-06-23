@@ -57,6 +57,7 @@ function checkBookStatus(id) {
 }
 
 // -------------Фуекція що визиває модальне вікно-------------
+containerBest.addEventListener('click', imageClickHandler);
 function imageClickHandler(event) {
   const idToCallModal = event.target.dataset.idImg;
   hiddenAll();
