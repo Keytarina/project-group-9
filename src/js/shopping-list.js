@@ -533,9 +533,7 @@ function checkLocalStorageNotEmptyShopping() {
   if (!JSON.parse(localStorage.getItem('id'))) {
     storageOfBooksId = [];
     return localStorage.setItem('id', JSON.stringify(storageOfBooksId));
-  } else {
-    storageOfBooksId = JSON.parse(localStorage.getItem('id'));
-  }
+  } else {storageOfBooksId = JSON.parse(localStorage.getItem('id'));}
 }
 checkLocalStorageNotEmptyShopping();
 
