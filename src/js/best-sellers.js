@@ -19,7 +19,6 @@ export const renderBestSellersList = data => {
                 title.length > 18 ? title.slice(0, 18) + '...' : title
               }</h3>
               <p class="book-description">${author}</p></div>
-    
           </li>`;
        })
        .join(
@@ -48,7 +47,7 @@ export const renderBooksByCategory = data => {
     })
     .join('');
 
-  return categoryTitle.split(' ').map((e, i, a) => {
+    categoryTitle = categoryTitle.split(' ').map((e, i, a) => {
     if (a.indexOf(e) + 1 === a.length) {
       return `<h1 class="best-sellers-header">${categoryTitle
         .split(' ')
@@ -58,6 +57,7 @@ export const renderBooksByCategory = data => {
         )}<span class="best-sellers-accent"> ${e}<span></h1><ul class="book-category-list">${markup}</ul>`;
     }
   });
+  return categoryTitle.join('');
 };
 
 const container = document.querySelector('#container-best');

@@ -7,16 +7,7 @@ import { fetchBooksByCategory,fetchTopBooks  } from './serviceApi.js'
 
 
 
-async function fetchTopBooks() {
-  try {
-    startLoader();
-    const { data } = await axios('top-books');
-    stopLoader();
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-}
+fetchTopBooks();
 
 
 
