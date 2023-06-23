@@ -10,10 +10,17 @@
   gap: 10px;
   box-sizing: border-box;
 
+<<<<<<< Updated upstream
   width: 150px;
   height: 54px;
+=======
+  
+  margin-bottom: 52px;
+  width: 130px;
+  height: 50px;
+>>>>>>> Stashed changes
   border: 2px solid #4f2ee8;
-  border-radius: 35px;
+  border-radius: 30px;
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -23,12 +30,17 @@
   font-family: DM Sans;
   font-size: 14px;
   font-weight: 700;
-  line-height: 1, 3 em;
+  line-height: 1,3 em;
   justify-content: center;
   overflow: hidden;
   position: absolute;
   bottom: 0;
+<<<<<<< Updated upstream
   right: 0;
+=======
+
+  right: 23px;
+>>>>>>> Stashed changes
   text-transform: uppercase;
 }
 .seeMoreBtn:hover,
