@@ -34,10 +34,14 @@
         <li>
           <button class="burger-menu" id="burger">
             <svg class="burger-btn-open" width="28" height="28">
-              <use href="./image/icons.svg#burger-menu"></use>
+              <use
+                class="buger-btn-open-ico"
+                href="./image/icons.svg#burger-menu"
+              ></use>
             </svg>
             <svg class="burger-btn-close" width="18" height="18" fill="none">
               <path
+                class="buger-btn-close-ico"
                 stroke="#111"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -48,7 +52,7 @@
           </button>
         </li>
         <li>
-          <button type="button" class="btn-login">
+          <button type="button" class="btn-login" data-authorization-open>
             <div class="btn-login-content">
               <p class="btn-login-text">Sign up</p>
               <svg class="btn-login-img" width="20" height="20">
@@ -72,7 +76,7 @@
           </button>
         </li>
         <li>
-          <button type="button" class="btn-signed">
+          <button type="button" class="btn-signed visually-hidden">
             <div class="btn-client-content">
               <div class="btn-client-logo">
                 <svg class="btn-client-img" width="19" height="19">

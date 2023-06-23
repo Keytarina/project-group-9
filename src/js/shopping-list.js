@@ -7,18 +7,34 @@ const controller = document.querySelector('.shopping-paginator-list');
 const firstBtn = document.querySelector('button[data-page="first"]');
 const secondBtn = document.querySelector('button[data-page="second"]');
 const thirdBtn = document.querySelector('.btn-hidden');
+const mediaQuery = window.matchMedia('(min-width: 768px)');
+
+const support = document.querySelector('.support');
+
+const mediaQuerySupport = window.matchMedia('(max-width: 1439px)');
+support.style.position = 'static';
+
+function handleTabletChange(e) {
+  if (e.matches) {
+    support.classList.add('visually-hidden');
+  } else {
+    support.classList.remove('visually-hidden');
+  }
+}
+mediaQuerySupport.addListener(handleTabletChange);
+handleTabletChange(mediaQuerySupport);
 
 // Імітація наповнення LocalStorage id-шниками книг -------
 // localStorage.clear();
-let arrayOfBooksId = [];
-arrayOfBooksId.push(
-  '643282b1e85766588626a0dc',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a0dc',
-  '643282b1e85766588626a080',
-  '643282b1e85766588626a0dc'
-);
-localStorage.setItem('id', JSON.stringify(arrayOfBooksId));
+
+function checkLocalStorageNotEmptyShopping() {
+  if (!JSON.parse(localStorage.getItem('id'))) {
+    storageOfBooksId = [];
+    return localStorage.setItem('id', JSON.stringify(storageOfBooksId));
+  }
+}
+checkLocalStorageNotEmptyShopping();
+
 // -----------
 // paginator - кількість книг, що буде відображатись на сторінці.
 // page - сторінка списку книг.
@@ -31,7 +47,7 @@ let totalPages = 1;
 function checkCurrentPage() {
   if (Number.parseInt(localStorage.getItem('page')) > 0) {
     page = JSON.parse(localStorage.getItem('page'));
-    console.log(`now is page ${page}`);
+    // console.log(`now is page ${page}`);
   } else page = 1;
 }
 checkCurrentPage();
@@ -40,6 +56,7 @@ checkCurrentPage();
 function showMessageIfEmpty() {
   if (JSON.parse(localStorage.getItem('id')).length > 0) {
     dummyMessage.classList.add('visually-hidden');
+    list.classList.remove('visually-hidden');
   } else {
     list.classList.add('visually-hidden');
     controller.classList.add('visually-hidden');
@@ -66,12 +83,12 @@ function fetchPaginator() {
 }
 
 function refreshNumberBooksPerPage() {
-  if (getComputedStyle(thirdBtn).display == 'none') {
-    // console.log('3 on page');
-    return (paginator = 3);
-  } else {
+  if (mediaQuery.matches) {
     // console.log('4 on page');
     return (paginator = 4);
+  } else {
+    // console.log('3 on page');
+    return (paginator = 3);
   }
 }
 function refreshTotalPages() {
@@ -86,7 +103,6 @@ function refreshTotalPages() {
 function changePage(adduct) {
   page += adduct;
   localStorage.page = page;
-  console.log(page);
   return page;
 }
 // ------------------------------------
@@ -103,8 +119,8 @@ function renderPage(page, paginator) {
 }
 
 function makeArrayToPaginate(page, paginator) {
-  console.log(`при создании массива ${page} p[age]`);
-  console.log(`при создании массив ${totalPages} total pages`);
+  // console.log(`при создании массива ${page} p[age]`);
+  // console.log(`при создании массив ${totalPages} total pages`);
   fetchArrayOfBookId();
 
   const arrayOfBooksToPaginate = arrayOfBooksId.splice(
@@ -127,8 +143,8 @@ function pageNumeration(page) {
 
 function paginate(event) {
   fetchPaginator();
-  console.log(`'this is page ${page}`);
-  console.log(`event check ${totalPages} total pages`);
+  // console.log(`'this is page ${page}`);
+  // console.log(`event check ${totalPages} total pages`);
 
   if (fetchArrayOfBookId().length <= paginator) {
     return;
@@ -434,7 +450,7 @@ function renderMarkup(book, id) {
               </ul>
               <button class="shopping-btn-dump" type="button" data-book="${id}">
                 <svg class="shopping-btn-dump-icon" width="16" height="16">
-                  <use href="./icons.d473670f.svg#dump"></use>
+                  <use href="./icons.d47e670f.svg#dump"></use>
                 </svg>
               </button>
             </div>

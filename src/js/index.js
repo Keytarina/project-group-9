@@ -1,13 +1,13 @@
 import './serviceApi';
 import './theme.js';
-import './modal';
-import './authorization';
-
 import './header';
+import './best-sellers';
 import './categories';
 import './support';
-import './books';
+import './modal-window';
 
-import './best-sellers';
-import './shopping-list';
-import './btn-see-more';
+// import './books';
+// import './authorization';
+// import './shopping-list';
+// import './btn-see-more';
+import './scroll-top';

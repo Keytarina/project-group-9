@@ -1,0 +1,88 @@
+ <!-- authorization window -->
+ <div class="authorization-backdrop is-hidden" data-authorization>
+    <div class="authorization-window">
+      <button
+        class="authorization-window-close-button"
+        type="button"
+        data-authorization-close
+      >
+        <svg
+          class="authorization-window-close-button-icon"
+          width="28"
+          height="28"
+        >
+          <use href="./image/icons-sprite.svg#icon-x-close"></use>
+        </svg>
+      </button>      
+      <form class="authorization-window-form js-speaker-form">
+        <label class="authorization-window-label">
+          <div class="authorization-window-field">
+            <input
+              class="authorization-window-input"
+              type="text"
+              name="user-name"
+              placeholder="name"
+              id="name"
+              pattern="^[a-zA-Z]+"
+              maxlength="7"
+              required
+              autofocus
+            />
+          </div>
+        </label>
+        <label class="authorization-window-label">
+          <div class="authorization-window-field">
+            <input
+              class="authorization-window-input"
+              type="email"
+              name="user-email"
+              placeholder="email"
+              id="email"
+              required
+            />
+            <svg class="authorization-window-icon" width="28" height="28">
+              <use href="./image/icons-sprite.svg#icon-mail"></use>
+            </svg>
+          </div>
+        </label>
+        <label class="authorization-window-label">
+          <div class="authorization-window-field">
+            <input
+              class="authorization-window-input"
+              type="password"
+              name="user-password"
+              placeholder="password"
+              id="password"
+              autocomplete="off"
+              required
+            />
+            <svg class="authorization-window-icon" width="28" height="28">
+              <use href="./image/icons-sprite.svg#icon-lock"></use>
+            </svg>
+          </div>
+        </label>
+        <button class="authorization-window-submit-button" type="submit">
+          Sign up
+        </button>          
+        <ul class="authorization-window-sign-buttons list">
+          <li>
+            <button
+              class="authorization-window-sign-button sign-up curr"
+              type="button"
+            >
+              sign up
+            </button>
+          </li>
+          <li>
+            <button
+              class="authorization-window-sign-button sign-in"
+              type="button"
+            >
+              sign in
+            </button>
+          </li>            
+        </ul>
+      </form>
+    </div>
+  </div>
+  <!-- /authorization window -->

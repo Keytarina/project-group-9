@@ -1,15 +1,19 @@
-.seeMoreBtn {
-  display: inline-block;
+:root {
+  --trasition-duration: 250ms;
+  --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.see-more-btn {
+  display: flex;
   flex-direction: row;
-  align-items: flex;
+  align-items: flex-start;
   padding: 14px 28px;
   gap: 10px;
   box-sizing: border-box;
+
   margin-top: 100px;
   margin-bottom: 54px;
   width: 150px;
   height: 54px;
-
   border: 2px solid #4f2ee8;
   border-radius: 35px;
   flex: none;
@@ -17,6 +21,7 @@
   flex-grow: 0;
   color: #111111;
   cursor: pointer;
+  display: inline-flex;
   font-family: DM Sans;
   font-size: 14px;
   font-weight: 700;
@@ -25,6 +30,7 @@
   overflow: hidden;
   position: absolute;
   bottom: 0;
+
   right: 15px;
   text-transform: uppercase;
 }
@@ -34,18 +40,20 @@
   color: #ffffff;
 }
 
-.bestSellersHeader {
+.best-sellers-section {
+  padding-top: 40px;
+}
+.best-sellers-header {
   font-weight: 700;
   font-size: 32px;
-  color: #111111;
   letter-spacing: -0.04em;
   line-height: 1.18;
   margin-bottom: 40px;
 }
-.bestSellersAccent {
+.best-sellers-accent {
   color: #4f2ee8;
 }
-.bestSellersTitle {
+.best-sellers-title {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.28;
@@ -55,21 +63,21 @@
   margin-bottom: 18px;
 }
 
-.bestSellersList,
-.bookCategoryList {
+.best-sellers-list,
+.book-category-list {
   list-style: none;
   padding-left: 0;
 }
 
-.bestSellersThumb {
+.best-sellers-thumb {
   height: 485px;
   overflow: hidden;
   border-radius: 8px;
 }
-.bestSellersImage {
+.best-sellers-image {
   display: block;
   max-width: 100%;
-  height: auto;
+  height: 100%;
 }
 .see-more-btn-dark {
   display: flex;
@@ -102,25 +110,20 @@
   margin-bottom: 4px;
   margin-top: 0;
 }
-.bookTitle {
+.book-title {
   display: block;
   max-width: 100%;
+  padding-top: 14px;
 }
-.bookDescription {
+.book-description {
   color: #b4afaf;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.16;
   font-style: italic;
+  padding-top: 4px;
 }
-.container {
-  max-width: 375px;
-  padding-right: 20px;
-  padding-left: 20px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.bookListWrapper {
+.book-list-wrapper {
   margin-bottom: 40px;
   position: relative;
   height: 625px;
@@ -131,82 +134,89 @@
   .mobile-hidden {
     display: none;
   }
-  .bestSellersListItem:not(:first-child) {
+  .best-sellers-list-item:not(:first-child) {
     display: none;
   }
+}
+.book-category-list-item {
+  margin-bottom: 40px;
 }
 
 /* -----------------------------------tablet styles--------------------------------------------------------------------------- */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
+  .best-sellers-section {
+    padding-top: 100px;
+  }
   .tablet-hidden {
     display: none;
   }
-  .bestSellersListItem:not(:nth-child(-n + 3)) {
+  .best-sellers-list-item:not(:nth-child(-n + 3)) {
     display: none;
   }
-  .bookListWrapper {
+  .book-list-wrapper {
     height: 474px;
   }
 }
 @media screen and (min-width: 768px) {
-  .container {
-    max-width: 768px;
+  .best-sellers-section {
+    padding-top: 100px;
   }
-  .bookCategoryList {
+  .book-category-list {
     display: flex;
     column-gap: 20px;
     max-width: 704px;
   }
-  .bookCategoryList {
+  .book-category-list {
     display: flex;
     flex-wrap: wrap;
     column-gap: 25px;
     row-gap: 40px;
   }
-  .bestSellersListItem,
-  .bookCategoryListItem {
+  .best-sellers-list-item,
+  .book-category-list-item {
     max-width: 218px;
   }
-  .bestSellersThumb {
+  .best-sellers-thumb {
     height: 316px;
     max-width: 100%;
   }
-  .bestSellersHeader {
+  .best-sellers-header {
     font-size: 48px;
     line-height: 1.08;
     margin-bottom: 40px;
   }
-  .bestSellersTitle {
+  .best-sellers-title {
     line-height: 1.7;
   }
-  .bookListWrapper {
+  .book-list-wrapper {
     max-width: 704px;
     height: 474px;
   }
 }
 @media screen and (min-width: 1440px) {
-  .container {
-    max-width: 1440px;
+  .best-sellers-section {
+    padding-top: 0px;
   }
-  .bookListWrapper {
+  .book-list-wrapper {
     max-width: 996px;
   }
-  .bookCategoryList {
+  .book-category-list {
     max-width: 996px;
     column-gap: 24px;
   }
-  .bestSellersListItem,
-  .bookCategoryListItem {
+  .best-sellers-list-item,
+  .book-category-list-item {
     max-width: 180px;
   }
-  .bestSellersThumb {
+  .best-sellers-thumb {
     height: 256px;
     max-width: 180px;
   }
-  .bestSellersList {
+  .best-sellers-list {
     column-gap: 24px;
   }
 }
+
 .container {
   max-width: 375px;
   padding-right: 20px;
@@ -214,7 +224,7 @@
   margin-left: auto;
   margin-right: auto;
 }
-.bookListWrapper {
+.book-list-wrapper {
   margin-bottom: 40px;
   position: relative;
   height: 625px;
@@ -224,8 +234,9 @@
   .mobile-hidden {
     display: none;
   }
-  .bestSellersListItem:not(:first-child) {
-    display: none;
+
+  .best-sellers-list-item:not(:first-child) {
+      display: none;
   }
   /* .bestSellersHeader:not(:first-of-type) {
       display: none;
@@ -240,61 +251,103 @@
   .tablet-hidden {
     display: none;
   }
-  .bestSellersListItem:not(:nth-child(-n + 3)) {
-    display: none;
+
+  .best-sellers-list-item:not(:nth-child(-n+3)) {
+      display: none;
   }
-  .bookListWrapper {
-    height: 474px;
+  .book-list-wrapper {
+      height: 474px;
+
   }
 }
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 768px;
+
+@media screen and  (min-width: 768px) {
+  .best-sellers-list {
+      display: flex;
+      column-gap: 20px;
   }
-  .bestSellersList {
-    display: flex;
-    column-gap: 20px;
+  .best-sellers-list-item {
+      max-width: 218px;
+    }
+    .best-sellers-thumb {
+      height: 316px;
+      max-width: 218px;
+      position: relative;
+    }
+    .book-thumb-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      padding-top: 26px;
+      padding-bottom: 26px;
+      padding-right: 52px;
+      padding-left: 52px;
+      background-color: #EAC645;
+      text-align: center;
+      text-transform: uppercase;
+      transition: transform var(--trasition-duration)
+        var(--transition-timing-function);
+      transform: translateY(100%);
+    }
+    .best-sellers-list-item:hover .book-thumb-overlay,
+    .best-sellers-list-item:focus .book-thumb-overlay,
+    .book-category-list-item:hover .book-thumb-overlay,
+    .book-category-list-item:focus .book-thumb-overlay {
+      transform: translateY(0);
+    }
+    .book-overlay-text {
+      opacity: 0;
+      transition: opacity var(--trasition-duration)
+      var(--transition-timing-function);
+    }
+    .best-sellers-list-item:hover .book-overlay-text,
+    .best-sellers-list-item:focus .book-overlay-text,
+    .book-category-list-item:hover .book-overlay-text,
+    .book-category-list-item:focus .book-overlay-text
+    {
+      color: #111111;
+      text-transform: uppercase;
+      letter-spacing: -0.56px;
+      font-weight: 500;
+      font-size: 14px;
+      opacity: 1;
+    }
+    .best-sellers-header {
+      font-size: 48px;
+      line-height: 1.08;
+      margin-bottom: 40px;
+    }
+    .best-sellers-title {
+      line-height: 1.7;
+    }
+    .book-list-wrapper {
+      max-width: 704px;
   }
-  .bestSellersListItem {
-    max-width: 218px;
+  .book-list-wrapper {
+      height: 474px;
+
   }
-  .bestSellersThumb {
-    height: 316px;
-    max-width: 218px;
-  }
-  .bestSellersHeader {
-    font-size: 48px;
-    line-height: 1.08;
-    margin-bottom: 40px;
-  }
-  .bestSellersTitle {
-    line-height: 1.7;
-  }
-  .bookListWrapper {
-    max-width: 704px;
-  }
-  .bookListWrapper {
-    height: 474px;
-  }
+
 }
 @media screen and (min-width: 1440px) {
-  .container {
-    max-width: 1440px;
+
+  /* .container {
+      max-width: 1440px;
+  } */
+  .book-list-wrapper {
+      max-width: 996px;
   }
-  .bookListWrapper {
-    max-width: 996px;
-  }
-  .bestSellersListItem {
-    max-width: 180px;
-  }
-  .bestSellersThumb {
-    height: 256px;
-    max-width: 180px;
-  }
-  .bestSellersList {
-    column-gap: 24px;
-  }
-  .seeMoreBtn {
-    display: none;
-  }
+  .best-sellers-list-item {
+      max-width: 180px;
+    }
+    .best-sellers-thumb {
+      height: 256px;
+      max-width: 180px;
+    }
+    .best-sellers-list {
+      column-gap: 24px;
+    }
+
 }
