@@ -103,8 +103,6 @@
   overflow: hidden;
   text-transform: uppercase;
   color: #111111;
-  margin-bottom: 4px;
-  margin-top: 0;
 }
 .book-title {
   display: block;
@@ -162,14 +160,9 @@
   }
   .book-category-list {
     display: flex;
-    column-gap: 20px;
-    max-width: 704px;
-  }
-  .book-category-list {
-    display: flex;
+    column-gap: 24px;
+    justify-content: space-between;
     flex-wrap: wrap;
-    column-gap: 25px;
-    row-gap: 40px;
   }
   .best-sellers-list-item,
   .book-category-list-item {
