@@ -27,10 +27,14 @@ handleTabletChange(mediaQuerySupport);
 // Імітація наповнення LocalStorage id-шниками книг -------
 // localStorage.clear();
 
+let storageOfBooksId = [];
+
 function checkLocalStorageNotEmptyShopping() {
   if (!JSON.parse(localStorage.getItem('id'))) {
     storageOfBooksId = [];
     return localStorage.setItem('id', JSON.stringify(storageOfBooksId));
+  } else {
+    storageOfBooksId = JSON.parse(localStorage.getItem('id'));
   }
 }
 checkLocalStorageNotEmptyShopping();
@@ -69,7 +73,7 @@ function showMessageIfEmpty() {
 
 // -----Функція що збирає з localStorage id-шники для пагінації-----
 function fetchArrayOfBookId() {
-  return (arrayOfBooksId = JSON.parse(localStorage.getItem('id')));
+  return (storageOfBooksId = JSON.parse(localStorage.getItem('id')));
 }
 fetchArrayOfBookId();
 // --------Функція, що повертає кількість книг, що вміщує сторінка і загальну кількість сторінок,
@@ -123,7 +127,7 @@ function makeArrayToPaginate(page, paginator) {
   // console.log(`при создании массив ${totalPages} total pages`);
   fetchArrayOfBookId();
 
-  const arrayOfBooksToPaginate = arrayOfBooksId.splice(
+  const arrayOfBooksToPaginate = storageOfBooksId.splice(
     (page - 1) * paginator,
     paginator
   );
@@ -484,12 +488,12 @@ function refreshPage() {
 
 function procedureDeletingBook(event) {
   const idToDelete = event.target.dataset.book;
-  const index = arrayOfBooksId.indexOf(idToDelete);
+  const index = storageOfBooksId.indexOf(idToDelete);
   fetchArrayOfBookId();
-  arrayOfBooksId.splice(index, 1);
-  localStorage.setItem('id', JSON.stringify(arrayOfBooksId));
+  storageOfBooksId.splice(index, 1);
+  localStorage.setItem('id', JSON.stringify(storageOfBooksId));
   fetchPaginator();
-  if (arrayOfBooksId.length === 0) {
+  if (storageOfBooksId.length === 0) {
     return renderBooksFromBusket(page, paginator);
   }
   if (page > totalPages) {
