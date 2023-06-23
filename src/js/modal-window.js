@@ -6,7 +6,16 @@ const containerBest = document.getElementById('container-best');
 const congratsMessage = document.querySelector('.modal-window-text');
 const closeModalBtn = document.querySelector('.cls-button');
 const backdrop = document.querySelector('[data-modal-backdrop]');
-const hidenModalBtn = document.querySelector('.btn-action');
+
+let storageOfBooksIdModal = [];
+
+function checkLocalStorageNotEmpty() {
+  if (!JSON.parse(localStorage.getItem('id'))) {
+    storageOfBooksIdModal = [];
+    return localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
+  } else {storageOfBooksIdModal = JSON.parse(localStorage.getItem('id'));}
+}
+checkLocalStorageNotEmpty();
 
 function closeModalByEscape(event) {
   if (event.code === 'Escape') {
@@ -46,9 +55,8 @@ function toggleBacdropHidden() {
 
 function checkBookStatus(id) {
   checkLocalStorageNotEmpty();
-  storageOfBooksId = JSON.parse(localStorage.getItem('id'));
-  if (storageOfBooksId.includes(id)) {
-    hidenModalBtn.textContent = 'remove from the shopping list';
+  storageOfBooksIdModal = JSON.parse(localStorage.getItem('id'));
+  if (storageOfBooksIdModal.includes(id)) {
     congratsMessage.textContent = 'This book is already in your cart';
     congratsMessage.classList.remove('is-hidden');
   }
@@ -57,48 +65,65 @@ function checkBookStatus(id) {
 // -------------Фуекція що визиває модальне вікно-------------
 containerBest.addEventListener('click', imageClickHandler);
 function imageClickHandler(event) {
-  const idToCallModal = event.target.dataset.idImg;
-  hiddenAll();
-  renderModalWindow(idToCallModal);
-  checkBookStatus(idToCallModal);
+  if (event.target.nodeName === 'IMG') {
+    const idToCallModal = event.target.dataset.idImg;
+    hiddenAll();
+    renderModalWindow(idToCallModal);
+    checkBookStatus(idToCallModal);
 
-  modalCard.addEventListener('click', addOrDeleteBook);
-  event.target.textContent = 'remove from the shopping list';
-  document.addEventListener('keydown', closeModalByEscape, { once: 'true' });
-  closeModalBtn.addEventListener('click', closeModalWindow, { once: 'true' });
-}
-// -------------------------------------
-
-async function renderModalWindow(id) {
-  try {
-    const dataFromServer = await fetchBookById(id);
-    renderMarkupModalWindow(dataFromServer, id);
-  } catch (error) {
-    console.log(error);
+    modalCard.addEventListener('click', addOrDeleteBook);
+    event.target.textContent = 'remove from the shopping list';
+    document.addEventListener('keydown', closeModalByEscape, { once: 'true' });
+    closeModalBtn.addEventListener('click', closeModalWindow, { once: 'true' });
   }
 }
+  // -------------------------------------
 
-function renderMarkupModalWindow(book, id) {
-  let {
-    title,
-    author,
-    book_image = './image/shopping/dummy-book-tr.png',
-    description,
-    buy_links,
-  } = book;
-  const arrayOfShops = buy_links;
-  let amazonUrl = 'https://www.amazon.com';
-  let appleUrl = 'https://books.apple.com';
-  let bookShopUrl = 'https://bookshop.org';
-  amazonUrl = arrayOfShops[0].url;
-  appleUrl = arrayOfShops[1].url;
-  bookShopUrl = arrayOfShops[4].url;
-  if (description.trim().length === 0) {
-    description = 'Description is not available for that book';
+  async function renderModalWindow(id) {
+    try {
+      const dataFromServer = await fetchBookById(id);
+      renderMarkupModalWindow(dataFromServer, id);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  let markup = '';
-  markup = createModalWindow({
+  function renderMarkupModalWindow(book, id) {
+    let {
+      title,
+      author,
+      book_image = './image/shopping/dummy-book-tr.png',
+      description,
+      buy_links,
+    } = book;
+    const arrayOfShops = buy_links;
+    let amazonUrl = 'https://www.amazon.com';
+    let appleUrl = 'https://books.apple.com';
+    let bookShopUrl = 'https://bookshop.org';
+    amazonUrl = arrayOfShops[0].url;
+    appleUrl = arrayOfShops[1].url;
+    bookShopUrl = arrayOfShops[4].url;
+    if (description.trim().length === 0) {
+      description = 'Description is not available for that book';
+    }
+
+    let markup = '';
+    markup = createModalWindow({
+      id,
+      title,
+      author,
+      book_image,
+      description,
+      amazonUrl,
+      appleUrl,
+      bookShopUrl,
+    });
+    modalCard.innerHTML = '';
+
+    return modalCard.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  function createModalWindow({
     id,
     title,
     author,
@@ -107,23 +132,8 @@ function renderMarkupModalWindow(book, id) {
     amazonUrl,
     appleUrl,
     bookShopUrl,
-  });
-  modalCard.innerHTML = '';
-
-  return modalCard.insertAdjacentHTML('afterbegin', markup);
-}
-
-function createModalWindow({
-  id,
-  title,
-  author,
-  book_image,
-  description,
-  amazonUrl,
-  appleUrl,
-  bookShopUrl,
-}) {
-  return `
+  }) {
+    return `
   <div class="modal-window">
     <div class="picture">
       <img class="card-img" src="${book_image}" alt="${description}" />
@@ -143,7 +153,7 @@ function createModalWindow({
                     ><img
                       width="62px"
                       class="shopping-card-link-icon shopping-card-link-amazon"
-                      src="./image/shopping/shop-amazon-62x19px.png"
+                      src="./shop-amazon-62x19px.a7ec3af8.png"
                       alt="Amazon" loading="lazy"
                     />
                   </a>
@@ -188,67 +198,68 @@ function createModalWindow({
     data-modal-submit="add" data-id=${id}
     type="button">add to shopping list</button>
   </div>`;
-}
-
-function checkLocalStorageNotEmpty() {
-  if (!JSON.parse(localStorage.getItem('id'))) {
-    storageOfBooksId = [];
-    return localStorage.setItem('id', JSON.stringify(storageOfBooksId));
   }
-}
 
-function changeBookStatus(id, event) {
-  checkLocalStorageNotEmpty();
-  if (storageOfBooksId.includes(id)) {
-    return (event.target.dataset.modalSubmit = 'del');
-  }
-}
-
-function addOrDeleteBook(event) {
-  if (event.target.classList.contains('btn-action')) {
-    const idChoosenBook = event.target.dataset.id;
-    changeBookStatus(idChoosenBook, event);
-    if (event.target.dataset.modalSubmit === 'add') {
-      addingBookToBusket(idChoosenBook);
-      event.target.textContent = 'remove from the shopping list';
-      congratsMessage.textContent =
-        'Сongratulations! You have added the book to the shopping list. To delete, press the button &quotRemove from the shopping list&quot.';
-      congratsMessage.classList.remove('is-hidden');
-      event.target.dataset.modalSubmit = 'del';
-    } else {
-      deletingBookFromBusket(idChoosenBook);
-      event.target.textContent = 'add to shopping list';
-      congratsMessage.classList.add('is-hidden');
-      event.target.dataset.modalSubmit = 'add';
+  function checkLocalStorageNotEmpty() {
+    if (!JSON.parse(localStorage.getItem('id'))) {
+      storageOfBooksIdModal = [];
+      return localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
     }
   }
-}
 
-function addingBookToBusket(idChoosenBook) {
-  if (!JSON.parse(localStorage.getItem('id'))) {
-    storageOfBooksId = [];
-    storageOfBooksId.push(idChoosenBook);
-    return localStorage.setItem('id', JSON.stringify(storageOfBooksId));
+  function changeBookStatus(id, event) {
+    checkLocalStorageNotEmpty();
+    if (storageOfBooksIdModal.includes(id)) {
+      return (event.target.dataset.modalSubmit = 'del');
+    }
   }
-  storageOfBooksId = JSON.parse(localStorage.getItem('id'));
 
-  if (storageOfBooksId.includes(idChoosenBook)) {
-    console.log('this book already in a busket');
-  } else {
-    storageOfBooksId.push(idChoosenBook);
-    localStorage.setItem('id', JSON.stringify(storageOfBooksId));
+  function addOrDeleteBook(event) {
+    if (event.target.classList.contains('btn-action')) {
+      const idChoosenBook = event.target.dataset.id;
+      changeBookStatus(idChoosenBook, event);
+      if (event.target.dataset.modalSubmit === 'add') {
+        addingBookToBusket(idChoosenBook);
+        event.target.textContent = 'remove from the shopping list';
+        congratsMessage.textContent =
+          'Сongratulations! You have added the book to the shopping list. To delete, press the button &quotRemove from the shopping list&quot.';
+        congratsMessage.classList.remove('is-hidden');
+        event.target.dataset.modalSubmit = 'del';
+      } else {
+        deletingBookFromBusket(idChoosenBook);
+        event.target.textContent = 'add to shopping list';
+        congratsMessage.classList.add('is-hidden');
+        event.target.dataset.modalSubmit = 'add';
+      }
+    }
   }
-  return;
-}
 
-function deletingBookFromBusket(idChoosenBook) {
-  checkLocalStorageNotEmpty();
-  storageOfBooksId = JSON.parse(localStorage.getItem('id'));
-  if (storageOfBooksId.includes(idChoosenBook)) {
-    const index = storageOfBooksId.indexOf(idChoosenBook);
-    storageOfBooksId.splice(index, 1);
-    localStorage.setItem('id', JSON.stringify(storageOfBooksId));
+  function addingBookToBusket(idChoosenBook) {
+    if (!JSON.parse(localStorage.getItem('id'))) {
+      storageOfBooksIdModal = [];
+      storageOfBooksIdModal.push(idChoosenBook);
+      return localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
+    }
+    storageOfBooksIdModal = JSON.parse(localStorage.getItem('id'));
 
+    if (storageOfBooksIdModal.includes(idChoosenBook)) {
+      console.log('this book already in a busket');
+    } else {
+      storageOfBooksIdModal.push(idChoosenBook);
+      localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
+    }
     return;
   }
-}
+
+  function deletingBookFromBusket(idChoosenBook) {
+    checkLocalStorageNotEmpty();
+    storageOfBooksIdModal = JSON.parse(localStorage.getItem('id'));
+    if (storageOfBooksIdModal.includes(idChoosenBook)) {
+      const index = storageOfBooksIdModal.indexOf(idChoosenBook);
+      storageOfBooksIdModal.splice(index, 1);
+      localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
+
+      return;
+    }
+  }
+
