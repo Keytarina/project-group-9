@@ -9,16 +9,9 @@
   padding: 14px 28px;
   gap: 10px;
   box-sizing: border-box;
-
-<<<<<<< Updated upstream
-  width: 150px;
-  height: 54px;
-=======
-  
   margin-bottom: 52px;
   width: 130px;
   height: 50px;
->>>>>>> Stashed changes
   border: 2px solid #4f2ee8;
   border-radius: 30px;
   flex: none;
@@ -35,12 +28,7 @@
   overflow: hidden;
   position: absolute;
   bottom: 0;
-<<<<<<< Updated upstream
   right: 0;
-=======
-
-  right: 23px;
->>>>>>> Stashed changes
   text-transform: uppercase;
 }
 .seeMoreBtn:hover,
