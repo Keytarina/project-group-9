@@ -148,7 +148,7 @@ function createModalWindow({
                     />
                   </a>
                 </li>
-                <li>
+                <li class="icon-link">
                   <a
                     class="shopping-card-shop-link"
                     href="${appleUrl}"
@@ -164,7 +164,7 @@ function createModalWindow({
                       alt="Apple Books" loading="lazy"
                     />
                   </a></li>
-                <li>
+                <li class="icon-link">
                   <a
                     class="shopping-card-shop-link"
                     href="${bookShopUrl}"
