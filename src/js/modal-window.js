@@ -8,17 +8,7 @@ const closeModalBtn = document.querySelector('.cls-button');
 const backdrop = document.querySelector('[data-modal-backdrop]');
 
 let storageOfBooksIdModal = [];
-
-function checkLocalStorageNotEmpty() {
-  if (!JSON.parse(localStorage.getItem('id'))) {
-    storageOfBooksIdModal = [];
-    return localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
-  } else {
-    storageOfBooksIdModal = JSON.parse(localStorage.getItem('id'));
-  }
-}
 checkLocalStorageNotEmpty();
-
 function closeModalByEscape(event) {
   if (event.code === 'Escape') {
     modalCard.removeEventListener('click', addOrDeleteBook);
@@ -65,7 +55,6 @@ function checkBookStatus(id) {
 }
 
 // -------------Фуекція що визиває модальне вікно-------------
-containerBest.addEventListener('click', imageClickHandler);
 function imageClickHandler(event) {
   if (event.target.nodeName === 'IMG') {
     const idToCallModal = event.target.dataset.idImg;
@@ -160,7 +149,7 @@ function createModalWindow({
                     />
                   </a>
                 </li>
-                <li class="icon-link">
+                <li>
                   <a
                     class="shopping-card-shop-link"
                     href="${appleUrl}"
@@ -176,7 +165,7 @@ function createModalWindow({
                       alt="Apple Books" loading="lazy"
                     />
                   </a></li>
-                <li class="icon-link">
+                <li>
                   <a
                     class="shopping-card-shop-link"
                     href="${bookShopUrl}"
