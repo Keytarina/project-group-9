@@ -281,27 +281,6 @@ header {
   display: none;
 }
 
-/* бургер меню колаж */
-/* .img-menu-list {
-  display: flex;
-  flex-direction: row;
-  width: 450px;
-  height: 439px;
-  column-gap: 36px;
-  row-gap: 26px;
-  flex-wrap: wrap;
-  transform: rotate(-15deg);
-  position: absolute;
-  top: 360px;
-  right: -40px;
-}
-
-.menu-img {
-  width: 84px;
-  height: 133px;
-  border-radius: 8px;
-} */
-
 /* кнопра реєстрації клієнта */
 @media screen and (max-width: 767px) {
   .btn-login.active {
