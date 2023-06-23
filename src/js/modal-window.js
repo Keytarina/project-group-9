@@ -143,7 +143,7 @@ function createModalWindow({
                     ><img
                       width="62px"
                       class="shopping-card-link-icon shopping-card-link-amazon"
-                      src=""./image/Amazon-min.png"
+                      src="./image/shopping/shop-amazon-62x19px.png"
                       alt="Amazon" loading="lazy"
                     />
                   </a>
