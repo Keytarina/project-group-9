@@ -10,3 +10,4 @@ import './modal-window';
 // import './authorization';
 // import './shopping-list';
 // import './btn-see-more';
+import './scroll-top';
