@@ -282,7 +282,7 @@ header {
 }
 
 /* бургер меню колаж */
-.img-menu-list {
+/* .img-menu-list {
   display: flex;
   flex-direction: row;
   width: 450px;
@@ -300,7 +300,7 @@ header {
   width: 84px;
   height: 133px;
   border-radius: 8px;
-}
+} */
 
 /* кнопра реєстрації клієнта */
 @media screen and (max-width: 767px) {
