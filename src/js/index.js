@@ -1,10 +1,12 @@
 import './serviceApi';
 import './theme.js';
 import './header';
-// import './categories';
+import './best-sellers';
+import './categories';
 import './support';
+import './modal-window';
+
 // import './books';
 // import './authorization';
-// import './best-sellers';
 // import './shopping-list';
 // import './btn-see-more';

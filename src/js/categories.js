@@ -4,8 +4,10 @@ import { fetchBooksCategoryList,fetchBooksByCategory, fetchTopBooks } from './se
 
 const category = document.querySelector(".categories-item");
 const list = document.querySelector('.categories-item');
-// const gallery = document.querySelector('.categories');
+const color = document.querySelector('.categories-list');
 const container = document.querySelector('#container-best');
+
+
 
 function markupList () {
   fetchBooksCategoryList().then(data => {
@@ -13,6 +15,7 @@ function markupList () {
       return `<li class="categories-list" id=${listName}>${listName}</li>`;
     }).join('')
     category.insertAdjacentHTML('beforeend', markupCategoriesList);
+    changeColor();
   }).catch((error) => console.log(error))
 };
 
@@ -51,4 +54,9 @@ async function renderTopBooks (e) {
       console.log(error);
     }
   };
+};
+
+function changeColor() {
+  color.forEach(e => e.classList.remove('activies'));
+  this.classList.add('activies');
 };
