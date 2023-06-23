@@ -5,21 +5,7 @@ import {
 } from './best-sellers';
 import { fetchBooksByCategory, fetchTopBooks } from './serviceApi.js';
 
-
-
-
-async function fetchTopBooks() {
-  try {
-    startLoader();
-    const { data } = await axios('top-books');
-    stopLoader();
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-
+fetchTopBooks();
 
 const container = document.querySelector('#container-best');
 const seeMoreBtn = document.querySelector('.see-more-btn');
@@ -64,3 +50,4 @@ container.addEventListener('click', event => {
 // });
 
 fetchAndRenderBooks();
+console.log(seeMoreBtn);

@@ -1,0 +1,51 @@
+.scroll-up {
+  position: fixed;
+  right: 15px;
+  bottom: 10px;
+  width: 54px;
+  height: 54px;
+
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--blue-hover-icon-color);
+  border-radius: 50%;
+  border: 5px solid rgba(192, 179, 238, 0.8);
+  /* transform: translate(-50%, -50%); */
+  transition: border 0.2s ease-in-out, opacity 0.5s ease-in-out;
+  opacity: 1;
+  z-index: 999;
+}
+.scroll-up::before {
+  content: '';
+  width: 25px;
+  height: 20px;
+  background: transparent no-repeat center center;
+  background-size: 100% 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z'/%3E%3C/svg%3E");
+}
+
+.scroll-up_hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-up:hover {
+  border: 5px solid transparent;
+  border-radius: 50%;
+}
+
+@media screen and (min-width: 768px) {
+  .scroll-up {
+    right: 25px;
+    bottom: 25px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .scroll-up {
+    right: 30px;
+    bottom: 30px;
+  }
+}

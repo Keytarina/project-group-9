@@ -9,4 +9,5 @@ import './modal-window';
 // import './books';
 // import './authorization';
 // import './shopping-list';
-// import './btn-see-more';
+import './btn-see-more';
+import './scroll-top';
