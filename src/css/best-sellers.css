@@ -9,9 +9,10 @@
   padding: 14px 28px;
   gap: 10px;
   box-sizing: border-box;
-  margin-bottom: 52px;
-  width: 130px;
-  height: 50px;
+
+  width: 150px;
+  height: 54px;
+
   border: 2px solid #4f2ee8;
   border-radius: 30px;
   flex: none;
@@ -23,7 +24,8 @@
   font-family: DM Sans;
   font-size: 14px;
   font-weight: 700;
-  line-height: 1,3 em;
+
+  line-height: 1.3em;
   justify-content: center;
   overflow: hidden;
   position: absolute;
@@ -31,8 +33,8 @@
   right: 0;
   text-transform: uppercase;
 }
-.seeMoreBtn:hover,
-.seeMoreBtn:focus {
+.see-more-btn:hover,
+.see-more-btn:focus {
   background-color: #4f2ee8;
   color: #ffffff;
 }
@@ -73,7 +75,7 @@
 }
 .best-sellers-image {
   display: block;
-  max-width: 100%;
+  width: 100%;
   height: 100%;
 }
 .see-more-btn-dark {
@@ -104,8 +106,6 @@
   overflow: hidden;
   text-transform: uppercase;
   color: #111111;
-  margin-bottom: 4px;
-  margin-top: 0;
 }
 .book-title {
   display: block;
@@ -125,7 +125,10 @@
   position: relative;
   height: 625px;
 }
-
+.best-sellers-list-item:hover,
+.book-category-list-item:hover {
+  cursor: pointer;
+}
 /* -----------------------------------mobile styles--------------------------------------------------------------------------- */
 @media screen and (max-width: 767px) {
   .mobile-hidden {
@@ -160,14 +163,9 @@
   }
   .book-category-list {
     display: flex;
-    column-gap: 20px;
-    max-width: 704px;
-  }
-  .book-category-list {
-    display: flex;
+    column-gap: 24px;
+    justify-content: space-between;
     flex-wrap: wrap;
-    column-gap: 25px;
-    row-gap: 40px;
   }
   .best-sellers-list-item,
   .book-category-list-item {
