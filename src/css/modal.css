@@ -28,10 +28,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
-
   width: 100%;
   max-width: 335px;
-
   border-radius: 18px;
   padding-top: 40px;
   padding-right: 24px;
@@ -143,21 +141,7 @@ button.cls-button :focus {
   letter-spacing: -0.04em;
 }
 
-
-
-@media screen and (min-width: 768px) and (max-width: 1439.8px) {
-  .modal {
-    max-width: 579px;
-    bottom: 200px;
-    background-color: #fff;
-    border: solid 2px #111111;
-    border-radius: 18px;
-    padding: 40px;
-    margin: 0;
-  }
-}
-
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 768px) {
   .modal {
     max-width: 579px;
     background-color: #fff;
@@ -215,7 +199,6 @@ button.cls-button :focus {
 @media screen and (min-width: 768px) {
   .picture {
     margin-right: 24px;
-    margin-bottom: 40px;
     width: 192px;
     height: 281px;
   }
@@ -234,13 +217,13 @@ button.cls-button :focus {
 
 @media screen and (min-width: 768px) {
   .authors {
-    margin-bottom: 20px;
-    color: #b4afaf;
-    font-size: 14px;
-    font-weight: 400;
-    font-style: italic;
-    line-height: 18px;
-    letter-spacing: -0.04em;
+  margin-bottom: 20px;
+  color: #b4afaf;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 18px;
+  letter-spacing: -0.04em;
   }
 }
 
@@ -250,7 +233,8 @@ button.cls-button :focus {
   font-weight: 400;
   color: #111111;
   line-height: 18px;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.56px;
+  /* letter-spacing: -0.04em; */
 }
 
 @media screen and (min-width: 768px) {
@@ -266,13 +250,18 @@ button.cls-button :focus {
 
 .icons {
   display: flex;
+  gap: 20px;
   margin-bottom: 40px;
 }
+
+@media screen and (min-width: 768px) {
+  .icons {
+    margin-bottom: 121px;
+  }
+}
+
 .icon-link {
   mix-blend-mode: luminosity;
-}
-.icon-link:not(:last-child) {
-  margin-right: 20px;
 }
 
 .icon-link :hover {
@@ -284,6 +273,27 @@ button.cls-button :focus {
 
 .stop-scrolling {
   height: 100%;
-
   overflow: hidden;
 }
+
+.modal-window-text {
+display: flex;
+width: 242px;
+flex-direction: column;
+color: rgba(17, 17, 17, 0.50);
+text-align: center;
+font-size: 10px;
+font-family: DM Sans;
+line-height: 12px;
+letter-spacing: -0.4px;
+margin-top: 8px;
+}
+
+@media screen and (min-width: 1440px) {
+  .modal-window-text {
+font-size: 12px;
+line-height: 14px;
+letter-spacing: -0.48px;
+  }
+}
+

@@ -143,12 +143,12 @@ function createModalWindow({
                     ><img
                       width="62px"
                       class="shopping-card-link-icon shopping-card-link-amazon"
-                      src="./shop-amazon-62x19px.a7ec3af8.png"
+                      src="./image/shopping/shop-amazon-62x19px.png"
                       alt="Amazon" loading="lazy"
                     />
                   </a>
                 </li>
-                <li>
+                <li class="icon-link">
                   <a
                     class="shopping-card-shop-link"
                     href="${appleUrl}"
@@ -164,7 +164,7 @@ function createModalWindow({
                       alt="Apple Books" loading="lazy"
                     />
                   </a></li>
-                <li>
+                <li class="icon-link">
                   <a
                     class="shopping-card-shop-link"
                     href="${bookShopUrl}"
