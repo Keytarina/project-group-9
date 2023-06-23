@@ -1,9 +1,8 @@
-import {
-  renderBooksByCategory,
-  renderBestSellersList,
-  clearMarkup,
-} from './best-sellers';
-import { fetchBooksByCategory, fetchTopBooks } from './serviceApi.js';
+
+
+
+import { renderBooksByCategory, renderBestSellersList, clearMarkup } from './best-sellers';
+import { fetchBooksByCategory,fetchTopBooks  } from './serviceApi.js'
 
 
 

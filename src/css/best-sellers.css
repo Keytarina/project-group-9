@@ -10,15 +10,15 @@
   gap: 10px;
   box-sizing: border-box;
 
-  width: 124px;
-  height: 46px;
-
+  margin-top: 100px;
+  margin-bottom: 54px;
+  width: 150px;
+  height: 54px;
   border: 2px solid #4f2ee8;
-  border-radius: 40px;
+  border-radius: 35px;
   flex: none;
   order: 1;
   flex-grow: 0;
-  box-sizing: border-box;
   color: #111111;
   cursor: pointer;
   display: inline-flex;
@@ -30,8 +30,16 @@
   overflow: hidden;
   position: absolute;
   bottom: 0;
-  right: 0;
+
+  right: 15px;
+  text-transform: uppercase;
 }
+.seeMoreBtn:hover,
+.seeMoreBtn:focus {
+  background-color: #4f2ee8;
+  color: #ffffff;
+}
+
 .best-sellers-section {
   padding-top: 40px;
 }
@@ -208,6 +216,14 @@
     column-gap: 24px;
   }
 }
+
+.container {
+  max-width: 375px;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .book-list-wrapper {
   margin-bottom: 40px;
   position: relative;
@@ -216,8 +232,9 @@
 /* -----------------------------------mobile styles--------------------------------------------------------------------------- */
 @media screen and (max-width: 767px) {
   .mobile-hidden {
-      display: none;
+    display: none;
   }
+
   .best-sellers-list-item:not(:first-child) {
       display: none;
   }
@@ -225,20 +242,25 @@
       display: none;
   } */
 }
+.seeMoreBtn {
+  display: none;
+}
 
 /* -----------------------------------tablet styles--------------------------------------------------------------------------- */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .tablet-hidden {
-      display: none;
+    display: none;
   }
+
   .best-sellers-list-item:not(:nth-child(-n+3)) {
       display: none;
   }
   .book-list-wrapper {
       height: 474px;
-  }
 
+  }
 }
+
 @media screen and  (min-width: 768px) {
   .best-sellers-list {
       display: flex;
@@ -305,10 +327,12 @@
   }
   .book-list-wrapper {
       height: 474px;
+
   }
 
 }
 @media screen and (min-width: 1440px) {
+
   /* .container {
       max-width: 1440px;
   } */
@@ -325,4 +349,5 @@
     .best-sellers-list {
       column-gap: 24px;
     }
+
 }
