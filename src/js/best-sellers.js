@@ -1,66 +1,74 @@
-import {fetchTopBooks} from './serviceApi.js'
+import { fetchTopBooks } from './serviceApi.js';
 //This function recieves parsed data from api and returns the markup of book-list
 //at the home page. Should be used after any of serviceApi functions in async code.
 
-export const renderBestSellersList = (data) => {
+export const renderBestSellersList = data => {
   const header =
-    '<h1 class="bestSellersHeader">Best Sellers <span class="bestSellersAccent">Books</span></h1>';
+    '<h1 class="best-sellers-header">Best Sellers <span class="best-sellers-accent">Books</span></h1>';
   const markup = header.concat(
     [...data]
-      .map((list) => {
+      .map(list => {
         const { list_name: listName, books } = list;
-        return `<div class="bookListWrapper"><h2 class="bestSellersTitle">${listName}</h2>
-     <ul class="bestSellersList">${books
-       .map((book) => {
+        return `<div class="book-list-wrapper"><h2 class="best-sellers-title">${listName}</h2>
+     <ul class="best-sellers-list">${books
+       .map(book => {
          const { _id: id, author, book_image, title } = book;
-         return `<li class="bestSellersListItem" data-id=${id}>
-              <div class="bestSellersThumb"><img class="bestSellersImage" src=${book_image} alt=${title}/></div>
-              <div class="bookDescriptionThumb"><h3 class="bookTitle">${
-                title.length > 18 ? title.slice(0, 18) + "..." : title
+         return `<li class="best-sellers-list-item">
+              <div class="best-sellers-thumb"><img class="best-sellers-image" src=${book_image} alt=${title} data-id-img=${id}/><div class="book-thumb-overlay"><p class="book-overlay-text">quick view</p></div></div>
+              <div class="book-description-thumb"><h3 class="book-title">${
+                title.length > 18 ? title.slice(0, 18) + '...' : title
               }</h3>
-              <p class="bookDescription">${author}</p></div>
+              <p class="book-description">${author}</p></div>
     
           </li>`;
        })
        .join(
-         ""
-       )}</ul><button class="seeMoreBtn" type="button">See More</button></div>`;
+         ''
+       )}</ul><button class="see-more-btn" type="button">See More</button></div>`;
       })
-      .join("")
+      .join('')
   );
   return markup;
 };
 
-//The function should be used to render a list of books of specific genre (category) 
-export const renderBooksByCategory = (data) => {
+//The function should be used to render a list of books of specific genre (category)
+export const renderBooksByCategory = data => {
   let categoryTitle;
   const markup = [...data]
-    .map((book) => {
+    .map(book => {
       const { _id: id, author, book_image, title, list_name: listName } = book;
       categoryTitle = listName;
-      return `<li class="bookCategoryListItem" data-id=${id}>
-            <div class="bestSellersThumb"><img class="bestSellersImage" src=${book_image} alt=${title}/></div>
-            <div class="bookDescriptionThumb"><h3 class="bookTitle">${
-              title.length > 18 ? title.slice(0, 18) + "..." : title
+      return `<li class="book-category-list-item">
+            <div class="best-sellers-thumb"><img class="best-sellers-image" src=${book_image} alt=${title} data-id-img=${id}/><div class="book-thumb-overlay"><p class="book-overlay-text">quick view</p></div></div>
+            <div class="book-description-thumb"><h3 class="book-title">${
+              title.length > 18 ? title.slice(0, 18) + '...' : title
             }</h3>
-            <p class="bookDescription">${author}</p></div>
+            <p class="book-description">${author}</p></div>
         </li>`;
     })
-    .join("");
+    .join('');
 
-  return `<h1 class="bestSellersHeader">${categoryTitle}</h1>
-     <ul class="bookCategoryList">${markup}</ul>`;
+  return categoryTitle.split(' ').map((e, i, a) => {
+    if (a.indexOf(e) + 1 === a.length) {
+      return `<h1 class="best-sellers-header">${categoryTitle
+        .split(' ')
+        .slice(0, i)
+        .join(
+          ' '
+        )}<span class="best-sellers-accent"> ${e}<span></h1><ul class="book-category-list">${markup}</ul>`;
+    }
+  });
 };
+
 const container = document.querySelector('#container-best');
-const foo = async() => {
+const foo = async () => {
   try {
     const data = await fetchTopBooks();
     const markup = renderBestSellersList(data);
     container.insertAdjacentHTML('beforeend', markup);
   } catch (err) {
-console.log(err);
+    console.log(err);
   }
-
 };
-export const clearMarkup = () => container.innerHTML = "";
-foo();
+export const clearMarkup = () => (container.innerHTML = '');
+container.innerHTML ? null : foo();

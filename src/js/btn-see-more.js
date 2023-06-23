@@ -1,5 +1,6 @@
 
 
+
 import { renderBooksByCategory, renderBestSellersList, clearMarkup } from './best-sellers';
 import { fetchBooksByCategory,fetchTopBooks  } from './serviceApi.js'
 
@@ -8,21 +9,22 @@ import { fetchBooksByCategory,fetchTopBooks  } from './serviceApi.js'
 
 async function fetchTopBooks() {
   try {
-    startLoader(); 
-    const { data } = await axios('top-books'); 
-    stopLoader(); 
-    return data; 
+    startLoader();
+    const { data } = await axios('top-books');
+    stopLoader();
+    return data;
   } catch (error) {
-    console.log(error); 
+    console.log(error);
   }
 }
 
 
 
 const container = document.querySelector('#container-best');
-const seeMoreBtn = document.querySelector('.seeMoreBtn');
+const seeMoreBtn = document.querySelector('.see-more-btn');
+console.log(seeMoreBtn);
 
-async function  fetchAndRenderBooks () {
+async function fetchAndRenderBooks() {
   try {
     const data = await fetchTopBooks();
     const markup = renderBestSellersList(data);
@@ -30,9 +32,9 @@ async function  fetchAndRenderBooks () {
   } catch (err) {
     console.log(err);
   }
-};
+}
 
-async function loadBooksByCategory  (category) {
+export async function loadBooksByCategory(category) {
   try {
     clearMarkup();
     const data = await fetchBooksByCategory(category);
@@ -41,18 +43,27 @@ async function loadBooksByCategory  (category) {
   } catch (err) {
     console.log(err);
   }
-};
+}
 
-seeMoreBtn.addEventListener('click', (event) => {
-  if (event.target.classList.contains('seeMoreBtn')) {
-    const categoryElement = event.target.closest('.book-list-wrapper');
-    const category = categoryElement.dataset.category;
+container.addEventListener('click', event => {
+  if (event.target.nodeName === 'BUTTON') {
+    console.log(event.target.parentNode.firstChild.textContent);
+    category = event.target.parentNode.firstChild.textContent;
+    clearMarkup();
     loadBooksByCategory(category);
   }
 });
+// seeMoreBtn.addEventListener('click', (event) => {
+//   if (event.target.classList.contains('.see-more-btn')) {
+//     const categoryElement = event.target.closest('.book-list-wrapper');
+//     console.log(categoryElement);
+//     const category = categoryElement.dataset.category;
+//     loadBooksByCategory(category);
+//   }
+// });
 
 fetchAndRenderBooks();
-
+console.log(seeMoreBtn);
 
 
 
