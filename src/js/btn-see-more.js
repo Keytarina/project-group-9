@@ -1,15 +1,11 @@
-
-
-
-import { renderBooksByCategory, renderBestSellersList, clearMarkup } from './best-sellers';
-import { fetchBooksByCategory,fetchTopBooks  } from './serviceApi.js'
-
-
-
+import {
+  renderBooksByCategory,
+  renderBestSellersList,
+  clearMarkup,
+} from './best-sellers';
+import { fetchBooksByCategory, fetchTopBooks } from './serviceApi.js';
 
 fetchTopBooks();
-
-
 
 const container = document.querySelector('#container-best');
 const seeMoreBtn = document.querySelector('.see-more-btn');
@@ -54,3 +50,4 @@ container.addEventListener('click', event => {
 // });
 
 fetchAndRenderBooks();
+console.log(seeMoreBtn);
