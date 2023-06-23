@@ -1,12 +1,12 @@
 
 
 import { renderBooksByCategory, renderBestSellersList, clearMarkup } from './best-sellers';
-import { fetchBooksByCategory, fetchTopBooks } from './serviceApi.js'
+import { fetchBooksByCategory,fetchTopBooks  } from './serviceApi.js'
 
 
 
 
-async function fetchTopBooksMore() {
+async function fetchTopBooks() {
   try {
     startLoader(); 
     const { data } = await axios('top-books'); 
@@ -52,7 +52,7 @@ seeMoreBtn.addEventListener('click', (event) => {
 });
 
 fetchAndRenderBooks();
-console.log(seeMoreBtn);
+
 
 
 
