@@ -168,6 +168,10 @@
     justify-content: space-between;
     flex-wrap: wrap;
   }
+
+  .best-sellers-list {
+    gap: 25px;
+  }
   .best-sellers-list-item,
   .book-category-list-item {
     max-width: 218px;
