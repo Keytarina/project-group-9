@@ -153,7 +153,7 @@ function imageClickHandler(event) {
                     ><img
                       width="62px"
                       class="shopping-card-link-icon shopping-card-link-amazon"
-                      src="./shop-amazon-62x19px.a7ec3af8.png"
+                      src="./image/shopping/shop-amazon-62x19px.png"
                       alt="Amazon" loading="lazy"
                     />
                   </a>
