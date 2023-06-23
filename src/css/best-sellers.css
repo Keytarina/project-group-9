@@ -196,6 +196,7 @@
 @media screen and (min-width: 1440px) {
   .best-sellers-section {
     padding-top: 0px;
+    margin-left: auto;
   }
   .book-list-wrapper {
     max-width: 996px;
