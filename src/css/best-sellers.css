@@ -1,5 +1,5 @@
 :root {
-  --trasition-duration: 250ms;
+  --transition-duration: 250ms;
   --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .see-more-btn {
@@ -81,6 +81,7 @@ body.dark
   display: block;
   width: 100%;
   height: 100%;
+  transition: transform var(--transition-duration) var(--transition-timing-function);
 }
 .see-more-btn-dark {
   display: flex;
@@ -188,7 +189,10 @@ body.dark
     position: relative;
     overflow: hidden;
   }
-  
+  .best-sellers-image:hover,
+  .best-sellers-image:focus {
+    transform: scale(1.05);
+  }
   .best-sellers-header {
     font-size: 48px;
     line-height: 1.08;
@@ -290,7 +294,7 @@ body.dark
     background-color: #EAC645;
     text-align: center;
     text-transform: uppercase;
-    transition: transform var(--trasition-duration)
+    transition: transform var(--transition-duration)
       var(--transition-timing-function);
     transform: translateY(100%);
   }
@@ -299,10 +303,11 @@ body.dark
   .book-category-list-item:hover .book-thumb-overlay,
   .book-category-list-item:focus .book-thumb-overlay {
     transform: translateY(0);
+    pointer-events: none;
   }
   .book-overlay-text {
     opacity: 0;
-    transition: opacity var(--trasition-duration)
+    transition: opacity var(--transition-duration)
     var(--transition-timing-function);
   }
   .best-sellers-list-item:hover .book-overlay-text,
@@ -320,6 +325,9 @@ body.dark
 }
 @media screen and (min-width: 1440px) {
   .container-best {
+    margin-left: 40px;
+  }
+  .best-sellers-section {
     margin-left: 40px;
   }
   .book-list-wrapper {
