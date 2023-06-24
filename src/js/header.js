@@ -20,7 +20,7 @@ const headerHome = document.querySelector('.header-home');
 const headerShoppingList = document.querySelector('.header-shopping-list');
 const logoType = document.querySelector('.header-logo');
 
-localStorage.visit = 'home';
+// localStorage.visit = 'home';
 
 logoType.addEventListener('click', function () {
   localStorage.visit = 'home';
