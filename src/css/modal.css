@@ -254,7 +254,7 @@ fill: 3px #111;
 
 .icons {
   display: flex;
-  text-align: center;
+  align-items: center;
   gap: 20px;
   margin-bottom: 40px;
 }
