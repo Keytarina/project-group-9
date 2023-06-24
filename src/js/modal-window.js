@@ -11,19 +11,31 @@ let storageOfBooksIdModal = [];
 checkLocalStorageNotEmpty();
 function closeModalByEscape(event) {
   if (event.code === 'Escape') {
-    modalCard.removeEventListener('click', addOrDeleteBook);
-    closeModalBtn.removeEventListener('click', closeModalWindow, {
-      once: 'true',
-    });
+    removeListeners();
     return hiddenAll();
   }
 }
 function closeModalWindow(event) {
   if (event.currentTarget.nodeName === 'BUTTON') {
-    document.removeEventListener('keydown', closeModalByEscape, {
-      once: 'true',
-    });
-    modalCard.removeEventListener('click', addOrDeleteBook);
+    removeListeners();
+    return hiddenAll();
+  }
+}
+
+function removeListeners() {
+  closeModalBtn.removeEventListener('click', closeModalWindow, {
+    once: 'true',
+  });
+  modalCard.removeEventListener('click', addOrDeleteBook);
+  document.removeEventListener('keydown', closeModalByEscape, {
+    once: 'true',
+  });
+  backdrop.removeEventListener('click', closeBackdrop);
+}
+
+function closeBackdrop(event) {
+  if (event.target === backdrop) {
+    removeListeners();
     return hiddenAll();
   }
 }
@@ -64,9 +76,9 @@ function imageClickHandler(event) {
     checkBookStatus(idToCallModal);
 
     modalCard.addEventListener('click', addOrDeleteBook);
-    event.target.textContent = 'remove from the shopping list';
     document.addEventListener('keydown', closeModalByEscape, { once: 'true' });
     closeModalBtn.addEventListener('click', closeModalWindow, { once: 'true' });
+    backdrop.addEventListener('click', closeBackdrop);
   }
 }
 // -------------------------------------
