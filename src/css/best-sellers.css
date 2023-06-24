@@ -3,32 +3,22 @@
   --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .see-more-btn {
-  display: flex;
+  display: inline-block;
   flex-direction: row;
-  align-items: flex-start;
-  padding: 14px 28px;
-  gap: 10px;
+  text-align: center;
   box-sizing: border-box;
-
-  width: 150px;
-  height: 54px;
-
+  width: 124px;
+  height: 46px;
   border: 2px solid #4f2ee8;
-  border-radius: 30px;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
+  border-radius: 40px;
   color: #111111;
   cursor: pointer;
-  display: inline-flex;
-  font-family: DM Sans;
   font-size: 14px;
   font-weight: 700;
-
   line-height: 1.3em;
-  justify-content: center;
-  overflow: hidden;
+
   position: absolute;
+
   bottom: 0;
   right: 0;
   text-transform: uppercase;
