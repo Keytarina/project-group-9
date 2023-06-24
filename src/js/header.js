@@ -1,4 +1,3 @@
-
 // Burger-menu відкриваємо та закриваємо
 document.querySelector('.burger-menu').addEventListener('click', function () {
   this.classList.toggle('active');
@@ -7,6 +6,7 @@ document.querySelector('.burger-menu').addEventListener('click', function () {
   document.querySelector('.burger-wraper').classList.toggle('open');
   document.querySelector('.btn-logout').classList.toggle('active');
   document.querySelector('.header-nav').classList.toggle('open');
+  document.body.classList.toggle('overflowhiden');
 });
 
 // Відкриваємо та закриваємо кнопку виходу з реєстрації
