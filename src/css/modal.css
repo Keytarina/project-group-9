@@ -90,7 +90,10 @@ button.cls-button :focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 211px;
+  /* display: inline-flex;
+padding: 14px 23px;
+align-items: flex-start; */
+  /* width: 211px; */
   height: 46px;
   cursor: pointer;
   border-radius: 40px;
@@ -109,9 +112,15 @@ button.cls-button :focus {
 .btn-action.button:focus {
   background-color: #4f2ee8;
   color: #fff;
+  
 }
 
-.cl-bl-icon {
+/* .btn-action.button:hover,
+.btn-action.button:focus
+ {  fill: #4f2ee8;
+  scale: 1.05;} */
+
+  .cl-bl-icon {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -176,9 +185,9 @@ button.cls-button :focus {
   .btn-action.button {
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     cursor: pointer;
-    width: 499px;
+    /* width: 499px; */
     height: 64px;
     border-radius: 40px;
     border: 2px solid #4f2ee8;
@@ -187,7 +196,7 @@ button.cls-button :focus {
     font-size: 18px;
     font-weight: 700;
     line-height: 24px;
-    letter-spacing: -1px;
+    letter-spacing: -1.18px;
     text-transform: uppercase;
     background-color: transparent;
     color: #111111;
@@ -199,6 +208,7 @@ button.cls-button :focus {
 @media screen and (min-width: 768px) {
   .picture {
     margin-right: 24px;
+    margin-bottom: 40px;
     width: 192px;
     height: 281px;
   }
@@ -289,8 +299,21 @@ letter-spacing: -0.4px;
 margin-top: 8px;
 }
 
+@media screen and (min-width: 768px) {
+.modal-window-text {
+display: block;
+text-align: center;
+margin-top: 8px;
+margin: 8 auto;
+width: 324px;
+font-size: 12px;
+line-height: 14px;
+letter-spacing: -0.48px;
+  }
+}
+
 @media screen and (min-width: 1440px) {
-  .modal-window-text {
+.modal-window-text {
 font-size: 12px;
 line-height: 14px;
 letter-spacing: -0.48px;
