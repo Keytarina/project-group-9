@@ -9,7 +9,6 @@ fetchTopBooks();
 
 const container = document.querySelector('#container-best');
 const seeMoreBtn = document.querySelector('.see-more-btn');
-console.log(seeMoreBtn);
 
 async function fetchAndRenderBooks() {
   try {
@@ -48,6 +47,3 @@ container.addEventListener('click', event => {
 //     loadBooksByCategory(category);
 //   }
 // });
-
-fetchAndRenderBooks();
-console.log(seeMoreBtn);
