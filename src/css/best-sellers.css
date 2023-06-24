@@ -39,6 +39,19 @@
   color: #ffffff;
 }
 
+body.dark
+.see-more-btn{
+  background-color: var(--background-color-main);
+  color: var(--main-text-color);
+}
+
+body.dark
+.see-more-btn:hover,
+.see-more-btn:focus {
+  background-color: #4f2ee8;
+  color: #ffffff;
+}
+
 .bestSellersHeader {
   font-weight: 700;
   font-size: 32px;
