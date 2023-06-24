@@ -310,7 +310,7 @@ body.dark .shopping-list-item-card {
   padding: 0;
   list-style: none;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 8px;
 }
 @media screen and (min-width: 768px) {
