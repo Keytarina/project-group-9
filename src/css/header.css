@@ -18,6 +18,9 @@ header {
     height: 72px;
   }
 }
+.overflowhiden {
+  overflow: hidden;
+}
 
 .header-container {
   position: relative;
@@ -91,11 +94,14 @@ header {
 }
 
 .visit {
-  color: #111111;
+  /* color: #111111 ; */
   background: #eac645;
 }
 .visit > a {
-  color: #111111;
+  color: #111111 !important;
+}
+.visit > a > .main-logo {
+  fill: #111111;
 }
 .header-home {
   display: flex;
@@ -103,7 +109,7 @@ header {
   justify-content: center;
   width: 72px;
   height: 34px;
-  color: var(--main-text-color);
+  /* color: var(--main-text-color); */
   border-radius: 36px;
 }
 .header-home:hover {
@@ -112,7 +118,7 @@ header {
 
 .header-home a {
   text-decoration: none;
-  /* color: inherit; */
+  color: var(--main-text-color);
   font: optional;
 }
 
@@ -120,10 +126,9 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
   width: 156px;
   height: 34px;
-  color: var(--main-text-color);
+  /* color: var(--main-text-color); */
   border-radius: 36px;
 }
 .header-shopping-list:hover {
@@ -131,9 +136,10 @@ header {
 }
 .header-shopping-list a {
   display: flex;
-  color: inherit;
+  color: var(--main-text-color);
   text-decoration: none;
   align-items: center;
+  gap: 4px;
 }
 
 .header-toggle {
@@ -221,8 +227,6 @@ header {
     display: none;
     flex-direction: column;
     position: fixed;
-    height: 100%;
-    width: 100%;
     top: 64px;
     bottom: 0;
     left: 0;
@@ -233,7 +237,8 @@ header {
     justify-content: flex-start;
   }
   .header-home {
-    margin-top: 247px;
+    margin-top: 183px;
+    margin-left: -50px;
   }
   .btn-login.active {
     visibility: visible;
@@ -255,7 +260,6 @@ header {
 .burger-btn-open {
   justify-content: center;
   align-items: center;
-  padding-top: 5px;
   border-color: inherit;
   color: var(--background-color);
 }
@@ -289,6 +293,9 @@ header {
     align-items: center;
     justify-content: center;
   }
+  .btn-login.active:hover {
+    background: #4f2ee8;
+  }
 }
 .btn-login {
   display: none;
@@ -308,6 +315,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 89px;
 }
 
 .btn-login-text {
@@ -362,7 +370,8 @@ header {
 .btn-logout-content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 4px;
 }
 
 .btn-signed {
