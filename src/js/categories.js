@@ -11,8 +11,19 @@ import {
 
 const category = document.querySelector('.categories-item');
 const list = document.querySelector('.categories-item');
-const color = document.querySelector('.categories-list');
+let li = document.getElementsByClassName('categories-list');
 const container = document.querySelector('#container-best');
+
+list.addEventListener('click', changeColor);
+function changeColor(e) {
+  if (li === document.getElementsByClassName('categories-list')) {
+    li = e.target;
+  }
+  li.classList.remove('active');
+  li = e.target;
+  li.classList.add('active');
+  return li;
+}
 
 function markupList() {
   fetchBooksCategoryList()
@@ -60,9 +71,4 @@ async function renderTopBooks(e) {
       console.log(error);
     }
   }
-}
-
-// function changeColor() {
-//   color.forEach(e => e.classList.remove('activies'));
-//   this.classList.add('activies');
-// };
+};

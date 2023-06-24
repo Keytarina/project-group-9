@@ -184,6 +184,9 @@
     font-size: 48px;
     line-height: 1.08;
     margin-bottom: 40px;
+
+    animation-duration: 1700ms;
+    animation-name: slidein;
   }
   .best-sellers-title {
     line-height: 1.7;
