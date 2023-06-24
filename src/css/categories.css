@@ -1,84 +1,109 @@
-ul,li{
-    list-style: none;
+ul,
+li {
+  list-style: none;
 }
 
-.section-categories{
-    padding-top: 60px;
+.section-categories {
+  padding-top: 60px;
 }
 
-.categories-container{
-    width: 335px;
-    height: 228px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: auto;
+.categories-container {
+  width: 335px;
+  height: 228px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: auto;
 
-    overflow: auto;
+  overflow: auto;
 }
 
 @media screen and (min-width: 768px) {
-    .categories-container{
-        width: 337px;
-        height: 472px;
-        padding-left: 32px;
-        margin-left: 0;
-    }
+  .categories-container {
+    width: 337px;
+    height: 472px;
+    margin-left: 0;
+  }
 }
 
 @media screen and (min-width: 1440px) {
-    .categories-container{
-        width: 356px;
-        height: 472px;
-        display: flex;
-        padding-left: 24px;
-    }
+  .categories-container {
+    width: 356px;
+    height: 472px;
+    display: flex;
+  }
 }
 
+
 .categories-list{
-    font-family: 'DM Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 16px;
+    line-height: 18px;
     padding-bottom: 32px;
     cursor: pointer;
 
-    letter-spacing: -0.02em;
+    letter-spacing: -0.32px;
     color: rgba(17, 17, 17, 0.6);
+    padding-bottom:24px;
+    
+    animation-duration: 1500ms;
+    animation-name: slidein;
 }
 
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
 
-body.dark .categories-list{
-    color: rgba(255, 255, 255, 0.6);;
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }
+
+@media screen and (min-width: 768px){
+    .categories-list{
+    font-size: 18px;
+    line-height: 24px;
+    padding-bottom: 32px;
+    letter-spacing: -0.36px;
+}
+
+}
+
+body.dark .categories-list {
+  color: rgba(255, 255, 255, 0.6);
+}
+
 
 body.dark
 .categories-list:hover,
-.categories-list:active{
+.categories-list:focus{
     color: var(--hover-navigation-color);
     text-transform: uppercase;
 }
 
 .categories-list:hover,
-.categories-list:active{
+.categories-list:focus{
     font-weight: 700;
     font-size: 18px;
     line-height: 24px;
 
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-    color: var(--blue-hover-icon-color);
+
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--blue-hover-icon-color);
 }
 
-.activies{
+
+.active{
     color: var(--blue-hover-icon-color);
     font-weight: 700;
    
 }
 
 body.dark
-.activies{
+.active{
     color: var(--hover-navigation-color);
     font-weight: 700;
 }
