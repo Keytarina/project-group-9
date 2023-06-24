@@ -94,11 +94,14 @@ header {
 }
 
 .visit {
-  color: #111111;
+  /* color: #111111 ; */
   background: #eac645;
 }
 .visit > a {
-  color: #111111;
+  color: #111111 !important;
+}
+.visit > a > .main-logo {
+  fill: #111111;
 }
 .header-home {
   display: flex;
@@ -106,7 +109,7 @@ header {
   justify-content: center;
   width: 72px;
   height: 34px;
-  color: var(--main-text-color);
+  /* color: var(--main-text-color); */
   border-radius: 36px;
 }
 .header-home:hover {
@@ -115,7 +118,7 @@ header {
 
 .header-home a {
   text-decoration: none;
-  /* color: inherit; */
+  color: var(--main-text-color);
   font: optional;
 }
 
@@ -125,7 +128,7 @@ header {
   justify-content: center;
   width: 156px;
   height: 34px;
-  color: var(--main-text-color);
+  /* color: var(--main-text-color); */
   border-radius: 36px;
 }
 .header-shopping-list:hover {
@@ -133,7 +136,7 @@ header {
 }
 .header-shopping-list a {
   display: flex;
-  color: inherit;
+  color: var(--main-text-color);
   text-decoration: none;
   align-items: center;
   gap: 4px;
