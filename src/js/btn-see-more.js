@@ -5,7 +5,7 @@ import {
 } from './best-sellers';
 import { fetchBooksByCategory, fetchTopBooks } from './serviceApi.js';
 
-fetchTopBooks();
+// fetchTopBooks();
 
 const container = document.querySelector('#container-best');
 const seeMoreBtn = document.querySelector('.see-more-btn');
