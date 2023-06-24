@@ -71,4 +71,4 @@ const foo = async () => {
   }
 };
 export const clearMarkup = () => (container.innerHTML = '');
-container.innerHTML ? null : foo();
+// container.innerHTML ? null : foo();
