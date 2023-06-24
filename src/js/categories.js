@@ -34,7 +34,6 @@ function markupList() {
         })
         .join('');
       category.insertAdjacentHTML('beforeend', markupCategoriesList);
-      // changeColor();
     })
     .catch(error => console.log(error));
 }
