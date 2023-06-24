@@ -1,6 +1,5 @@
 header {
   display: flex;
-  transition: 1s;
   position: fixed;
   width: 100%;
   height: 64px;
@@ -62,6 +61,15 @@ header {
   .header-nav {
     display: none;
   }
+  .header-home a {
+    color: #ffffff !important;
+  }
+  .header-shopping-list {
+    margin-top: 8px;
+  }
+  .header-shopping-list a {
+    color: #ffffff !important;
+  }
 }
 
 .open {
@@ -69,15 +77,14 @@ header {
 }
 
 .header-nav {
-  margin-left: 40px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0px;
+  padding: 0px 0px 0px 40px;
   font-family: 'DM Sans';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 14px;
   line-height: 18px;
   letter-spacing: -0.04em;
@@ -93,7 +100,6 @@ header {
 }
 
 .visit {
-  /* color: #111111 ; */
   background: #eac645;
 }
 .visit > a {
@@ -108,7 +114,6 @@ header {
   justify-content: center;
   width: 72px;
   height: 34px;
-  /* color: var(--main-text-color); */
   border-radius: 36px;
 }
 .header-home:hover {
@@ -116,6 +121,11 @@ header {
 }
 
 .header-home a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   text-decoration: none;
   color: var(--main-text-color);
   font: optional;
@@ -138,6 +148,9 @@ header {
   color: var(--main-text-color);
   text-decoration: none;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   gap: 4px;
 }
 
@@ -250,7 +263,7 @@ header {
   .btn-logout.active {
     visibility: visible;
     position: absolute;
-    top: 550px;
+    top: 744px;
     left: 20px;
     z-index: 20;
   }
@@ -261,10 +274,11 @@ header {
   align-items: center;
   border-color: inherit;
   color: var(--background-color);
+  transition: none;
 }
 
 .burger-btn-open > path {
-  transition: 1s;
+  /* transition: 1s; */
   stroke: var(--main-text-color);
 }
 
@@ -302,12 +316,20 @@ header {
   height: 48px;
   padding-left: 14px;
   padding-right: 14px;
-
+  align-items: center;
   text-align: center;
   background: #4f2ee8;
   border: 1.5px solid #111111;
   border-radius: 18px;
   cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  .btn-login {
+    display: flex;
+  }
+}
+.btn-login:hover {
+  background: #5a3ce1;
 }
 
 .btn-login-content {
