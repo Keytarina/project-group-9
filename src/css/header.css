@@ -75,8 +75,6 @@ header {
   justify-content: center;
   align-items: center;
   padding: 0px;
-  gap: 16px;
-
   font-family: 'DM Sans';
   font-style: normal;
   font-weight: 700;
@@ -90,6 +88,7 @@ header {
 @media screen and (min-width: 1440px) {
   .header-nav {
     margin-left: 76px;
+    gap: 8px;
   }
 }
 
