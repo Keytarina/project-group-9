@@ -93,12 +93,12 @@ button.cls-button :focus {
   /* display: inline-flex;
 padding: 14px 23px;
 align-items: flex-start; */
-  /* width: 211px; */
+  width: 279px;
   height: 46px;
   cursor: pointer;
   border-radius: 40px;
   border: 2px solid #4f2ee8;
-  padding: 14px 28px 14px 28px;
+  padding: 14px 23px 14px 23px;
   margin: 0 auto;
   font-size: 14px;
   font-weight: 700;
@@ -112,23 +112,17 @@ align-items: flex-start; */
 .btn-action.button:focus {
   background-color: #4f2ee8;
   color: #fff;
-  
 }
 
-/* .btn-action.button:hover,
-.btn-action.button:focus
- {  fill: #4f2ee8;
-  scale: 1.05;} */
-
-  .cl-bl-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 14px;
-  min-height: 14px;
-  padding: 8px;
-  background-color: var(--accent-color);
-  fill: 3px #111;
+.cl-bl-icon {
+display: flex;
+justify-content: center;
+align-items: center;
+min-width: 14px;
+min-height: 14px;
+padding: 8px;
+background-color: var(--accent-color);
+fill: 3px #111;
 }
 
 .modal-window {
@@ -188,7 +182,7 @@ align-items: flex-start; */
 
     align-items: center;
     cursor: pointer;
-    /* width: 499px; */
+    width: 499px;
     height: 64px;
     border-radius: 40px;
     border: 2px solid #4f2ee8;
@@ -203,8 +197,6 @@ align-items: flex-start; */
     color: #111111;
   }
 }
-
-
 
 @media screen and (min-width: 768px) {
   .picture {
@@ -297,6 +289,8 @@ font-size: 10px;
 font-family: DM Sans;
 line-height: 12px;
 letter-spacing: -0.4px;
+margin-left: auto;
+margin-right: auto;
 margin-top: 8px;
 }
 
@@ -305,7 +299,8 @@ margin-top: 8px;
 display: block;
 text-align: center;
 margin-top: 8px;
-margin: 8 auto;
+margin-left: auto;
+margin-right: auto;
 width: 324px;
 font-size: 12px;
 line-height: 14px;
@@ -316,8 +311,72 @@ letter-spacing: -0.48px;
 @media screen and (min-width: 1440px) {
 .modal-window-text {
 font-size: 12px;
-line-height: 14px;
+line-height: 0.85em;
 letter-spacing: -0.48px;
   }
 }
 
+
+body.dark .modal-window-text {
+    color: rgba(255, 255, 255, 0.50);
+}
+
+body.dark .modal {
+    background-color: var(--accent-bg-cl-dark);
+}
+
+body.dark .modal {
+    border-color: #fff;
+}
+
+body.dark .titles {
+    color: #fff;
+}
+
+body.dark .author {
+    color: #B4AFAF;
+}
+
+body.dark .descriptions {
+    color: #fff;
+}
+
+body.dark .btn-action.button {
+    color: #fff;
+}
+
+body.dark button.cls-button :hover,
+body.dark button.cls-button :focus {
+  stroke: #fff;
+}
+  
+body.dark .shoppimg-card-link-amazon {
+  filter: brightness(.05) invert()
+}
+
+@media screen and (min-width: 768px) {
+.shopping-card-link-amazon {
+    width: 48px;
+}
+}
+
+.shopping-card-link-icon {
+    mix-blend-mode: luminosity;
+    display: block;
+}
+
+.shopping-card-link-amazon {
+    height: auto;
+}
+
+/* @media screen and (min-width: 768px) {
+.shopping-card-link-icon {
+    width: 28px;
+}
+} */
+
+.shopping-card-link-icon {
+    mix-blend-mode: luminosity;
+    height: auto;
+    display: block;
+}
