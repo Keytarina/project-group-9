@@ -459,33 +459,3 @@ body .header-shopping-list.visit > a > .main-logo {
   letter-spacing: -0.02em;
   color: #ffffff;
 }
-
-/* burger menu */
-/* .burger-picture {
-  visibility: hidden;
-} */
-@media screen and (max-width: 767px) {
-  .burger-picture.active {
-    visibility: visible;
-  }
-}
-
-/* .img-menu-list {
-  display: flex;
-  flex-direction: row;
-  width: 450px;
-  height: 439px;
-  column-gap: 36px;
-  row-gap: 26px;
-  flex-wrap: wrap;
-  transform: rotate(-15deg);
-  position: absolute;
-  top: 492px;
-  right: -65px;
-} */
-
-/* .menu-img {
-  width: 84px;
-  height: 133px;
-  border-radius: 8px;
-} */
