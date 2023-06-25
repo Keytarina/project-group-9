@@ -361,33 +361,10 @@ body.dark button.cls-button :focus {
   stroke: #fff;
 } */
 
-body.dark .shoppimg-card-link-amazon {
-  filter: brightness(0.05) invert();
-}
-
-@media screen and (min-width: 768px) {
-  .shopping-card-link-amazon {
-    width: 48px;
-  }
-}
-
-.shopping-card-link-icon {
-  mix-blend-mode: luminosity;
-  display: block;
-}
-
-.shopping-card-link-amazon {
-  height: auto;
-}
-
 /* @media screen and (min-width: 768px) {
 .shopping-card-link-icon {
     width: 28px;
 }
 } */
 
-.shopping-card-link-icon {
-  mix-blend-mode: luminosity;
-  height: auto;
-  display: block;
-}
+
