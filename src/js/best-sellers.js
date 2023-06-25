@@ -54,7 +54,7 @@ export const renderBooksByCategory = data => {
         .slice(0, i)
         .join(
           ' '
-        )}<span class="best-sellers-accent"> ${e}<span></h1><ul class="book-category-list">${markup}</ul>`;
+        )}<span class="best-sellers-accent"> ${e}</span></h1><ul class="book-category-list">${markup}</ul>`;
     }
   });
   return categoryTitle.join('');
