@@ -42,13 +42,6 @@ body.dark
   color: #ffffff;
 }
 
-.bestSellersHeader {
-  font-weight: 700;
-  font-size: 32px;
-  letter-spacing: -0.04em;
-  line-height: 1.18;
-  margin-bottom: 40px;
-}
 .best-sellers-accent {
   color: #4f2ee8;
 }
@@ -64,7 +57,7 @@ body.dark
 .best-sellers-header {
   font-size: 32px;
   font-weight: 700;
-  line-height: calc(32/700);
+  line-height: calc(32/38);
   letter-spacing: -1.28px;
   margin-bottom: 40px;
   }
