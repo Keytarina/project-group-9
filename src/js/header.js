@@ -19,34 +19,15 @@ document.querySelector('.btn-signed').addEventListener('click', function () {
 // Реалізація виділення поточної вкладки
 const headerHome = document.querySelector('.header-home');
 const headerShoppingList = document.querySelector('.header-shopping-list');
-const logoType = document.querySelector('.header-logo');
 
 if (
   document.lastElementChild.baseURI ===
   'https://keytarina.github.io/project-group-9/'
 ) {
-  localStorage.visit = 'home';
-} else if (document.lastElementChild.baseURI ===
-  'https://keytarina.github.io/project-group-9/shopping.html'){
-  localStorage.visit = 'shopping';
-}
-
-logoType.addEventListener('click', function () {
-  localStorage.visit = 'home';
-});
-
-headerHome.addEventListener('click', function () {
-  localStorage.visit = 'home';
-});
-
-headerShoppingList.addEventListener('click', function () {
-  localStorage.visit = 'shopping';
-});
-
-if (localStorage.visit === 'shopping') {
   headerShoppingList.classList.add('visit');
   headerHome.classList.remove('visit');
-} else {
-  headerHome.classList.add('visit');
-  headerShoppingList.classList.remove('visit');
+} else if (document.lastElementChild.baseURI ===
+  'https://keytarina.github.io/project-group-9/shopping.html'){
+  headerShoppingList.classList.add('visit');
+  headerHome.classList.remove('visit');
 }
