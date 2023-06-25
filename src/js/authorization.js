@@ -29,7 +29,6 @@ const refs = {
 }; // масив посилань
 
 refs.buttonSwitch.addEventListener('click', () => {
-  refs.body.classList.toggle('dark');
   refs.headerImgLight.classList.toggle('visually-hidden');
   refs.headerImgDark.classList.toggle('visually-hidden');
   refs.header.classList.toggle('dark');
