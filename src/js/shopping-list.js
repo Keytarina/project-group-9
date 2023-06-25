@@ -1,7 +1,5 @@
 import { fetchBookById } from './serviceApi';
 
-console.log(document.lastElementChild.baseURI);
-
 const list = document.querySelector('.shopping-list-list');
 const dummyMessage = document.querySelector('.shopping-dummy-message');
 const controller = document.querySelector('.shopping-paginator-list');
