@@ -339,13 +339,13 @@ body.dark .shopping-card-link-amazon {
   height: auto;
 }
 @media screen and (min-width: 768px) {
-  .shopping-card-link-icon {
+  .shopping-card-shop-list .shopping-card-link-icon {
     width: 28px;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .shopping-card-link-shopbook {
+  .shopping-card-shop-list .shopping-card-link-shopbook {
     width: 32px;
   }
 }
@@ -355,7 +355,7 @@ body.dark .shopping-card-link-amazon {
   height: auto;
 }
 @media screen and (min-width: 768px) {
-  .shopping-card-link-amazon {
+  .shopping-card-shop-list .shopping-card-link-amazon {
     width: 48px;
   }
 }
