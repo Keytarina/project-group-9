@@ -362,6 +362,14 @@ async function renderCardFromStorage(id) {
     controller.classList.add('visually-hidden');
     dummyMessage.classList.remove('visually-hidden');
   }
+  fetchArrayOfBookId();
+  if (storageOfBooksId.length <= paginator) {
+    controller.classList.add('visually-hidden');
+    controller.removeEventListener('click', paginate);
+  } else {
+    controller.classList.remove('visually-hidden');
+    controller.addEventListener('click', paginate);
+  }
 }
 // ----------формування шаблону-----------
 function renderMarkup(book, id) {
@@ -462,7 +470,6 @@ function renderMarkup(book, id) {
         </div>`;
 
   list.insertAdjacentHTML('beforeend', markup);
-  controller.classList.remove('visually-hidden');
 }
 // ------------
 
