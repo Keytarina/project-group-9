@@ -70,6 +70,9 @@ header {
   .header-shopping-list a {
     color: #ffffff !important;
   }
+  .header-shopping-list .main-logo {
+    fill: #ffffff !important;
+  }
 }
 
 .open {
@@ -304,7 +307,7 @@ header {
     display: flex;
     position: absolute;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
   }
   .btn-login.active:hover {
     background: #4f2ee8;
@@ -314,29 +317,22 @@ header {
   display: none;
   width: 184px;
   height: 48px;
-  padding-left: 14px;
-  padding-right: 14px;
+  padding: 14px;
   align-items: center;
+  justify-content: space-between;
   text-align: center;
   background: #4f2ee8;
   border: 1.5px solid #111111;
   border-radius: 18px;
   cursor: pointer;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
   .btn-login {
     display: flex;
   }
 }
 .btn-login:hover {
   background: #5a3ce1;
-}
-
-.btn-login-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 89px;
 }
 
 .btn-login-text {
@@ -366,11 +362,13 @@ header {
 .btn-logout {
   visibility: hidden;
   position: absolute;
+  display: flex;
   width: 118px;
   height: 48px;
-  padding-left: 14px;
-  padding-right: 14px;
-
+  padding: 14px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   text-align: center;
   background: #fff;
   border: 1.5px solid #111111;
@@ -388,12 +386,6 @@ header {
   letter-spacing: -0.04em;
   color: #111;
 }
-.btn-logout-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-}
 
 .btn-signed {
   display: flex;
@@ -402,6 +394,8 @@ header {
   height: 45px;
   left: 20px;
   top: 84px;
+  align-items: center;
+  justify-content: center;
   background-color: #4f2ee8;
   border-radius: 36px;
   border: 1.5px solid #4f2ee8;
@@ -419,13 +413,6 @@ header {
   }
 }
 
-.btn-client-content {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .btn-client-logo {
   display: flex;
   width: 37px;
@@ -449,9 +436,12 @@ header {
 .burger-picture {
   visibility: hidden;
 }
-.burger-picture.active {
-  visibility: visible;
+@media screen and (min-width: 767px) {
+  .burger-picture.active {
+    visibility: visible;
+  }
 }
+
 .img-menu-list {
   display: flex;
   flex-direction: row;
