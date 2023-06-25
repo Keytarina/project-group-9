@@ -95,6 +95,7 @@ button.cls-button :focus {
 padding: 14px 23px;
 align-items: flex-start; */
   width: 279px;
+  /* width: 100%; */
   height: 46px;
   cursor: pointer;
   border-radius: 40px;
@@ -261,6 +262,7 @@ align-items: flex-start; */
 @media screen and (min-width: 768px) {
   .icons {
     margin-bottom: 121px;
+    align-items: center;
   }
 }
 
@@ -359,33 +361,10 @@ body.dark button.cls-button :focus {
   stroke: #fff;
 } */
 
-body.dark .shoppimg-card-link-amazon {
-  filter: brightness(0.05) invert();
-}
-
-@media screen and (min-width: 768px) {
-  .shopping-card-link-amazon {
-    width: 48px;
-  }
-}
-
-.shopping-card-link-icon {
-  mix-blend-mode: luminosity;
-  display: block;
-}
-
-.shopping-card-link-amazon {
-  height: auto;
-}
-
 /* @media screen and (min-width: 768px) {
 .shopping-card-link-icon {
     width: 28px;
 }
 } */
 
-.shopping-card-link-icon {
-  mix-blend-mode: luminosity;
-  height: auto;
-  display: block;
-}
+
