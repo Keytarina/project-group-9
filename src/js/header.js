@@ -21,7 +21,15 @@ const headerHome = document.querySelector('.header-home');
 const headerShoppingList = document.querySelector('.header-shopping-list');
 const logoType = document.querySelector('.header-logo');
 
-// localStorage.visit = 'home';
+if (
+  document.lastElementChild.baseURI ===
+  'https://keytarina.github.io/project-group-9/index.html'
+) {
+  localStorage.visit = 'home';
+} else if (document.lastElementChild.baseURI ===
+  'https://keytarina.github.io/project-group-9/shopping.html'){
+  localStorage.visit = 'shopping';
+}
 
 logoType.addEventListener('click', function () {
   localStorage.visit = 'home';
