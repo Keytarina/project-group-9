@@ -401,7 +401,6 @@ header {
 }
 
 .btn-signed {
-  visibility: hidden;
   display: flex;
   position: absolute;
   width: 184px;
