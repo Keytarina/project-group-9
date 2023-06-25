@@ -350,9 +350,8 @@ body.dark .shopping-card-link-amazon {
   }
 }
 
-.shopping-card-link-amazon {
+.shopping-card-shop-list .shopping-card-link-amazon {
   width: 32px;
-  height: auto;
 }
 @media screen and (min-width: 768px) {
   .shopping-card-shop-list .shopping-card-link-amazon {
