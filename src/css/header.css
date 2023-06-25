@@ -436,7 +436,7 @@ header {
 .burger-picture {
   visibility: hidden;
 }
-@media screen and (min-width: 767px) {
+@media screen and (max-width: 767px) {
   .burger-picture.active {
     visibility: visible;
   }
