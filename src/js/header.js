@@ -21,6 +21,8 @@ const headerHome = document.querySelector('.header-home');
 const headerShoppingList = document.querySelector('.header-shopping-list');
 const logoType = document.querySelector('.header-logo');
 
+console.log(document.lastElementChild.baseURI);
+
 if (
   document.lastElementChild.baseURI ===
   'https://keytarina.github.io/project-group-9/index.html'
