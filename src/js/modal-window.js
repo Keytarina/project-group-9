@@ -226,7 +226,7 @@ function addOrDeleteBook(event) {
       addingBookToBusket(idChoosenBook);
       event.target.textContent = 'remove from the shopping list';
       congratsMessage.textContent =
-        'Сongratulations! You have added the book to the shopping list. To delete, press the button &quotRemove from the shopping list&quot.';
+        'Сongratulations! You have added the book to the shopping list. To delete, press the button "Remove from the shopping list".';
       congratsMessage.classList.remove('is-hidden');
       event.target.dataset.modalSubmit = 'del';
     } else {
