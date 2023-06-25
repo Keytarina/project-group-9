@@ -317,8 +317,8 @@ align-items: flex-start; */
 @media screen and (min-width: 1440px) {
   .modal-window-text {
     font-size: 12px;
-    line-height: 0.85em;
     letter-spacing: -0.48px;
+    line-height: 14px;
   }
 }
 
