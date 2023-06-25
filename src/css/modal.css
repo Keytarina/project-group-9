@@ -124,7 +124,6 @@ align-items: flex-start; */
   min-height: 14px;
   padding: 8px;
   background-color: var(--accent-color);
-  fill: 3px #111;
 }
 
 .modal-window {
