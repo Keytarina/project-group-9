@@ -124,7 +124,6 @@ align-items: flex-start; */
   min-height: 14px;
   padding: 8px;
   background-color: var(--accent-color);
-  fill: 3px #111;
 }
 
 .modal-window {
@@ -153,6 +152,9 @@ align-items: flex-start; */
     border: solid 2px #111111;
     border-radius: 18px;
     padding: 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -25%) scale(1);
   }
 }
 
@@ -164,8 +166,8 @@ align-items: flex-start; */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     padding: 0;
     border: none;
     /* fill: #f6f6f6; */
@@ -314,8 +316,8 @@ align-items: flex-start; */
 @media screen and (min-width: 1440px) {
   .modal-window-text {
     font-size: 12px;
-    line-height: 0.85em;
     letter-spacing: -0.48px;
+    line-height: 14px;
   }
 }
 

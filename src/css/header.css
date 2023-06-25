@@ -343,27 +343,10 @@ header {
   color: #ffffff;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1439px) {
-  .btn-logout.close {
-    visibility: visible;
-    width: 184px;
-    top: 60px;
-    left: 552px;
-  }
-}
-@media (min-width: 1440px) {
-  .btn-logout.close {
-    visibility: visible;
-    width: 184px;
-    left: 1232px;
-    top: 60px;
-  }
-}
 .btn-logout {
-  visibility: hidden;
   position: absolute;
   display: flex;
-  width: 118px;
+  width: 184px;
   height: 48px;
   padding: 14px;
   align-items: center;
@@ -374,11 +357,41 @@ header {
   border: 1.5px solid #111111;
   border-radius: 18px;
   cursor: pointer;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: transform var(--transition-property),
+    opacity var(--transition-property);
+  z-index: 5;
 }
+@media screen and (max-width: 767px) {
+  .btn-logout {
+    visibility: hidden;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .btn-logout {
+    visibility: visible;
+    width: 184px;
+    top: 60px;
+    left: 552px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .btn-logout {
+    visibility: visible;
+    width: 184px;
+    left: 1232px;
+    top: 60px;
+  }
+}
+
 .btn-logout:hover {
   background: 0;
 }
-
+.btn-logout:not(.visually-hidden) {
+  transform: translateY(0%);
+  opacity: 1;
+}
 .btn-logout-text {
   font-weight: 500;
   font-size: 14px;
@@ -388,6 +401,7 @@ header {
 }
 
 .btn-signed {
+  visibility: hidden;
   display: flex;
   position: absolute;
   width: 184px;
@@ -399,6 +413,9 @@ header {
   background-color: #4f2ee8;
   border-radius: 36px;
   border: 1.5px solid #4f2ee8;
+}
+.btn-signed.active {
+  visibility: visible;
 }
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .btn-signed {

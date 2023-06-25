@@ -52,7 +52,7 @@ import 'slick-carousel';
       infinite: true,
       dots: false,
       slidesToShow: 6,
-      slidesToScroll: 1,
+      slidesToScroll: 3,
       vertical: true,
       prevArrow: '<div></div>',
       nextArrow: `<button type="button" class="support-btn" aria-label="Next">
@@ -67,7 +67,7 @@ import 'slick-carousel';
             breakpoint: 767,
             settings: {
                 slidesToShow: 4,
-                slidesToScroll: 1,
+                slidesToScroll: 3,
             }
         }]
     });
