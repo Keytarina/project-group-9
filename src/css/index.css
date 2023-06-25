@@ -55,8 +55,6 @@
 @media screen and (min-width: 1440px) {
   .container {
     max-width: 1440px;
-    padding-left: 24px;
-    padding-right: 24px;
   }
   .main-wraper {
     padding-top: 112px;
