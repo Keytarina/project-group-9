@@ -1,6 +1,5 @@
 header {
   display: flex;
-  transition: 1s;
   position: fixed;
   width: 100%;
   height: 64px;
@@ -17,6 +16,9 @@ header {
   header {
     height: 72px;
   }
+}
+.overflowhiden {
+  overflow: hidden;
 }
 
 .header-container {
@@ -59,6 +61,18 @@ header {
   .header-nav {
     display: none;
   }
+  .header-home a {
+    color: #ffffff !important;
+  }
+  .header-shopping-list {
+    margin-top: 8px;
+  }
+  .header-shopping-list a {
+    color: #ffffff !important;
+  }
+  .header-shopping-list .main-logo {
+    fill: #ffffff;
+  }
 }
 
 .open {
@@ -66,17 +80,14 @@ header {
 }
 
 .header-nav {
-  margin-left: 40px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0px;
-  gap: 16px;
-
+  padding: 0px 0px 0px 40px;
   font-family: 'DM Sans';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 14px;
   line-height: 18px;
   letter-spacing: -0.04em;
@@ -87,15 +98,20 @@ header {
 @media screen and (min-width: 1440px) {
   .header-nav {
     margin-left: 76px;
+    gap: 8px;
   }
 }
 
-.visit {
-  color: #111111;
+body .visit {
   background: #eac645;
+  z-index: 1;
 }
-.visit > a {
-  color: #111111;
+body .visit > a {
+  color: #111111 !important;
+  z-index: 1;
+}
+body .header-shopping-list.visit > a > .main-logo {
+  fill: #111111;
 }
 .header-home {
   display: flex;
@@ -103,37 +119,48 @@ header {
   justify-content: center;
   width: 72px;
   height: 34px;
-  color: var(--main-text-color);
   border-radius: 36px;
+  z-index: 1;
 }
 .header-home:hover {
   font-size: 15px;
 }
 
 .header-home a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   text-decoration: none;
-  /* color: inherit; */
+  color: var(--main-text-color);
   font: optional;
+  z-index: 1;
 }
 
 .header-shopping-list {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
   width: 156px;
   height: 34px;
-  color: var(--main-text-color);
+  /* color: var(--main-text-color); */
   border-radius: 36px;
+  z-index: 1;
 }
 .header-shopping-list:hover {
   font-size: 15px;
 }
 .header-shopping-list a {
   display: flex;
-  color: inherit;
+  color: var(--main-text-color);
   text-decoration: none;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 4px;
+  z-index: 1;
 }
 
 .header-toggle {
@@ -201,8 +228,7 @@ header {
 }
 
 @media (max-width: 767px) {
-  .burger-wraper {
-    display: none;
+  .burger-wraper.open {
     position: fixed;
     height: 100%;
     width: 100%;
@@ -211,18 +237,21 @@ header {
     left: 0;
     right: 0;
     z-index: 1;
-    background: radial-gradient(
-      183.6% 183.01% at 59.76% -23.42%,
-      #4f2ee8 18.03%,
-      #fff 100%
-    );
+    background-image: url(../image/background-menu.png),
+      radial-gradient(
+        183.6% 183.01% at 59.76% -23.42%,
+        #4f2ee8 18.03%,
+        #fff 100%
+      );
+
+    background-size: contain;
+    background-position: bottom 0px right 0px;
+    background-repeat: no-repeat;
   }
   .header-nav {
     display: none;
     flex-direction: column;
     position: fixed;
-    height: 100%;
-    width: 100%;
     top: 64px;
     bottom: 0;
     left: 0;
@@ -233,7 +262,9 @@ header {
     justify-content: flex-start;
   }
   .header-home {
-    margin-top: 247px;
+    margin-top: 183px;
+    margin-left: -50px;
+    z-index: 1;
   }
   .btn-login.active {
     visibility: visible;
@@ -246,7 +277,7 @@ header {
   .btn-logout.active {
     visibility: visible;
     position: absolute;
-    top: 550px;
+    top: 744px;
     left: 20px;
     z-index: 20;
   }
@@ -255,13 +286,13 @@ header {
 .burger-btn-open {
   justify-content: center;
   align-items: center;
-  padding-top: 5px;
   border-color: inherit;
   color: var(--background-color);
+  transition: none;
 }
 
 .burger-btn-open > path {
-  transition: 1s;
+  /* transition: 1s; */
   stroke: var(--main-text-color);
 }
 
@@ -287,27 +318,32 @@ header {
     display: flex;
     position: absolute;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+  }
+  .btn-login.active:hover {
+    background: #4f2ee8;
   }
 }
 .btn-login {
   display: none;
   width: 184px;
   height: 48px;
-  padding-left: 14px;
-  padding-right: 14px;
-
+  padding: 14px;
+  align-items: center;
+  justify-content: space-between;
   text-align: center;
   background: #4f2ee8;
   border: 1.5px solid #111111;
   border-radius: 18px;
   cursor: pointer;
 }
-
-.btn-login-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+@media screen and (min-width: 767px) {
+  .btn-login {
+    display: flex;
+  }
+}
+.btn-login:hover {
+  background: #5a3ce1;
 }
 
 .btn-login-text {
@@ -318,51 +354,61 @@ header {
   color: #ffffff;
 }
 
+.btn-logout {
+  position: absolute;
+  display: flex;
+  width: 184px;
+  height: 48px;
+  padding: 14px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+  background: #fff;
+  border: 1.5px solid #111111;
+  border-radius: 18px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: transform var(--transition-property),
+    opacity var(--transition-property);
+  z-index: 3;
+}
+@media screen and (max-width: 767px) {
+  .btn-logout {
+    visibility: hidden;
+  }
+}
 @media screen and (min-width: 768px) and (max-width: 1439px) {
-  .btn-logout.close {
+  .btn-logout {
     visibility: visible;
     width: 184px;
     top: 60px;
     left: 552px;
   }
 }
-@media (min-width: 1440px) {
-  .btn-logout.close {
+@media screen and (min-width: 1440px) {
+  .btn-logout {
     visibility: visible;
     width: 184px;
     left: 1232px;
     top: 60px;
   }
 }
-.btn-logout {
-  visibility: hidden;
-  position: absolute;
-  width: 118px;
-  height: 48px;
-  padding-left: 14px;
-  padding-right: 14px;
 
-  text-align: center;
-  background: #fff;
-  border: 1.5px solid #111111;
-  border-radius: 18px;
-  cursor: pointer;
-}
 .btn-logout:hover {
   background: 0;
 }
-
+.btn-logout:not(.visually-hidden) {
+  transform: translateY(0%);
+  opacity: 1;
+}
 .btn-logout-text {
   font-weight: 500;
   font-size: 14px;
   line-height: calc(18 / 14);
   letter-spacing: -0.04em;
   color: #111;
-}
-.btn-logout-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .btn-signed {
@@ -372,9 +418,15 @@ header {
   height: 45px;
   left: 20px;
   top: 84px;
+  align-items: center;
+  justify-content: center;
   background-color: #4f2ee8;
   border-radius: 36px;
   border: 1.5px solid #4f2ee8;
+  z-index: 4;
+}
+.btn-signed.active {
+  visibility: visible;
 }
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .btn-signed {
@@ -389,13 +441,6 @@ header {
   }
 }
 
-.btn-client-content {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .btn-client-logo {
   display: flex;
   width: 37px;

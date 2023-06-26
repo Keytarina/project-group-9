@@ -11,19 +11,31 @@ let storageOfBooksIdModal = [];
 checkLocalStorageNotEmpty();
 function closeModalByEscape(event) {
   if (event.code === 'Escape') {
-    modalCard.removeEventListener('click', addOrDeleteBook);
-    closeModalBtn.removeEventListener('click', closeModalWindow, {
-      once: 'true',
-    });
+    removeListeners();
     return hiddenAll();
   }
 }
 function closeModalWindow(event) {
   if (event.currentTarget.nodeName === 'BUTTON') {
-    document.removeEventListener('keydown', closeModalByEscape, {
-      once: 'true',
-    });
-    modalCard.removeEventListener('click', addOrDeleteBook);
+    removeListeners();
+    return hiddenAll();
+  }
+}
+
+function removeListeners() {
+  closeModalBtn.removeEventListener('click', closeModalWindow, {
+    once: 'true',
+  });
+  modalCard.removeEventListener('click', addOrDeleteBook);
+  document.removeEventListener('keydown', closeModalByEscape, {
+    once: 'true',
+  });
+  backdrop.removeEventListener('click', closeBackdrop);
+}
+
+function closeBackdrop(event) {
+  if (event.target === backdrop) {
+    removeListeners();
     return hiddenAll();
   }
 }
@@ -64,9 +76,9 @@ function imageClickHandler(event) {
     checkBookStatus(idToCallModal);
 
     modalCard.addEventListener('click', addOrDeleteBook);
-    event.target.textContent = 'remove from the shopping list';
     document.addEventListener('keydown', closeModalByEscape, { once: 'true' });
     closeModalBtn.addEventListener('click', closeModalWindow, { once: 'true' });
+    backdrop.addEventListener('click', closeBackdrop);
   }
 }
 // -------------------------------------
@@ -143,14 +155,14 @@ function createModalWindow({
                     rel="noopener noreferrer"
                     aria-label="Amazon link"
                     ><img
-                      width="62px"
+                      width="62"
                       class="shopping-card-link-icon shopping-card-link-amazon"
                       src="./shop-amazon-62x19px.a7ec3af8.png"
                       alt="Amazon" loading="lazy"
                     />
                   </a>
                 </li>
-                <li>
+                <li class="icon-link">
                   <a
                     class="shopping-card-shop-link"
                     href="${appleUrl}"
@@ -159,14 +171,14 @@ function createModalWindow({
                     aria-label="Apple Books link"
                   >
                     <img
-                      width="32px"
-                      height="32px"
+                      width="32"
+                      height="32"
                       class="shopping-card-link-icon"
                       src="./shop-read-33x32px.a9f158e0.png"
                       alt="Apple Books" loading="lazy"
                     />
                   </a></li>
-                <li>
+                <li class="icon-link">
                   <a
                     class="shopping-card-shop-link"
                     href="${bookShopUrl}"
@@ -175,8 +187,8 @@ function createModalWindow({
                     aria-label="BookShop link"
                   >
                     <img
-                      width="38px"
-                      height="36px"
+                      width="38"
+                      height="36"
                       class="shopping-card-link-icon shopping-card-link-shopbook"
                       src="./shop-book-shop-38x36px.eb5fbc1e.png"
                       alt="BookShop" loading="lazy"
@@ -214,7 +226,7 @@ function addOrDeleteBook(event) {
       addingBookToBusket(idChoosenBook);
       event.target.textContent = 'remove from the shopping list';
       congratsMessage.textContent =
-        'Сongratulations! You have added the book to the shopping list. To delete, press the button &quotRemove from the shopping list&quot.';
+        'Сongratulations! You have added the book to the shopping list. To delete, press the button "Remove from the shopping list".';
       congratsMessage.classList.remove('is-hidden');
       event.target.dataset.modalSubmit = 'del';
     } else {
