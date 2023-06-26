@@ -372,7 +372,7 @@ body .header-shopping-list.visit > a > .main-logo {
   transform: translateY(-100%);
   transition: transform var(--transition-property),
     opacity var(--transition-property);
-  z-index: 5;
+  z-index: 3;
 }
 @media screen and (max-width: 767px) {
   .btn-logout {
@@ -423,6 +423,7 @@ body .header-shopping-list.visit > a > .main-logo {
   background-color: #4f2ee8;
   border-radius: 36px;
   border: 1.5px solid #4f2ee8;
+  z-index: 4;
 }
 .btn-signed.active {
   visibility: visible;
