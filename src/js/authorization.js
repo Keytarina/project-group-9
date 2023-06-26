@@ -335,7 +335,6 @@ window.addEventListener('load', () => {
 // - - - - - - - - -  - - - - - - функції роботи з БД - - - - - - - - - - - - - - -
 import { doc, getFirestore, setDoc, getDoc } from 'firebase/firestore';
 import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
-import { log } from 'console';
 
 const firestore = getFirestore(app);
 
