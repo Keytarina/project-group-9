@@ -357,9 +357,9 @@ async function renderCardFromStorage(id) {
   } catch (error) {
     console.log(error);
     showMessageIfEmpty();
+    controller.classList.add('visually-hidden');
     dummyMessage.firstElementChild.textContent =
       'Server is not available right now. Please, try later';
-    controller.classList.add('visually-hidden');
     dummyMessage.classList.remove('visually-hidden');
   }
   fetchArrayOfBookId();
@@ -398,8 +398,8 @@ function renderMarkup(book, id) {
             class="shopping-card-img"
             src="${book_image}"
             alt="book cover"
-            width="100px"
-            height="142px" loading="lazy"
+            width="100"
+            height="142" loading="lazy"
           />
           <div class="shopping-list-card-info">
             <h2 class="shopping-card-title">${title}</h2>
@@ -418,7 +418,7 @@ function renderMarkup(book, id) {
                     rel="noopener noreferrer"
                     aria-label="Amazon link"
                     ><img
-                      width="32px"
+                      width="32"
                       class="shopping-card-link-icon shopping-card-link-amazon"
                       src="./shop-amazon-62x19px.a7ec3af8.png"
                       alt="Amazon" loading="lazy"
@@ -434,8 +434,8 @@ function renderMarkup(book, id) {
                     aria-label="Apple Books link"
                   >
                     <img
-                      width="16px"
-                      height="16px"
+                      width="16"
+                      height="16"
                       class="shopping-card-link-icon"
                       src="./shop-read-33x32px.a9f158e0.png"
                       alt="Apple Books" loading="lazy"
@@ -451,8 +451,8 @@ function renderMarkup(book, id) {
                     aria-label="BookShop link"
                   >
                     <img
-                      width="16px"
-                      height="16px"
+                      width="16"
+                      height="16"
                       class="shopping-card-link-icon shopping-card-link-shopbook"
                       src="./shop-book-shop-38x36px.eb5fbc1e.png"
                       alt="BookShop" loading="lazy"
@@ -486,7 +486,7 @@ function deleteBook(event) {
   return;
 }
 
-const refresh = document.querySelector('.shopping-refresh');
+const refresh = document.querySelector('.shopping-refresh-btn');
 refresh.addEventListener('click', refreshPage);
 
 function refreshPage() {
