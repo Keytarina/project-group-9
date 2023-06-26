@@ -26,14 +26,16 @@ const refs = {
     '.authorization-window-icon'
   ),
   headerList: document.querySelector('.header-list'),
+  inputName: document.querySelector('#name'),
 }; // масив посилань
 
-refs.buttonSwitch.addEventListener('click', () => {
-  refs.headerImgLight.classList.toggle('visually-hidden');
-  refs.headerImgDark.classList.toggle('visually-hidden');
-  refs.header.classList.toggle('dark');
-});
+if (localStorage.getItem('user-id') !== '') {
+  refs.btnLoginTextSigned.textContent = localStorage.getItem('user-name'); // записати в кнопку "User" і'мя користувача
 
+  refs.btnLogin.classList.add('visually-hidden'); // приховати кнопку "Sign up"
+  refs.btnSigned.classList.remove('visually-hidden'); // показати кнопку "User"
+  refs.headerNav.classList.remove('visually-hidden'); // показати кнопки "Home" та "ShoppingList"
+}
 let user = ''; // uid користувача
 
 // // - - - - - - - - - - - - - - - зміна теми вікна авторизації - - - - - - - - - - - - - - -
@@ -66,10 +68,10 @@ refs.buttonSwitch.addEventListener('click', () => {
 }); // зміна теми вікна авторизаці при натисканні на кнопку
 // // - - - - - - - - - - - - - - - /зміна теми вікна авторизації - - - - - - - - - - - - - - -
 
-// // - - - - - - - - - - - - - - - модальне вікно авторизації - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - модальне вікно авторизації - - - - - - - - - - - - - - -
 (() => {
-  refs.openAuthorizationBtn.addEventListener('click', toggleAuthorization);
-  refs.closeAuthorizationBtn.addEventListener('click', toggleAuthorization);
+  refs.openAuthorizationBtn.addEventListener('click', toggleAuthorization); // слухач події 'click' кнопки відкриття вікна авторизації
+  refs.closeAuthorizationBtn.addEventListener('click', toggleAuthorization); // слухач події 'click' кнопки закриття вікна авторизації
 
   function toggleAuthorization() {
     const isAuthorizationOpen =
@@ -78,13 +80,16 @@ refs.buttonSwitch.addEventListener('click', () => {
     refs.openAuthorizationBtn.setAttribute(
       'aria-expanded',
       !isAuthorizationOpen
-    );
-    refs.authorization.classList.toggle('is-hidden');
+    ); // функція toggleAuthorization, змінює атрибут 'aria-expanded' кнопки відкриття вікна авторизації відповідно до стану вікна авторизації (відкрито - true, закрито - false)
 
-    const scrollLockMethod = !isAuthorizationOpen
-      ? (document.body.style.overflow = 'hidden')
-      : (document.body.style.overflow = 'scroll');
-    // bodyScrollLock[scrollLockMethod](document.body);
+    refs.authorization.classList.toggle('is-hidden'); // відкриття/закриття вікна авторизації
+
+    if (!isAuthorizationOpen) {
+      document.body.style.overflow = 'hidden'; // заблокувати скролл
+    } else {
+      document.body.style.overflow = 'scroll'; // розблокувати скролл
+      refs.authorizationWindowForm.reset(); // очистити форму
+    }
   }
 })(); // відкриття/закриття вікна авторизації та блокування скролу
 // // - - - - - - - - - - - - - - - /модальне вікно авторизації - - - - - - - - - - - - - - -
@@ -111,12 +116,17 @@ refs.signUpButton.addEventListener('click', () => {
   refs.authorizationWindowSubmitButton.textContent = 'sign up';
   refs.signUpButton.classList.add('curr');
   refs.signInButton.classList.remove('curr');
+  refs.inputName.disabled = false;
+  refs.inputName.style.display = 'block';
 }); // слухач події натискання на кнопку "sign up"
 
 refs.signInButton.addEventListener('click', () => {
   refs.authorizationWindowSubmitButton.textContent = 'sign in';
   refs.signUpButton.classList.remove('curr');
   refs.signInButton.classList.add('curr');
+  refs.inputName.disabled = true;
+  refs.inputName.style.display = 'none';
+  refs.authorizationWindowForm.elements.name.value = '';
 }); // слухач події натискання на кнопку "sign in"
 
 const auth = getAuth(app); // повертаємо в змінну "auth" екземпляр Auth, пов’язаний із наданим @firebase застосунком
@@ -144,17 +154,21 @@ function signUpWithEmailPassword() {
       .then(userCredential => {
         // Signed in
         user = userCredential.user; // авторизований користувач
-        console.log(user.uid);
+        // console.log(user.uid);
         userID = user.uid;
         refs.btnLogin.classList.add('visually-hidden'); // приховати кнопку "Sign up"
         refs.btnSigned.classList.remove('visually-hidden'); // показати кнопку "User"
         refs.btnLoginTextSigned.textContent = name; // записати в кнопку "User" і'мя користувача
         refs.authorization.classList.toggle('is-hidden'); // приховати вікно авторизації
         refs.authorizationWindowForm.reset(); // очистити форму
+        document.body.style.overflow = 'scroll'; // зняти обмеження на скролл
         Notify.success(
           `User ${name} with email address ${email} successfully created!`
         ); // повідомлення про успішну операцію авторизації
         writeUserName(name); // запис імені користувача до бази даних
+        localStorage.setItem('user-name', `${name}`); // запис імені користувача до локальної бази даних
+        localStorage.setItem('user-id', `${userID}`); // запис id користувача до локальної бази даних
+        refs.headerNav.classList.remove('visually-hidden'); // показати кнопки "Home" та "ShoppingList"
         // ...
       })
       .catch(error => {
@@ -204,15 +218,20 @@ function onSignIn() {
         userID = user.uid;
         refs.btnLogin.classList.add('visually-hidden'); // приховати кнопку "Sign up"
         refs.btnSigned.classList.remove('visually-hidden'); // показати кнопку "User"
-        // refs.btnLoginTextSigned.textContent = name; // записати в кнопку "User" і'мя користувача
+        refs.btnLoginTextSigned.textContent = name; // записати в кнопку "User" і'мя користувача
         refs.authorization.classList.toggle('is-hidden'); // приховати вікно авторизації
+        document.body.style.overflow = 'scroll'; // зняти обмеження на скролл
         refs.authorizationWindowForm.reset(); // очистити форму
         Notify.success(
           `User ${name} with email address ${email} successfully SIGNED!`
         ); // повідомлення про успішну операцію авторизації
 
+        localStorage.setItem('user-id', `${userID}`); // запис id користувача до локальної бази даних
+        refs.headerNav.classList.remove('visually-hidden'); // показати кнопки "Home" та "ShoppingList"
+
         reedNameUserDB()
           .then(response => {
+            localStorage.setItem('user-name', `${response}`); // запис імені користувача до локальної бази даних
             refs.btnLoginTextSigned.textContent = response; // записати і'мя користувача з бази даних в кнопку користувача
           })
           .catch(error => {
@@ -252,9 +271,15 @@ function onSignOut() {
         refs.btnLogin.classList.remove('visually-hidden'); // показати кнопку "Sign up"
         refs.btnSigned.classList.add('visually-hidden'); // приховати кнопку з імям авторизованого користувача
         refs.btnLogout.classList.add('visually-hidden'); // приховати кнопку "Log out"
+        userID = '';
         Notify.success(
-          `User ${refs.btnLoginTextSigned.textContent} with email address ${email} successfully SIGNED OUT!`
+          `User ${refs.btnLoginTextSigned.textContent} successfully SIGNED OUT!`
         ); // повідомлення про успішну операцію
+
+        document.location.replace('../index.html'); // Log out, по click на яку користувач виходить із особистого кабінету і переходить на головну сторінку
+        refs.headerNav.classList.add('visually-hidden'); // приховати кнопки "Home" та "ShoppingList"
+        localStorage.setItem('user-name', ``); // запис імені користувача до локальної бази даних
+        localStorage.setItem('user-id', ``); // запис id користувача до локальної бази даних
       })
       .catch(error => {
         console.log(error);
@@ -283,6 +308,8 @@ window.addEventListener('beforeunload', () => {
   } catch (error) {
     console.log(error);
   }
+  // localStorage.setItem('user-name', ``); // запис імені користувача до локальної бази даних
+  // localStorage.setItem('user-id', ``); // запис id користувача до локальної бази даних
 }); // автоматичний log out користувача при закритті сторінки браузера
 
 function initApp() {
@@ -290,11 +317,11 @@ function initApp() {
   auth.onAuthStateChanged(function (user) {
     if (user) {
       // User is signed in.
-      refs.headerNav.classList.remove('visually-hidden'); // показати кнопки "Home" та "ShoppingList"
+      // refs.headerNav.classList.remove('visually-hidden'); // показати кнопки "Home" та "ShoppingList"
       // console.log('User is signed in.');
     } else {
       // User is signed out.
-      refs.headerNav.classList.add('visually-hidden'); // приховати кнопки "Home" та "ShoppingList"
+      // refs.headerNav.classList.add('visually-hidden'); // приховати кнопки "Home" та "ShoppingList"
       // console.log('User is signed out.');
     } // якщо слухач авторизований то повідомлення "Користувач авторизований" та показати кнопки, інакше повідомлення "Користувач не авторизований" та приховати кнопки
   });
