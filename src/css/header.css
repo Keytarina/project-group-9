@@ -267,7 +267,7 @@ body .header-shopping-list.visit > a > .main-logo {
     margin-left: -50px;
     z-index: 1;
   }
-  .btn-login.active {
+  .btn-login.head-active {
     visibility: visible;
     position: absolute;
     top: 84px;
@@ -275,7 +275,7 @@ body .header-shopping-list.visit > a > .main-logo {
     z-index: 20;
     background: rgba(0, 0, 0, 0);
   }
-  .btn-logout.active {
+  .btn-logout.head-active {
     visibility: visible;
     position: absolute;
     top: 744px;
@@ -315,13 +315,13 @@ body .header-shopping-list.visit > a > .main-logo {
 
 /* кнопра реєстрації клієнта */
 @media screen and (max-width: 767px) {
-  .btn-login.active {
+  .btn-login.head-active {
     display: flex;
     position: absolute;
     align-items: center;
     justify-content: space-between;
   }
-  .btn-login.active:hover {
+  .btn-login.head-active:hover {
     background: #4f2ee8;
   }
 }
@@ -337,6 +337,11 @@ body .header-shopping-list.visit > a > .main-logo {
   border: 1.5px solid #111111;
   border-radius: 18px;
   cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: calc(18 / 14);
+  letter-spacing: -0.04em;
+  color: #ffffff;
 }
 @media screen and (min-width: 768px) {
   .btn-login {
@@ -345,14 +350,6 @@ body .header-shopping-list.visit > a > .main-logo {
 }
 .btn-login:hover {
   background: #5a3ce1;
-}
-
-.btn-login-text {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: calc(18 / 14);
-  letter-spacing: -0.04em;
-  color: #ffffff;
 }
 
 .btn-logout {
@@ -410,14 +407,6 @@ body .header-shopping-list.visit > a > .main-logo {
   transform: translateY(0%);
   opacity: 1;
 }
-.btn-logout-text {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: calc(18 / 14);
-  letter-spacing: -0.04em;
-  color: #111;
-}
-
 .btn-signed {
   display: flex;
   position: absolute;
@@ -438,7 +427,7 @@ body .header-shopping-list.visit > a > .main-logo {
   letter-spacing: -0.02em;
   color: #ffffff;
 }
-.btn-signed.active {
+.btn-signed.head-active {
   visibility: visible;
 }
 @media screen and (min-width: 768px) and (max-width: 1439px) {
