@@ -51,13 +51,8 @@ body.dark {
 }
 
 body.dark .wraper {
-  /* color: var(--main-text-color-dark); */
   background-color: var(--background-color-dark);
 }
-
-/* body.dark ::-webkit-scrollbar-thumb {
-  background: var(--scroll-bar);
-} */
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -72,6 +67,7 @@ body.dark .wraper {
 }
 
 .shopping-list-container {
+  position: relative;
   width: 335px;
   padding: 0;
 }
@@ -320,7 +316,6 @@ body.dark .shopping-list-item-card {
   }
 }
 
-
 .shopping-card-shop-link {
   display: block;
 }
@@ -506,42 +501,114 @@ body.dark .current-page {
   background-color: #fff;
 }
 
-.shopping-refresh {
-  border: 1px solid var(--background-color-dark);
-  border-radius: 18px;
-  filter: drop-shadow(0px 3px 3px var(--shadow-color));
-  width: 96px;
-  height: 28px;
-  position: absolute;
-  box-shadow: 2px 2px 10px 4px rgba(0, 0, 0, 0.35);
-}
-.shopping-refresh-btn {
-  text-transform: uppercase;
-  align-items: center;
-  justify-content: center;
-  text-shadow: 1px 1px 2px rgb(61, 49, 49, 0.1), 0 0 1em rgb(99, 99, 120, 0.1),
-    0 0 0.2em rgb(74, 111, 116, 0.1);
-  font-size: 18px;
-  line-height: calc(20 / 18);
-  letter-spacing: -0.02em;
-  display: flex;
-  border: 2px solid var(--background-color-dark);
-  border-radius: 10px;
+/* ---------refresh button------------- */
 
-  width: 96px;
+.shopping-refresh-btn {
+  box-sizing: content-box;
+  margin: 10px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px rgb(61, 49, 49, 0.1),
+    0 0 1em rgba(171, 226, 132, 0.1), 0 0 0.2em rgb(74, 111, 116, 0.1);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: calc(20 / 18);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  border: 1px solid var(--background-color-dark);
+  border-radius: 10px;
   height: 26px;
   position: absolute;
+  right: 0;
+  top: 4px;
   box-shadow: 2px 2px 10px 4px rgba(0, 0, 0, 0.35);
-  /* background-image: url(../image/shopping/refresh.png); */
-  background-size: contain;
+  background-color: var(--hover-navigation-color);
 }
-.shopping-refresh-btn:focus,
-.shopping-refresh-btn:hover {
-  filter: drop-shadow(0px 3px 3px var(--shadow-color));
-  mix-blend-mode: hard-light;
+body.dark .shopping-refresh-btn {
+  box-shadow: 2px 2px 10px 4px rgba(233, 113, 15, 0.35);
+}
+@media screen and (max-width: 767px) {
+  .shopping-refresh-btn {
+    right: 0;
+    top: 0px;
+    height: 16px;
+    font-size: 12px;
+    font-weight: 400;
+    border: 3px solid var(--blue-hover-icon-color);
+    border-radius: 8px;
+    background-color: rgb(234, 198, 69, 0.75);
+    scale: 0.9;
+  }
+}
+
+.span-btn {
+  border-right: 4px solid var(--background-color-dark);
+  font-size: 24px;
+}
+@media screen and (max-width: 767px) {
+  .span-btn {
+    height: 16px;
+    font-size: 10px;
+  }
+}
+
+.shopping-btn-reload-icon {
+  padding: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  width: 34px;
+  height: 26px;
+  background-color: var(--blue-hover-icon-color);
+  fill: var(--hover-navigation-color);
+}
+@media screen and (max-width: 767px) {
+  .shopping-btn-reload-icon {
+    padding: 2px;
+    height: 17px;
+    width: 22px;
+  }
+}
+
+.shopping-refresh-btn:focus {
   scale: 1.05;
 }
+.shopping-refresh-btn:hover {
+  filter: drop-shadow(0px 3px 3px var(--shadow-color));
+  filter: blur(0.5px);
+  scale: 1.05;
+  color: var(--background-color-main);
+}
 .shopping-refresh-btn:active {
-  mix-blend-mode: luminosity;
-  scale: 0.95;
+  background-color: var(--border-color-dark);
+  scale: 0.9;
+}
+.shopping-refresh-btn:hover .shopping-btn-reload-icon {
+  scale: 1.05;
+}
+.shopping-refresh-btn:hover .reload-icon {
+  scale: 1.05;
+}
+.shopping-refresh-btn:active .shopping-btn-reload-icon {
+  background-color: var(--subtle-text-color);
+  scale: 1.05;
+}
+.shopping-refresh-btn:active .reload-icon {
+  transform-origin: center;
+  animation: lds-hourglass 0.1s linear infinite;
+}
+
+@keyframes lds-hourglass {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: linear;
+  }
+  10% {
+    transform: rotate(-900deg);
+    animation-timing-function: linear;
+  }
+  100% {
+    transform: rotate(-1800deg);
+  }
 }
