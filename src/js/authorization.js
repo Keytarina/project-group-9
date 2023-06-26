@@ -276,7 +276,7 @@ function onSignOut() {
           `User ${refs.btnLoginTextSigned.textContent} successfully SIGNED OUT!`
         ); // повідомлення про успішну операцію
 
-        document.location.replace('./index.html'); // Log out, по click на яку користувач виходить із особистого кабінету і переходить на головну сторінку
+        document.location.replace('index.html'); // Log out, по click на яку користувач виходить із особистого кабінету і переходить на головну сторінку
         refs.headerNav.classList.add('visually-hidden'); // приховати кнопки "Home" та "ShoppingList"
         localStorage.setItem('user-name', ``); // запис імені користувача до локальної бази даних
         localStorage.setItem('user-id', ``); // запис id користувача до локальної бази даних
