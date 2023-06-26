@@ -259,6 +259,7 @@ body .header-shopping-list.visit > a > .main-logo {
     z-index: 3;
     overflow-y: auto;
     margin-left: 0;
+    padding: 0;
     justify-content: flex-start;
   }
   .header-home {
@@ -337,7 +338,7 @@ body .header-shopping-list.visit > a > .main-logo {
   border-radius: 18px;
   cursor: pointer;
 }
-@media screen and (min-width: 767px) {
+@media screen and (min-width: 768px) {
   .btn-login {
     display: flex;
   }
@@ -373,9 +374,15 @@ body .header-shopping-list.visit > a > .main-logo {
   transition: transform var(--transition-property),
     opacity var(--transition-property);
   z-index: 3;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: calc(18 / 14);
+  letter-spacing: -0.04em;
+  color: #111;
 }
 @media screen and (max-width: 767px) {
   .btn-logout {
+    width: 118px;
     visibility: hidden;
   }
 }
@@ -424,6 +431,12 @@ body .header-shopping-list.visit > a > .main-logo {
   border-radius: 36px;
   border: 1.5px solid #4f2ee8;
   z-index: 4;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: #ffffff;
 }
 .btn-signed.active {
   visibility: visible;
@@ -439,23 +452,4 @@ body .header-shopping-list.visit > a > .main-logo {
     left: 1232px;
     top: 14px;
   }
-}
-
-.btn-client-logo {
-  display: flex;
-  width: 37px;
-  height: 37px;
-  border-radius: 50%;
-  background-color: #f6f6f6;
-  align-items: center;
-  justify-content: center;
-}
-.btn-login-text-signed {
-  margin: 0 4px 0 9px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-  color: #ffffff;
 }
