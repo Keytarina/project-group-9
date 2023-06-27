@@ -37,7 +37,7 @@
   padding-bottom: 40px;
   border: solid 2px #111111;
   background-color: #fff;
-  transition: transform 250ms;
+  transition: transform 500ms;
   overflow-x: hidden;
   overflow-y: auto;
 }
