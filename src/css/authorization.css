@@ -28,7 +28,9 @@ input:-webkit-autofill:focus {
   top: 50%;
   left: 50%;
   width: 579px;
+
   padding: 80px 40px 32px;
+
 
   background-color: var(--background-color-main);
   border: 2px solid var(--main-text-color);
@@ -93,9 +95,8 @@ input:-webkit-autofill:focus {
   height: 100%;
 
   stroke: var(--main-text-color);
+
   background-color: var(--background-color-main);
-  transition: stroke var(--transition-property);
-}
 
 .authorization-window-close-button:hover
   .authorization-window-close-button-icon,
@@ -106,6 +107,7 @@ input:-webkit-autofill:focus {
 
 .authorization-window-close-button-icon.dark {
   stroke: #f6f6f6;
+
   /* background-color: #202024; */
 }
 
@@ -158,12 +160,14 @@ input:-webkit-autofill:focus {
 
 .authorization-window-label > .authorization-window-input.dark {
   color: #f6f6f6;
+
   border-color: #f6f6f6;
 }
 
 .authorization-window-label > .authorization-window-input:focus,
 .authorization-window-label > .authorization-window-input:hover {
   background-color: var(--blue-hover-icon-color);
+
 }
 
 .authorization-window-input:not(:placeholder-shown) {
@@ -242,6 +246,7 @@ input:-webkit-autofill:focus {
   color: #f3f3f3;
   background-color: var(--main-text-color);
 
+
   border-radius: 40px;
   border: none;
   cursor: pointer;
@@ -252,6 +257,7 @@ input:-webkit-autofill:focus {
   .authorization-window-submit-button {
     height: 50px;
     margin-top: 0;
+
     margin-bottom: 5px;
 
     font-size: 16px;

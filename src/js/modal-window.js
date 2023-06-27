@@ -155,7 +155,7 @@ function createModalWindow({
                     rel="noopener noreferrer"
                     aria-label="Amazon link"
                     ><img
-                      width="62px"
+                      width="62"
                       class="shopping-card-link-icon shopping-card-link-amazon"
                       src="./shop-amazon-62x19px.a7ec3af8.png"
                       alt="Amazon" loading="lazy"
@@ -171,8 +171,8 @@ function createModalWindow({
                     aria-label="Apple Books link"
                   >
                     <img
-                      width="32px"
-                      height="32px"
+                      width="32"
+                      height="32"
                       class="shopping-card-link-icon"
                       src="./shop-read-33x32px.a9f158e0.png"
                       alt="Apple Books" loading="lazy"
@@ -187,8 +187,8 @@ function createModalWindow({
                     aria-label="BookShop link"
                   >
                     <img
-                      width="38px"
-                      height="36px"
+                      width="38"
+                      height="36"
                       class="shopping-card-link-icon shopping-card-link-shopbook"
                       src="./shop-book-shop-38x36px.eb5fbc1e.png"
                       alt="BookShop" loading="lazy"
