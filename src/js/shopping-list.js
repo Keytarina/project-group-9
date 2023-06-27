@@ -107,7 +107,7 @@ function renderLastSession() {
   console.log(localStorage.page);
   fetchPaginator();
 
-  timerId = setTimeout(() => {
+  const timerId = setTimeout(() => {
     checkForUpdate();
   }, 10000);
 

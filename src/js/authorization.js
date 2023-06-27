@@ -82,7 +82,7 @@ refs.buttonSwitch.addEventListener('click', () => {
     ); // функція toggleAuthorization, змінює атрибут 'aria-expanded' кнопки відкриття вікна авторизації відповідно до стану вікна авторизації (відкрито - true, закрито - false)
 
     refs.authorization.classList.toggle('is-hidden'); // відкриття/закриття вікна авторизації
-    
+
     if (!isAuthorizationOpen) {
       document.body.style.overflow = 'hidden'; // заблокувати скролл
     } else {
@@ -152,7 +152,7 @@ function signUpWithEmailPassword() {
     createUserWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         // Signed in
-        user = userCredential.user; // авторизований користувач
+        const user = userCredential.user; // авторизований користувач
         // console.log(user.uid);
         userID = user.uid;
         refs.btnLogin.classList.add('visually-hidden'); // приховати кнопку "Sign up"
@@ -211,12 +211,12 @@ function onSignIn() {
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         // Signed in
-        user = userCredential.user; // авторизований користувач
+        const user = userCredential.user; // авторизований користувач
         console.log(user);
         userID = user.uid;
         refs.btnLogin.classList.add('visually-hidden'); // приховати кнопку "Sign up"
         refs.btnSigned.classList.remove('visually-hidden'); // показати кнопку "User"
-        refs.btnSigned.textContent = name; // записати в кнопку "User" і'мя користувача
+        // refs.btnSigned.textContent = name; // записати в кнопку "User" і'мя користувача
         refs.authorization.classList.toggle('is-hidden'); // приховати вікно авторизації
         document.body.style.overflow = 'scroll'; // зняти обмеження на скролл
         refs.authorizationWindowForm.reset(); // очистити форму
@@ -249,7 +249,7 @@ function onSignIn() {
       });
   } catch (error) {
     console.log(error);
-    Notify.failure(`User ${name} with email address ${email} failed SIGNED!`);
+    Notify.failure(`User with email address ${email} failed SIGNED!`);
   } // повідомлення про помилку авторизації
 }
 
