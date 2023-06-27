@@ -412,7 +412,7 @@ body .header-shopping-list.visit > a > .main-logo {
 }
 .btn-signed {
   display: flex;
-  position: absolute;
+  /* position: absolute; */
   width: 184px;
   height: 45px;
   left: 20px;
@@ -430,9 +430,16 @@ body .header-shopping-list.visit > a > .main-logo {
   letter-spacing: -0.02em;
   color: #ffffff;
 }
-.btn-signed.head-active {
-  visibility: visible;
+@media (max-width: 767px) {
+  .btn-signed {
+    display: none;
+    position: absolute;
+  }
+  .btn-signed.head-active {
+    display: flex;
+  }
 }
+
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .btn-signed {
     left: 552px;
@@ -444,4 +451,7 @@ body .header-shopping-list.visit > a > .main-logo {
     left: 1232px;
     top: 14px;
   }
+}
+.btn-client-img {
+  padding-right: 9px;
 }
