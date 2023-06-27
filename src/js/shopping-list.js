@@ -101,15 +101,15 @@ function showMessageIfEmpty() {
 
 // ------------Рендер останньої сесії---------------------------------
 
+  const timerId = setTimeout(() => {
+    checkForUpdate();
+  }, 10000);
+
 function renderLastSession() {
   checkCurrentPage();
   console.log(page);
   console.log(localStorage.page);
   fetchPaginator();
-
-  const timerId = setTimeout(() => {
-    checkForUpdate();
-  }, 10000);
 
   renderBooksFromBusket(page, paginator);
   pageNumeration(page);
