@@ -6,6 +6,6 @@ import './categories';
 import './support';
 import './modal-window';
 
-// import './authorization';
+import './authorization';
 import './btn-see-more';
 import './scroll-top';
