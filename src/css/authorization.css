@@ -98,12 +98,12 @@ input:-webkit-autofill:focus {
 
   background-color: var(--background-color-main);
 
-.authorization-window-close-button:hover
+/* .authorization-window-close-button:hover
   .authorization-window-close-button-icon,
 .authorization-window-close-button:focus
   .authorization-window-close-button-icon {
   stroke: var(--blue-hover-icon-color);
-}
+} */
 
 .authorization-window-close-button-icon.dark {
   stroke: #f6f6f6;
