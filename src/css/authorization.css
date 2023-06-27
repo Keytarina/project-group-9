@@ -28,7 +28,9 @@ input:-webkit-autofill:focus {
   top: 50%;
   left: 50%;
   width: 579px;
-  padding: 80px 40px 35px;
+
+  padding: 80px 40px 32px;
+
 
   background-color: var(--background-color-main);
   border: 2px solid var(--main-text-color);
@@ -37,10 +39,18 @@ input:-webkit-autofill:focus {
   transition: transform var(--transition-property);
 }
 
+.authorization-window.dark {
+  background-color: #202024;
+  border: 2px solid #f6f6f6;
+}
+
 @media screen and (max-width: 767.98px) {
   .authorization-window {
     width: 335px;
-    padding: 40px 20px 35px;
+    padding: 38px 20px 32px;
+  }
+  .authorization-window.dark {
+    border: 2px solid #202024;
   }
 }
 
@@ -50,18 +60,13 @@ input:-webkit-autofill:focus {
   }
 }
 
-.authorization-window.dark {
-  background-color: #202024;
-  border: 2px solid #f6f6f6;
-}
-
 .authorization-window-close-button {
   display: block;
   position: absolute;
-  top: 24px;
-  right: 24px;
-  width: 28px;
-  height: 28px;
+  top: 25px;
+  right: 25px;
+  width: 18px;
+  height: 18px;
   padding: 0;
 
   border: none;
@@ -74,8 +79,8 @@ input:-webkit-autofill:focus {
   .authorization-window-close-button {
     top: 14px;
     right: 14px;
-    width: 20px;
-    height: 20px;
+    width: 12px;
+    height: 12px;
   }
 }
 
@@ -90,8 +95,8 @@ input:-webkit-autofill:focus {
   height: 100%;
 
   stroke: var(--main-text-color);
-  /* background-color: var(--background-color-main); */
-  transition: stroke var(--transition-property);
+
+  background-color: var(--background-color-main);
 }
 
 .authorization-window-close-button:hover
@@ -101,8 +106,10 @@ input:-webkit-autofill:focus {
   stroke: var(--blue-hover-icon-color);
 }
 
-.authorization-window-close-button-icon.dark {
+ .authorization-window-close-button-icon.dark {
   stroke: #f6f6f6;
+
+   /* background-color: #202024; */
 }
 
 .authorization-window-form {
@@ -154,19 +161,18 @@ input:-webkit-autofill:focus {
 
 .authorization-window-label > .authorization-window-input.dark {
   color: #f6f6f6;
-  /* background-color: #202024; */
+
   border-color: #f6f6f6;
 }
 
 .authorization-window-label > .authorization-window-input:focus,
 .authorization-window-label > .authorization-window-input:hover {
   background-color: var(--blue-hover-icon-color);
-  /* color: var(--background-color-main) !important; */
+
 }
 
 .authorization-window-input:not(:placeholder-shown) {
   background-color: transparent !important;
-  /* color: var(--background-color-main); */
 }
 
 /* .authorization-window-input.dark:not(:placeholder-shown) {
@@ -200,7 +206,7 @@ input:-webkit-autofill:focus {
 .authorization-window-icon {
   position: absolute;
   top: 18px;
-  right: 16px;
+  right: 32px;
 
   stroke: var(--main-text-color);
   fill: transparent;
@@ -210,6 +216,7 @@ input:-webkit-autofill:focus {
 @media screen and (max-width: 767.98px) {
   .authorization-window-icon {
     top: 16px;
+    right: 24px;
     width: 18px;
     height: 18px;
   }
@@ -228,7 +235,7 @@ input:-webkit-autofill:focus {
 .authorization-window-submit-button {
   height: 64px;
   margin-top: 12px;
-  margin-bottom: 15px;
+  margin-bottom: 13px;
   padding-left: 0px;
 
   font-weight: 700;
@@ -239,7 +246,10 @@ input:-webkit-autofill:focus {
 
   color: #f3f3f3;
   background-color: var(--main-text-color);
+
+
   border-radius: 40px;
+  border: none;
   cursor: pointer;
   transition: background-color var(--transition-property);
 }
@@ -248,7 +258,8 @@ input:-webkit-autofill:focus {
   .authorization-window-submit-button {
     height: 50px;
     margin-top: 0;
-    margin-bottom: 9px;
+
+    margin-bottom: 5px;
 
     font-size: 16px;
     line-height: calc(18 / 16);
@@ -269,7 +280,7 @@ input:-webkit-autofill:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 2px;
   padding-left: 0;
   margin: 0;
 }
@@ -281,7 +292,7 @@ input:-webkit-autofill:focus {
   font-size: 18px;
   line-height: calc(24 / 18);
 
-  letter-spacing: -0.01em;
+  letter-spacing: -0.18px;
   text-transform: uppercase;
 
   color: rgba(17, 17, 17, 0.5);
@@ -299,13 +310,11 @@ input:-webkit-autofill:focus {
 }
 
 .authorization-window-sign-button.dark {
-  color: #f6f6f6;
+  color: rgba(246, 246, 246, 0.5);
 }
 
 .sign-up,
-.sign-in,
-.password-reset,
-.delete-user {
+.sign-in {
   border: 2px solid transparent;
   border-radius: 40px;
   padding: 5px 10px;
@@ -315,23 +324,15 @@ input:-webkit-autofill:focus {
 
 .sign-up:focus,
 .sign-in:focus,
-.password-reset:focus,
-.delete-user:focus,
 .sign-up:hover,
-.sign-in:hover,
-.password-reset:hover,
-.delete-user:hover {
+.sign-in:hover {
   border: 2px solid rgba(17, 17, 17, 0.5);
 }
 
 .sign-up:focus.dark,
 .sign-in:focus.dark,
-.password-reset.dark:focus,
-.delete-user.dark:focus,
 .sign-up.dark:hover,
-.sign-in.dark:hover,
-.password-reset.dark:hover,
-.delete-user.dark:hover {
+.sign-in.dark:hover {
   border: 2px solid #f6f6f6;
 }
 

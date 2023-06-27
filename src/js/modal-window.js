@@ -1,5 +1,5 @@
 import { fetchBookById } from './serviceApi.js';
-
+import { reedBookID, addBookID, dellBookID } from './authorization.js';
 const modal = document.querySelector('.modal');
 const modalCard = document.querySelector('.modal-card');
 const containerBest = document.getElementById('container-best');
@@ -26,7 +26,6 @@ function removeListeners() {
   closeModalBtn.removeEventListener('click', closeModalWindow, {
     once: 'true',
   });
-  modalCard.removeEventListener('click', addOrDeleteBook);
   document.removeEventListener('keydown', closeModalByEscape, {
     once: 'true',
   });
@@ -57,25 +56,47 @@ function toggleBacdropHidden() {
   backdrop.classList.toggle('is-hidden');
 }
 
+async function changeBookStatus(id) {
+  try {
+    const data = await reedBookID();
+
+    if (data.includes(id)) {
+      modalCard.firstElementChild.lastElementChild.textContent =
+        'remove from the shopping list';
+      congratsMessage.textContent = 'This book is already in your cart';
+      congratsMessage.classList.remove('is-hidden');
+      modalCard.firstElementChild.lastElementChild.dataset.modalSubmit = 'del';
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 function checkBookStatus(id) {
   checkLocalStorageNotEmpty();
   storageOfBooksIdModal = JSON.parse(localStorage.getItem('id'));
   if (storageOfBooksIdModal.includes(id)) {
+    modalCard.firstElementChild.lastElementChild.textContent =
+      'remove from the shopping list';
     congratsMessage.textContent = 'This book is already in your cart';
     congratsMessage.classList.remove('is-hidden');
   }
 }
 
-// -------------Фуекція що визиває модальне вікно-------------
+function changeBookStatusLocal(id, event) {
+  checkLocalStorageNotEmpty();
+  changeStatus(id, event);
+  if (storageOfBooksIdModal.includes(id)) {
+    return (event.target.dataset.modalSubmit = 'del');
+  }
+}
+// -------------Функція, що визиває модальне вікно-------------
 containerBest.addEventListener('click', imageClickHandler);
 function imageClickHandler(event) {
   if (event.target.nodeName === 'IMG') {
     const idToCallModal = event.target.dataset.idImg;
     hiddenAll();
     renderModalWindow(idToCallModal);
-    checkBookStatus(idToCallModal);
-
-    modalCard.addEventListener('click', addOrDeleteBook);
     document.addEventListener('keydown', closeModalByEscape, { once: 'true' });
     closeModalBtn.addEventListener('click', closeModalWindow, { once: 'true' });
     backdrop.addEventListener('click', closeBackdrop);
@@ -87,6 +108,9 @@ async function renderModalWindow(id) {
   try {
     const dataFromServer = await fetchBookById(id);
     renderMarkupModalWindow(dataFromServer, id);
+    const addBtn = modalCard.firstElementChild.lastElementChild;
+    addBtn.addEventListener('click', addOrDeleteBook);
+    checkBookStatus(id);
   } catch (error) {
     console.log(error);
   }
@@ -155,7 +179,7 @@ function createModalWindow({
                     rel="noopener noreferrer"
                     aria-label="Amazon link"
                     ><img
-                      width="62px"
+                      width="62"
                       class="shopping-card-link-icon shopping-card-link-amazon"
                       src="./shop-amazon-62x19px.a7ec3af8.png"
                       alt="Amazon" loading="lazy"
@@ -171,8 +195,8 @@ function createModalWindow({
                     aria-label="Apple Books link"
                   >
                     <img
-                      width="32px"
-                      height="32px"
+                      width="32"
+                      height="32"
                       class="shopping-card-link-icon"
                       src="./shop-read-33x32px.a9f158e0.png"
                       alt="Apple Books" loading="lazy"
@@ -187,8 +211,8 @@ function createModalWindow({
                     aria-label="BookShop link"
                   >
                     <img
-                      width="38px"
-                      height="36px"
+                      width="38"
+                      height="36"
                       class="shopping-card-link-icon shopping-card-link-shopbook"
                       src="./shop-book-shop-38x36px.eb5fbc1e.png"
                       alt="BookShop" loading="lazy"
@@ -211,30 +235,23 @@ function checkLocalStorageNotEmpty() {
   }
 }
 
-function changeBookStatus(id, event) {
-  checkLocalStorageNotEmpty();
-  if (storageOfBooksIdModal.includes(id)) {
-    return (event.target.dataset.modalSubmit = 'del');
-  }
-}
-
 function addOrDeleteBook(event) {
-  if (event.target.classList.contains('btn-action')) {
-    const idChoosenBook = event.target.dataset.id;
-    changeBookStatus(idChoosenBook, event);
-    if (event.target.dataset.modalSubmit === 'add') {
-      addingBookToBusket(idChoosenBook);
-      event.target.textContent = 'remove from the shopping list';
-      congratsMessage.textContent =
-        'Сongratulations! You have added the book to the shopping list. To delete, press the button "Remove from the shopping list".';
-      congratsMessage.classList.remove('is-hidden');
-      event.target.dataset.modalSubmit = 'del';
-    } else {
-      deletingBookFromBusket(idChoosenBook);
-      event.target.textContent = 'add to shopping list';
-      congratsMessage.classList.add('is-hidden');
-      event.target.dataset.modalSubmit = 'add';
-    }
+  const idChoosenBook = event.target.dataset.id;
+  changeBookStatusLocal(idChoosenBook, event);
+  if (event.target.dataset.modalSubmit === 'add') {
+    addingBookToBusket(idChoosenBook);
+    addBookID(idChoosenBook);
+    event.target.textContent = 'remove from the shopping list';
+    congratsMessage.textContent =
+      'Сongratulations! You have added the book to the shopping list. To delete, press the button "Remove from the shopping list".';
+    congratsMessage.classList.remove('is-hidden');
+    event.target.dataset.modalSubmit = 'del';
+  } else {
+    deletingBookFromBusket(idChoosenBook);
+    dellBookID(idChoosenBook);
+    event.target.textContent = 'add to shopping list';
+    congratsMessage.classList.add('is-hidden');
+    event.target.dataset.modalSubmit = 'add';
   }
 }
 

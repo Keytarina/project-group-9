@@ -304,6 +304,8 @@ window.addEventListener('beforeunload', () => {
   } catch (error) {
     console.log(error);
   }
+  // localStorage.setItem('user-name', ``); // запис імені користувача до локальної бази даних
+  // localStorage.setItem('user-id', ``); // запис id користувача до локальної бази даних
 }); // автоматичний log out користувача при закритті сторінки браузера
 
 function initApp() {
