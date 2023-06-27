@@ -387,7 +387,7 @@ body .header-shopping-list.visit > a > .main-logo {
   .btn-logout {
     visibility: visible;
     width: 184px;
-    top: 60px;
+    top: 59px;
     left: 552px;
   }
 }
@@ -396,13 +396,16 @@ body .header-shopping-list.visit > a > .main-logo {
     visibility: visible;
     width: 184px;
     left: 1232px;
-    top: 60px;
+    top: 59px;
   }
 }
 
-.btn-logout:hover {
-  background: 0;
+@media screen and (max-width: 767px) {
+  .btn-logout:hover {
+    background: 0;
+  }
 }
+
 .btn-logout:not(.visually-hidden) {
   transform: translateY(0%);
   opacity: 1;
