@@ -26,11 +26,21 @@ const refs = {
   ),
   headerList: document.querySelector('.header-list'),
   inputName: document.querySelector('#name'),
+  btnClientImg: document.querySelector('.btn-client-img'),
+  btnClientCaret: document.querySelector('.btn-client-caret'),
 }; // масив посилань
 
-if (localStorage.getItem('user-id') !== '') {
-  refs.btnSigned.textContent = localStorage.getItem('user-name'); // записати в кнопку "User" і'мя користувача
+function replaceNameUserButton(refElem) {
+  const indexElOne = refElem.innerHTML.indexOf('>') + 1;
+  const partOne = refElem.innerHTML.slice(0, indexElOne);
+  const temp = refElem.innerHTML.slice(indexElOne, refElem.innerHTML.length);
+  const indexElTwo = temp.indexOf('<');
+  const partTwo = temp.slice(indexElTwo, temp.length);
+  return partOne + `${localStorage.getItem('user-name')}` + partTwo;
+} // функція replaceNameUserButton повертає html розмітку кнопки авторизованого користувача з заміною ім'я на ім'я з локальної бази
 
+if (localStorage.getItem('user-id') !== '') {
+  refs.btnSigned.innerHTML = replaceNameUserButton(refs.btnSigned); // записати в кнопку "User" і'мя користувача
   refs.btnLogin.classList.add('visually-hidden'); // приховати кнопку "Sign up"
   refs.btnSigned.classList.remove('visually-hidden'); // показати кнопку "User"
   refs.headerNav.classList.remove('visually-hidden'); // показати кнопки "Home" та "ShoppingList"
@@ -157,7 +167,6 @@ function signUpWithEmailPassword() {
         userID = user.uid;
         refs.btnLogin.classList.add('visually-hidden'); // приховати кнопку "Sign up"
         refs.btnSigned.classList.remove('visually-hidden'); // показати кнопку "User"
-        refs.btnSigned.textContent = name; // записати в кнопку "User" і'мя користувача
         refs.authorization.classList.toggle('is-hidden'); // приховати вікно авторизації
         refs.authorizationWindowForm.reset(); // очистити форму
         document.body.style.overflow = 'scroll'; // зняти обмеження на скролл
@@ -168,6 +177,7 @@ function signUpWithEmailPassword() {
         localStorage.setItem('user-name', `${name}`); // запис імені користувача до локальної бази даних
         localStorage.setItem('user-id', `${userID}`); // запис id користувача до локальної бази даних
         refs.headerNav.classList.remove('visually-hidden'); // показати кнопки "Home" та "ShoppingList"
+        refs.btnSigned.innerHTML = replaceNameUserButton(refs.btnSigned); // записати в кнопку "User" і'мя користувача
         // ...
       })
       .catch(error => {
@@ -212,7 +222,7 @@ function onSignIn() {
       .then(userCredential => {
         // Signed in
         const user = userCredential.user; // авторизований користувач
-        console.log(user);
+        // console.log(user);
         userID = user.uid;
         refs.btnLogin.classList.add('visually-hidden'); // приховати кнопку "Sign up"
         refs.btnSigned.classList.remove('visually-hidden'); // показати кнопку "User"
@@ -226,9 +236,9 @@ function onSignIn() {
 
         reedNameUserDB(userID)
           .then(response => {
-            console.log(response);
+            // console.log(response);
             localStorage.setItem('user-name', `${response}`); // запис імені користувача до локальної бази даних
-            refs.btnSigned.textContent = `${response}`; // записати і'мя користувача з бази даних в кнопку користувача
+            refs.btnSigned.innerHTML = replaceNameUserButton(refs.btnSigned); // записати і'мя користувача з бази даних в кнопку користувача
           })
           .catch(error => {
             console.log(error.message);
