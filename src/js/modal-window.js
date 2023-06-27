@@ -7,7 +7,7 @@ const congratsMessage = document.querySelector('.modal-window-text');
 const closeModalBtn = document.querySelector('.cls-button');
 const backdrop = document.querySelector('[data-modal-backdrop]');
 
-let user = "";
+let user = '';
 // let storageOfBooksIdModal = [];
 // checkLocalStorageNotEmpty();
 function closeModalByEscape(event) {
@@ -60,7 +60,7 @@ function toggleBacdropHidden() {
 async function checkBookStatus(id, user) {
   try {
     const data = await reedBookID(user);
-
+    console.log(data);
     if (data.includes(id)) {
       modalCard.firstElementChild.lastElementChild.textContent =
         'remove from the shopping list';
@@ -87,7 +87,7 @@ async function checkBookStatus(id, user) {
 function fetchUser() {
   user = localStorage.getItem('user-id');
   return user;
-};
+}
 
 //  function changeBookStatusLocal(id, event) {
 //   checkLocalStorageNotEmpty();
@@ -243,9 +243,9 @@ function createModalWindow({
 
 function addOrDeleteBook(event) {
   const idChoosenBook = event.target.dataset.id;
-//  changeBookStatusLocal(idChoosenBook, event);
+  //  changeBookStatusLocal(idChoosenBook, event);
   if (event.target.dataset.modalSubmit === 'add') {
-//    addingBookToBusket(idChoosenBook);
+    //    addingBookToBusket(idChoosenBook);
     addBookID(idChoosenBook, user);
     event.target.textContent = 'remove from the shopping list';
     congratsMessage.textContent =
@@ -253,8 +253,8 @@ function addOrDeleteBook(event) {
     congratsMessage.classList.remove('is-hidden');
     event.target.dataset.modalSubmit = 'del';
   } else {
-//    deletingBookFromBusket(idChoosenBook);
-    dellBookID(idChoosenBook);
+    //    deletingBookFromBusket(idChoosenBook);
+    dellBookID(idChoosenBook, user);
     event.target.textContent = 'add to shopping list';
     congratsMessage.classList.add('is-hidden');
     event.target.dataset.modalSubmit = 'add';
