@@ -545,10 +545,7 @@ function renderBooksFromBusket(page, paginator) {
   makeArrayToPaginate(page, paginator).forEach(id => {
     renderCardFromStorage(id);
   });
-  clearInterval(timerId);
-  timerId = setTimeout(() => {
-    checkForUpdate();
-  }, 10000);
+
   pagesToShow();
   storageOfBooksId = JSON.parse(localStorage.getItem('id'));
 }
@@ -658,7 +655,7 @@ function renderMarkup(book, id) {
               </ul>
               <button class="shopping-btn-dump" type="button" data-book="${id}">
                 <svg class="shopping-btn-dump-icon" width="16" height="16">
-                  <use href="./icons-all.435abbb0.svg#dump"></use>
+                  <use href="./icons-all.568e592f.svg#dump"></use>
                 </svg>
               </button>
             </div>
