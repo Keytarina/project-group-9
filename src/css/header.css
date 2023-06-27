@@ -400,9 +400,12 @@ body .header-shopping-list.visit > a > .main-logo {
   }
 }
 
-.btn-logout:hover {
-  background: 0;
+@media screen and (max-width: 767px) {
+  .btn-logout:hover {
+    background: 0;
+  }
 }
+
 .btn-logout:not(.visually-hidden) {
   transform: translateY(0%);
   opacity: 1;
