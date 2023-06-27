@@ -267,12 +267,12 @@ function onSignOut() {
         refs.btnLogin.classList.remove('visually-hidden'); // показати кнопку "Sign up"
         refs.btnSigned.classList.add('visually-hidden'); // приховати кнопку з імям авторизованого користувача
         refs.btnLogout.classList.add('visually-hidden'); // приховати кнопку "Log out"
-        user = '';
+        userID = '';
         Notify.success(
           `User ${refs.btnSigned.textContent} successfully SIGNED OUT!`
         ); // повідомлення про успішну операцію
 
-        document.location.replace('../index.html'); // Log out, по click на яку користувач виходить із особистого кабінету і переходить на головну сторінку
+        document.location.replace('index.html'); // Log out, по click на яку користувач виходить із особистого кабінету і переходить на головну сторінку
         refs.headerNav.classList.add('visually-hidden'); // приховати кнопки "Home" та "ShoppingList"
         localStorage.setItem('user-name', ``); // стирання імені користувача з локальної бази даних
         localStorage.setItem('user-id', ``); // стирання id користувача з локальної бази даних
