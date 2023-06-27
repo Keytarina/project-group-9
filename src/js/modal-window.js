@@ -8,7 +8,7 @@ const closeModalBtn = document.querySelector('.cls-button');
 const backdrop = document.querySelector('[data-modal-backdrop]');
 
 let user = "";
-let storageOfBooksIdModal = [];
+// let storageOfBooksIdModal = [];
 // checkLocalStorageNotEmpty();
 function closeModalByEscape(event) {
   if (event.code === 'Escape') {
