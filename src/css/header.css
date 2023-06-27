@@ -451,3 +451,6 @@ body .header-shopping-list.visit > a > .main-logo {
     top: 14px;
   }
 }
+.btn-client-img {
+  padding-right: 9px;
+}
