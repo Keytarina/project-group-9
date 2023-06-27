@@ -216,7 +216,7 @@ function onSignIn() {
         userID = user.uid;
         refs.btnLogin.classList.add('visually-hidden'); // приховати кнопку "Sign up"
         refs.btnSigned.classList.remove('visually-hidden'); // показати кнопку "User"
-        refs.btnSigned.textContent = name; // записати в кнопку "User" і'мя користувача
+        // refs.btnSigned.textContent = name; // записати в кнопку "User" і'мя користувача
         refs.authorization.classList.toggle('is-hidden'); // приховати вікно авторизації
         document.body.style.overflow = 'scroll'; // зняти обмеження на скролл
         refs.authorizationWindowForm.reset(); // очистити форму
@@ -331,7 +331,6 @@ window.addEventListener('load', () => {
 // - - - - - - - - -  - - - - - - функції роботи з БД - - - - - - - - - - - - - - -
 import { doc, getFirestore, setDoc, getDoc } from 'firebase/firestore';
 import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
-import { log } from 'console';
 
 const firestore = getFirestore(app);
 
