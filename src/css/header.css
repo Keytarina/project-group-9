@@ -412,7 +412,7 @@ body .header-shopping-list.visit > a > .main-logo {
 }
 .btn-signed {
   display: flex;
-  position: absolute;
+  /* position: absolute; */
   width: 184px;
   height: 45px;
   left: 20px;
@@ -433,6 +433,7 @@ body .header-shopping-list.visit > a > .main-logo {
 @media (max-width: 767px) {
   .btn-signed {
     display: none;
+    position: absolute;
   }
   .btn-signed.head-active {
     display: flex;
