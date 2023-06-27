@@ -97,19 +97,20 @@ input:-webkit-autofill:focus {
   stroke: var(--main-text-color);
 
   background-color: var(--background-color-main);
+}
 
-/* .authorization-window-close-button:hover
+.authorization-window-close-button:hover
   .authorization-window-close-button-icon,
 .authorization-window-close-button:focus
   .authorization-window-close-button-icon {
   stroke: var(--blue-hover-icon-color);
-} */
+}
 
-/* .authorization-window-close-button-icon.dark {
+ .authorization-window-close-button-icon.dark {
   stroke: #f6f6f6;
 
-  // background-color: #202024;
-} */
+   /* background-color: #202024; */
+}
 
 .authorization-window-form {
   display: flex;
