@@ -82,7 +82,7 @@ refs.buttonSwitch.addEventListener('click', () => {
     ); // функція toggleAuthorization, змінює атрибут 'aria-expanded' кнопки відкриття вікна авторизації відповідно до стану вікна авторизації (відкрито - true, закрито - false)
 
     refs.authorization.classList.toggle('is-hidden'); // відкриття/закриття вікна авторизації
-
+    
     if (!isAuthorizationOpen) {
       document.body.style.overflow = 'hidden'; // заблокувати скролл
     } else {
@@ -304,6 +304,8 @@ window.addEventListener('beforeunload', () => {
   } catch (error) {
     console.log(error);
   }
+  // localStorage.setItem('user-name', ``); // запис імені користувача до локальної бази даних
+  // localStorage.setItem('user-id', ``); // запис id користувача до локальної бази даних
 }); // автоматичний log out користувача при закритті сторінки браузера
 
 function initApp() {
