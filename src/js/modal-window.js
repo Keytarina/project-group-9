@@ -59,7 +59,7 @@ function toggleBacdropHidden() {
 
 async function checkBookStatus(id, user) {
   try {
-    const data = await reedBookID(id, user);
+    const data = await reedBookID(user);
 
     if (data.includes(id)) {
       modalCard.firstElementChild.lastElementChild.textContent =
