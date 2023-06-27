@@ -152,7 +152,7 @@ function signUpWithEmailPassword() {
     createUserWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         // Signed in
-        user = userCredential.user; // авторизований користувач
+        const user = userCredential.user; // авторизований користувач
         // console.log(user.uid);
         userID = user.uid;
         refs.btnLogin.classList.add('visually-hidden'); // приховати кнопку "Sign up"
@@ -211,7 +211,7 @@ function onSignIn() {
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         // Signed in
-        user = userCredential.user; // авторизований користувач
+        const user = userCredential.user; // авторизований користувач
         console.log(user);
         userID = user.uid;
         refs.btnLogin.classList.add('visually-hidden'); // приховати кнопку "Sign up"
@@ -249,7 +249,7 @@ function onSignIn() {
       });
   } catch (error) {
     console.log(error);
-    Notify.failure(`User ${name} with email address ${email} failed SIGNED!`);
+    Notify.failure(`User with email address ${email} failed SIGNED!`);
   } // повідомлення про помилку авторизації
 }
 
