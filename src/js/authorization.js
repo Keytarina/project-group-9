@@ -16,7 +16,6 @@ const refs = {
   signInButton: document.querySelector('.sign-in'),
   btnLogin: document.querySelector('.btn-login'),
   btnSigned: document.querySelector('.btn-signed'),
-  btnLoginTextSigned: document.querySelector('.btn-login-text-signed'),
   btnLogout: document.querySelector('.btn-logout'),
   authorizationWindow: document.querySelector('.authorization-window'),
   authorizationWindowCloseButtonIcon: document.querySelector(
@@ -30,13 +29,13 @@ const refs = {
 }; // масив посилань
 
 if (localStorage.getItem('user-id') !== '') {
-  refs.btnLoginTextSigned.textContent = localStorage.getItem('user-name'); // записати в кнопку "User" і'мя користувача
+  refs.btnSigned.textContent = localStorage.getItem('user-name'); // записати в кнопку "User" і'мя користувача
 
   refs.btnLogin.classList.add('visually-hidden'); // приховати кнопку "Sign up"
   refs.btnSigned.classList.remove('visually-hidden'); // показати кнопку "User"
   refs.headerNav.classList.remove('visually-hidden'); // показати кнопки "Home" та "ShoppingList"
 }
-let user = ''; // uid користувача
+let userID = ''; // uid користувача
 
 // // - - - - - - - - - - - - - - - зміна теми вікна авторизації - - - - - - - - - - - - - - -
 if (localStorage.theme === 'dark') {
@@ -83,7 +82,7 @@ refs.buttonSwitch.addEventListener('click', () => {
     ); // функція toggleAuthorization, змінює атрибут 'aria-expanded' кнопки відкриття вікна авторизації відповідно до стану вікна авторизації (відкрито - true, закрито - false)
 
     refs.authorization.classList.toggle('is-hidden'); // відкриття/закриття вікна авторизації
-
+    
     if (!isAuthorizationOpen) {
       document.body.style.overflow = 'hidden'; // заблокувати скролл
     } else {
@@ -158,7 +157,7 @@ function signUpWithEmailPassword() {
         userID = user.uid;
         refs.btnLogin.classList.add('visually-hidden'); // приховати кнопку "Sign up"
         refs.btnSigned.classList.remove('visually-hidden'); // показати кнопку "User"
-        refs.btnLoginTextSigned.textContent = name; // записати в кнопку "User" і'мя користувача
+        refs.btnSigned.textContent = name; // записати в кнопку "User" і'мя користувача
         refs.authorization.classList.toggle('is-hidden'); // приховати вікно авторизації
         refs.authorizationWindowForm.reset(); // очистити форму
         document.body.style.overflow = 'scroll'; // зняти обмеження на скролл
@@ -194,7 +193,6 @@ function signUpWithEmailPassword() {
 }
 
 function onSignIn() {
-  const name = `${refs.authorizationWindowForm.elements.name.value}`;
   const email = `${refs.authorizationWindowForm.elements.email.value}`;
   const password = `${refs.authorizationWindowForm.elements.password.value}`;
   if (email.length < 4) {
@@ -214,25 +212,23 @@ function onSignIn() {
       .then(userCredential => {
         // Signed in
         user = userCredential.user; // авторизований користувач
-        // console.log(user.uid);
+        console.log(user);
         userID = user.uid;
         refs.btnLogin.classList.add('visually-hidden'); // приховати кнопку "Sign up"
         refs.btnSigned.classList.remove('visually-hidden'); // показати кнопку "User"
-        refs.btnLoginTextSigned.textContent = name; // записати в кнопку "User" і'мя користувача
+        refs.btnSigned.textContent = name; // записати в кнопку "User" і'мя користувача
         refs.authorization.classList.toggle('is-hidden'); // приховати вікно авторизації
         document.body.style.overflow = 'scroll'; // зняти обмеження на скролл
         refs.authorizationWindowForm.reset(); // очистити форму
-        Notify.success(
-          `User ${name} with email address ${email} successfully SIGNED!`
-        ); // повідомлення про успішну операцію авторизації
-
+        Notify.success(`User with email address ${email} successfully SIGNED!`); // повідомлення про успішну операцію авторизації
         localStorage.setItem('user-id', `${userID}`); // запис id користувача до локальної бази даних
         refs.headerNav.classList.remove('visually-hidden'); // показати кнопки "Home" та "ShoppingList"
 
-        reedNameUserDB()
+        reedNameUserDB(userID)
           .then(response => {
+            console.log(response);
             localStorage.setItem('user-name', `${response}`); // запис імені користувача до локальної бази даних
-            refs.btnLoginTextSigned.textContent = response; // записати і'мя користувача з бази даних в кнопку користувача
+            refs.btnSigned.textContent = `${response}`; // записати і'мя користувача з бази даних в кнопку користувача
           })
           .catch(error => {
             console.log(error.message);
@@ -271,26 +267,26 @@ function onSignOut() {
         refs.btnLogin.classList.remove('visually-hidden'); // показати кнопку "Sign up"
         refs.btnSigned.classList.add('visually-hidden'); // приховати кнопку з імям авторизованого користувача
         refs.btnLogout.classList.add('visually-hidden'); // приховати кнопку "Log out"
-        userID = '';
+        user = '';
         Notify.success(
-          `User ${refs.btnLoginTextSigned.textContent} successfully SIGNED OUT!`
+          `User ${refs.btnSigned.textContent} successfully SIGNED OUT!`
         ); // повідомлення про успішну операцію
 
-        document.location.replace('index.html'); // Log out, по click на яку користувач виходить із особистого кабінету і переходить на головну сторінку
+        document.location.replace('../index.html'); // Log out, по click на яку користувач виходить із особистого кабінету і переходить на головну сторінку
         refs.headerNav.classList.add('visually-hidden'); // приховати кнопки "Home" та "ShoppingList"
-        localStorage.setItem('user-name', ``); // запис імені користувача до локальної бази даних
-        localStorage.setItem('user-id', ``); // запис id користувача до локальної бази даних
+        localStorage.setItem('user-name', ``); // стирання імені користувача з локальної бази даних
+        localStorage.setItem('user-id', ``); // стирання id користувача з локальної бази даних
       })
       .catch(error => {
         console.log(error);
         Notify.failure(
-          `User ${refs.btnLoginTextSigned.textContent} with email address ${email} failed SIGNED OUT!`
+          `User ${refs.btnSigned.textContent} with email address ${email} failed SIGNED OUT!`
         ); // повідомлення про не успішну операцію
       });
   } catch (error) {
     console.log(error);
     Notify.failure(
-      `User ${refs.btnLoginTextSigned.textContent} with email address ${email} failed SIGNED OUT!`
+      `User ${refs.btnSigned.textContent} with email address ${email} failed SIGNED OUT!`
     ); // повідомлення про не успішну операцію
   }
 }
@@ -314,8 +310,8 @@ window.addEventListener('beforeunload', () => {
 
 function initApp() {
   // Listening for auth state changes.
-  auth.onAuthStateChanged(function (user) {
-    if (user) {
+  auth.onAuthStateChanged(function (userID) {
+    if (userID) {
       // User is signed in.
       // refs.headerNav.classList.remove('visually-hidden'); // показати кнопки "Home" та "ShoppingList"
       // console.log('User is signed in.');
@@ -335,44 +331,41 @@ window.addEventListener('load', () => {
 // - - - - - - - - -  - - - - - - функції роботи з БД - - - - - - - - - - - - - - -
 import { doc, getFirestore, setDoc, getDoc } from 'firebase/firestore';
 import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import { log } from 'console';
 
 const firestore = getFirestore(app);
 
-async function addBookID(id) {
-  console.log(`${user.uid}`);
-  await updateDoc(doc(firestore, 'books', `${user.uid}`), {
+async function addBookID(id, userID) {
+  await updateDoc(doc(firestore, 'books', `${userID}`), {
     id_book: arrayUnion(id),
   }).catch(error => {
     console.log(error.message);
   });
-} // функція додавання ID-книжки до бази даних (потребує id книги яку необхідно записати в БД)
+} // функція додавання ID-книжки до бази даних (потребує id книги яку необхідно записати в БД та id авторизованого користувача)
 
-async function dellBookID(id) {
-  await updateDoc(doc(firestore, 'books', `${user.uid}`), {
+async function dellBookID(id, userID) {
+  await updateDoc(doc(firestore, 'books', `${userID}`), {
     id_book: arrayRemove(id),
   }).catch(error => {
     console.log(error.message);
   });
-} // функція видалення ID-книжки з бази даних (потребує id книги яку необхідно видалити з БД)
+} // функція видалення ID-книжки з бази даних (потребує id книги яку необхідно видалити з БД та id авторизованого користувача))
 
-async function reedBookID() {
-  const mySnapshot = await getDoc(doc(firestore, 'books', `${user.uid}`));
-  // console.log(`${user.uid}`);
+async function reedBookID(userID) {
+  const mySnapshot = await getDoc(doc(firestore, 'books', `${userID}`));
   if (mySnapshot.exists()) {
     const docData = mySnapshot.data();
     const idBook = docData.id_book; // масив id книжок з бази даних
     console.log(docData);
-    refs.reedDb.textContent = idBook; // видалити - - - - - - - - - - - - - - - - - - - - -
     return idBook;
   } else {
-    // docSnap.data() will be undefined in this case
-    console.log('No such document!');
+    console.log('No such book!');
   } // якщо запис поточний користувач зареєстрований в базі, беремо дані за його "uid"
 }
 
 async function writeUserName(nameUser) {
   try {
-    await setDoc(doc(firestore, 'books', `${user.uid}`), {
+    await setDoc(doc(firestore, 'books', `${userID}`), {
       name: nameUser,
     })
       .then(() => {
@@ -386,8 +379,8 @@ async function writeUserName(nameUser) {
   }
 } // при створенні користувача робимо запис його "uid" та імені в БД
 
-async function reedNameUserDB() {
-  const mySnapshot = await getDoc(doc(firestore, 'books', `${user.uid}`));
+async function reedNameUserDB(userID) {
+  const mySnapshot = await getDoc(doc(firestore, 'books', `${userID}`));
   if (mySnapshot.exists()) {
     return mySnapshot.data().name;
   } else {
@@ -395,8 +388,11 @@ async function reedNameUserDB() {
   }
 } // якщо запис поточний користувач зареєстрований в базі, беремо його і'мя з БД за його "uid"
 
-export { addBookID, dellBookID, reedBookID }; // експорт в зовнішній код
-export let userID; // експорт в зовнішній код
+function getIDUser() {
+  return userID;
+} // функція повертає UID зареєстрованого користувача
+
+export { addBookID, dellBookID, reedBookID, getIDUser }; // експорт в зовнішній код
 
 // - - - - - - - - -  - - - - - - /функції роботи з БД - - - - - - - - - - - - - - -
 // =========================== /authorization-window section ===========================
