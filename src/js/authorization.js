@@ -267,7 +267,7 @@ function onSignOut() {
         refs.btnLogin.classList.remove('visually-hidden'); // показати кнопку "Sign up"
         refs.btnSigned.classList.add('visually-hidden'); // приховати кнопку з імям авторизованого користувача
         refs.btnLogout.classList.add('visually-hidden'); // приховати кнопку "Log out"
-        user = '';
+        userID = '';
         Notify.success(
           `User ${refs.btnSigned.textContent} successfully SIGNED OUT!`
         ); // повідомлення про успішну операцію
