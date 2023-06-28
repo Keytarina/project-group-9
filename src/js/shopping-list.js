@@ -1,6 +1,5 @@
 import { fetchBookById } from './serviceApi';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import { dellBookID } from './authorization.js';
+import { dellBookID, reedBookID } from './authorization.js';
 
 console.log(localStorage.page);
 
@@ -35,39 +34,41 @@ function handleDesktopChange(e) {
 mediaQuerySupport.addListener(handleDesktopChange);
 handleDesktopChange(mediaQuerySupport);
 
-// localStorage.clear();
-
-let storageOfBooksId = [];
+let user = '';
 
 // -----------
+// let booksInCart - кількість книг, у кошику;
 // paginator - кількість книг, що буде відображатись на сторінці.
 // page - сторінка списку книг.
 // totalPages - скільки займатимуть сторінок книги з localStorage.
 
+let storageOfBooksId = [];
+let booksInCart = 0;
 let paginator = 3;
 let page = 1;
 let totalPages = 1;
 
-// -----Функція що збирає з localStorage id-шники для пагінації-----
-function fetchArrayOfBookId() {
-  if (!JSON.parse(localStorage.getItem('id'))) {
-    storageOfBooksId = [];
-    return localStorage.setItem('id', JSON.stringify(storageOfBooksId));
-  } else {
-    return (storageOfBooksId = JSON.parse(localStorage.getItem('id')));
-  }
+function fetchUser() {
+  user = localStorage.getItem('user-id');
+  return user;
 }
-fetchArrayOfBookId();
+fetchUser();
+// ----------------------------
 
+function recordArrayOfBooks(data) {
+  storageOfBooksId = data;
+  console.log(storageOfBooksId);
+  return storageOfBooksId;
+}
+function recordBookInCart(data) {
+  booksInCart = data.length;
+  console.log(booksInCart);
+  return booksInCart;
+}
 // --------Функція, що повертає кількість книг, що вміщує сторінка і загальну кількість сторінок,
 //   яку при цьому займуть книги у кошику------
 
 function fetchPaginator() {
-  refreshNumberBooksPerPage();
-  refreshTotalPages();
-}
-
-function refreshNumberBooksPerPage() {
   if (mediaQuery.matches) {
     // console.log('4 on page');
     return (paginator = 4);
@@ -76,16 +77,29 @@ function refreshNumberBooksPerPage() {
     return (paginator = 3);
   }
 }
-function refreshTotalPages() {
-  return (totalPages = Math.ceil(
-    JSON.parse(localStorage.getItem('id')).length / paginator
-  ));
-}
-fetchPaginator();
 
+function refreshTotalPages() {
+  console.log(booksInCart);
+  totalPages = Math.ceil(booksInCart / paginator);
+  return totalPages;
+}
+function checkCurrentPage() {
+  if (page <= 0) {
+    page = 1;
+    console.log(page);
+  }
+  if (Number.parseInt(localStorage.getItem('page')) > 0) {
+    page = localStorage.getItem('page');
+    console.log(page);
+  }
+  if (page > totalPages) {
+    page = totalPages;
+  }
+  console.log(page);
+}
 // формування повідомлення про пустий кошик----
 function showMessageIfEmpty() {
-  if (JSON.parse(localStorage.getItem('id')).length > 0) {
+  if (booksInCart > 0) {
     dummyMessage.classList.add('visually-hidden');
     list.classList.remove('visually-hidden');
     list.addEventListener('click', deleteBook, { once: 'true' });
@@ -101,42 +115,36 @@ function showMessageIfEmpty() {
 
 // ------------Рендер останньої сесії---------------------------------
 
-  const timerId = setTimeout(() => {
-    checkForUpdate();
-  }, 10000);
+async function renderLastSession() {
+  try {
+    pageNumeration(page);
+    const data = await reedBookID(user);
 
-function renderLastSession() {
-  checkCurrentPage();
-  console.log(page);
-  console.log(localStorage.page);
-  fetchPaginator();
+    recordArrayOfBooks(data);
 
-  renderBooksFromBusket(page, paginator);
-  pageNumeration(page);
-  console.log(page);
-  console.log(localStorage.page);
+    recordBookInCart(data);
+
+    fetchPaginator();
+
+    refreshTotalPages();
+
+    checkCurrentPage();
+
+    list.innerHTML = '';
+    showMessageIfEmpty();
+
+    makeArrayToPaginate(page, data).forEach(id => {
+      renderCardFromData(id);
+    });
+    pagesToShow();
+  } catch (error) {
+    console.log(error);
+  }
 }
 renderLastSession();
 // ----------------------------------------
-
-function checkCurrentPage() {
-  if (Number.parseInt(localStorage.getItem('page')) > 0) {
-    console.log('more then null');
-    page = JSON.parse(localStorage.getItem('page'));
-    console.log(`now is page ${page}`);
-    if (page > totalPages) {
-      console.log('more then need');
-      page = totalPages;
-    }
-  } else {
-    console.log('page else');
-    page = 1;
-  }
-}
-
 // -----------Функція зміни відображення кількості книжок на сторінці-------------
 function handleTabletChange(mediaQuery) {
-  // let booksOnBusket = JSON.parse(localStorage.getItem('id')).length;
   fetchPaginator();
   if (mediaQuery.matches) {
     thirdBtn.classList.remove('visually-hidden');
@@ -145,7 +153,7 @@ function handleTabletChange(mediaQuery) {
   } else if (list.children.length === 4) {
     list.lastElementChild.classList.remove('visually-hidden');
   } else {
-    // thirdBtn.classList.add('visually-hidden');
+    thirdBtn.classList.add('visually-hidden');
 
     // page = Math.ceil(booksOnBusket / 3);
     if (list.children.length === 4) {
@@ -159,7 +167,6 @@ function handleTabletChange(mediaQuery) {
 }
 mediaQuery.addListener(handleTabletChange);
 handleTabletChange(mediaQuery);
-// ------------------------------------------------------
 
 /////////////Функція, що перезаписує значення поточної сторінки і зберігає його у localStorage
 function changePage(adduct) {
@@ -168,14 +175,10 @@ function changePage(adduct) {
   return page;
 }
 // ------------------------------------
-
-function makeArrayToPaginate(page, paginator) {
-  fetchArrayOfBookId();
+function makeArrayToPaginate(page, data) {
   localStorage.page = page;
-  const arrayOfBooksToPaginate = storageOfBooksId.splice(
-    (page - 1) * paginator,
-    paginator
-  );
+  const arrayOfBooksToPaginate = data.splice((page - 1) * paginator, paginator);
+  console.log(arrayOfBooksToPaginate);
   return arrayOfBooksToPaginate;
 }
 
@@ -189,369 +192,46 @@ function pageNumeration(page) {
   secondBtn.textContent = page + 1;
   thirdBtn.textContent = page + 2;
 }
-
-function paginate(event) {
+// ------функція, що перемальовує сторінку переліку книг у кошику------------------------------------------------
+async function renderPage(page) {
   fetchPaginator();
-
-  if (fetchArrayOfBookId().length <= paginator) {
-    return;
-  }
-
-  if (Number.parseInt(event.target.textContent) > totalPages) {
-    return;
-  }
-
-  if (Number.parseInt(event.target.textContent) === page) {
-    return;
-  }
-  if (event.target.dataset.page === 'start') {
-    if (page > 1) {
-      return startBtnAction();
-    }
-  }
-  if (event.target.dataset.page === 'last') {
-    return lastBtnAction();
-  }
-  if (event.target.dataset.page === 'first') {
-    return actionByNumeredBtns(firstBtn);
-  }
-
-  if (event.target.dataset.page === 'second') {
-    if (totalPages >= 2) {
-      return actionByNumeredBtns(secondBtn);
-    }
-  }
-  if (event.target.dataset.page === 'third') {
-    if (totalPages >= 3) {
-      return actionByNumeredBtns(thirdBtn);
-    }
-  }
-  if (event.target.dataset.page === 'more') {
-    return moreBtnAction(paginator);
-  }
-
-  if (event.target.dataset.page === 'next') {
-    return nextBtnAction();
-  }
-  if (event.target.dataset.page === 'end') {
-    return endBtnAction();
-  }
-}
-
-function actionByNumeredBtns($numeredBtn) {
-  changePage(Number.parseInt($numeredBtn.textContent) - page);
-  removingCurrentBtnStyle();
-  $numeredBtn.classList.add('current-page');
-  renderBooksFromBusket(page, paginator);
-}
-
-function removingCurrentBtnStyle() {
-  firstBtn.classList.remove('current-page');
-  secondBtn.classList.remove('current-page');
-  thirdBtn.classList.remove('current-page');
-}
-
-function startBtnAction() {
-  removingCurrentBtnStyle();
-  pageNumeration(1);
-  changePage(-page + 1);
-  firstBtn.classList.add('current-page');
-  renderBooksFromBusket(1, paginator);
-  return;
-}
-
-function lastBtnAction() {
-  if (page <= 1) {
-    return;
-  }
-  if (page === 2) {
-    return startBtnAction();
-  }
-
-  if (paginator === 3) {
-    lastBtnActionWithThreeBooksPerPage();
-  } else {
-    lastBtnActionWithFourBooksPerPage();
-  }
-  changePage(-1);
-  return renderBooksFromBusket(page, paginator);
-}
-
-function lastBtnActionWithThreeBooksPerPage() {
-  // if (Number.parseInt(firstBtn.textContent) <= 2) {
-  //   return startBtnAction();
-  // }
-  if (firstBtn.classList.contains('current-page')) {
-    removingCurrentBtnStyle();
-    secondBtn.classList.add('current-page');
-    changeNumeration(-2);
-  } else if (secondBtn.classList.contains('current-page')) {
-    removingCurrentBtnStyle();
-    firstBtn.classList.add('current-page');
-  } else {
-    changeNumeration(-1);
-  }
-  if (page === 3) {
-    if (firstBtn.classList.contains('current-page')) {
-      removingCurrentBtnStyle();
-      secondBtn.classList.add('current-page');
-      changeNumeration(-2);
-    } else if (secondBtn.classList.contains('current-page')) {
-      removingCurrentBtnStyle();
-      firstBtn.classList.add('current-page');
-      changeNumeration(-1);
-    }
-  }
-}
-
-function lastBtnActionWithFourBooksPerPage() {
-  if (firstBtn.classList.contains('current-page') && page !== 3) {
-    removingCurrentBtnStyle();
-    thirdBtn.classList.add('current-page');
-    changeNumeration(-3);
-  } else if (secondBtn.classList.contains('current-page') && page !== 3) {
-    removingCurrentBtnStyle();
-    firstBtn.classList.add('current-page');
-  } else if (thirdBtn.classList.contains('current-page') && page !== 3) {
-    removingCurrentBtnStyle();
-    secondBtn.classList.add('current-page');
-  }
-  if (page === 3) {
-    if (firstBtn.classList.contains('current-page')) {
-      removingCurrentBtnStyle();
-      secondBtn.classList.add('current-page');
-      changeNumeration(-2);
-    } else if (secondBtn.classList.contains('current-page')) {
-      removingCurrentBtnStyle();
-      firstBtn.classList.add('current-page');
-    } else {
-      removingCurrentBtnStyle();
-      secondBtn.classList.add('current-page');
-    }
-  }
-}
-
-function nextBtnAction() {
-  if (page >= totalPages) {
-    return;
-  }
-  if (paginator === 3) {
-    nextBtnActionWithThreeBooksPerPage();
-  } else {
-    nextBtnActionWithFourBooksPerPage();
-  }
-  console.log('next');
-  changePage(1);
-  renderBooksFromBusket(page, paginator);
-}
-
-function moreBtnAction(paginator) {
-  if (Number.parseInt(firstBtn.textContent) + paginator - 1 <= totalPages) {
-    console.log('more');
-    removingCurrentBtnStyle();
-    firstBtn.classList.add('current-page');
-    if (paginator === 4) {
-      changeNumeration(3);
-    } else {
-      changeNumeration(2);
-    }
-    changePage(firstBtn.textContent - page);
-    return renderBooksFromBusket(page, paginator);
-  }
-}
-
-function nextBtnActionWithThreeBooksPerPage() {
-  if (firstBtn.classList.contains('current-page')) {
-    removingCurrentBtnStyle();
-    secondBtn.classList.add('current-page');
-  } else if (secondBtn.classList.contains('current-page')) {
-    removingCurrentBtnStyle();
-    firstBtn.classList.add('current-page');
-    changeNumeration(2);
-  } else {
-    changeNumeration(1);
-  }
-}
-
-function nextBtnActionWithFourBooksPerPage() {
-  if (firstBtn.classList.contains('current-page')) {
-    removingCurrentBtnStyle();
-    secondBtn.classList.add('current-page');
-  } else if (secondBtn.classList.contains('current-page')) {
-    removingCurrentBtnStyle();
-    thirdBtn.classList.add('current-page');
-  } else if (thirdBtn.classList.contains('current-page')) {
-    return moreBtnAction(paginator);
-  } else {
-    changeNumeration(1);
-  }
-}
-
-function endBtnAction() {
-  if (totalPages === 2) {
-    return nextBtnAction();
-  }
-  if (page != totalPages) {
-    removingCurrentBtnStyle();
-    if (paginator === 4) {
-      thirdBtn.classList.add('current-page');
-      pageNumeration(totalPages - 2);
-    } else {
-      secondBtn.classList.add('current-page');
-      pageNumeration(totalPages - 1);
-    }
-
-    changePage(totalPages - page);
-    renderBooksFromBusket(page, paginator);
-  }
-}
-// --------------------
-
-function pagesToShow() {
-  if (totalPages <= 1) {
-    controller.classList.add('visually-hidden');
-    controller.removeEventListener('click', paginate);
-    return;
-  }
-  const difr = totalPages - page;
-  if (totalPages > 4) {
-    console.log('more than 4');
-    startBtn.classList.remove('visually-hidden');
-    secondBtn.classList.remove('visually-hidden');
-    lastBtn.classList.remove('visually-hidden');
-    moreBtn.classList.remove('visually-hidden');
-    nextBtn.classList.remove('visually-hidden');
-    endBtn.classList.remove('visually-hidden');
-  }
-  if (paginator === 3) {
-    thirdBtn.classList.add('visually-hidden');
-    if (totalPages === 3) {
-      console.log('its 3, paginator = 3');
-      startBtn.classList.add('visually-hidden');
-      lastBtn.classList.add('visually-hidden');
-      moreBtn.classList.add('visually-hidden');
-      nextBtn.classList.remove('visually-hidden');
-      endBtn.classList.add('visually-hidden');
-    } else if (totalPages === 4) {
-      console.log('its 4, paginator = 3');
-      startBtn.classList.remove('visually-hidden');
-      lastBtn.classList.remove('visually-hidden');
-      moreBtn.classList.remove('visually-hidden');
-      nextBtn.classList.add('visually-hidden');
-      endBtn.classList.remove('visually-hidden');
-    }
-    if (difr < 1 && firstBtn.classList.contains('current-page')) {
-      console.log('less than 1-3-1c ');
-      secondBtn.classList.add('visually-hidden');
-      nextBtn.classList.add('visually-hidden');
-      endBtn.classList.add('visually-hidden');
-      moreBtn.classList.add('visually-hidden');
-    } else if (difr < 1) {
-      console.log('less than 1-3 less1');
-      secondBtn.classList.remove('visually-hidden');
-      nextBtn.classList.add('visually-hidden');
-      endBtn.classList.add('visually-hidden');
-      moreBtn.classList.add('visually-hidden');
-    } else if (difr <= 1) {
-      console.log('less than 1-3 =1');
-      secondBtn.classList.remove('visually-hidden');
-      nextBtn.classList.remove('visually-hidden');
-      endBtn.classList.add('visually-hidden');
-      moreBtn.classList.add('visually-hidden');
-    } else if (difr <= 1 && firstBtn.classList.contains('current-page')) {
-      console.log('less than 1-3-1');
-      secondBtn.classList.remove('visually-hidden');
-      nextBtn.classList.remove('visually-hidden');
-      endBtn.classList.add('visually-hidden');
-      moreBtn.classList.add('visually-hidden');
-    } else if (difr > 1) {
-      console.log('more than 1-difr');
-      secondBtn.classList.remove('visually-hidden');
-    }
-  }
-  controller.classList.remove('visually-hidden');
-  controller.addEventListener('click', paginate);
-
-  if (paginator === 4) {
-    if (totalPages === 3) {
-      console.log('its 3, paginator = 4');
-      startBtn.classList.add('visually-hidden');
-      lastBtn.classList.add('visually-hidden');
-      thirdBtn.classList.remove('visually-hidden');
-      moreBtn.classList.add('visually-hidden');
-      nextBtn.classList.add('visually-hidden');
-      endBtn.classList.add('visually-hidden');
-    } else if (totalPages === 4) {
-      console.log('its 4, paginator = 4');
-      startBtn.classList.remove('visually-hidden');
-      lastBtn.classList.remove('visually-hidden');
-      thirdBtn.classList.remove('visually-hidden');
-      moreBtn.classList.remove('visually-hidden');
-      nextBtn.classList.remove('visually-hidden');
-      endBtn.classList.add('visually-hidden');
-    }
-  }
-  if (totalPages === 2) {
-    startBtn.classList.add('visually-hidden');
-    lastBtn.classList.add('visually-hidden');
-    thirdBtn.classList.add('visually-hidden');
-    moreBtn.classList.add('visually-hidden');
-    nextBtn.classList.add('visually-hidden');
-    endBtn.classList.add('visually-hidden');
-  }
-  if (difr < 1 && firstBtn.classList.contains('current-page')) {
-    console.log('less than 1-3-1c ');
-    secondBtn.classList.add('visually-hidden');
-    thirdBtn.classList.add('visually-hidden');
-    nextBtn.classList.add('visually-hidden');
-    endBtn.classList.add('visually-hidden');
-    moreBtn.classList.add('visually-hidden');
-  } else if (difr < 1 && secondBtn.classList.contains('current-page')) {
-    console.log('less than 1-3 less1');
-    secondBtn.classList.remove('visually-hidden');
-    thirdBtn.classList.add('visually-hidden');
-    nextBtn.classList.add('visually-hidden');
-    endBtn.classList.add('visually-hidden');
-    moreBtn.classList.add('visually-hidden');
-  } else if (difr <= 1) {
-    console.log('less than 1-3 =1');
-    secondBtn.classList.remove('visually-hidden');
-    nextBtn.classList.remove('visually-hidden');
-    endBtn.classList.add('visually-hidden');
-    moreBtn.classList.add('visually-hidden');
-  } else if (difr <= 1 && firstBtn.classList.contains('current-page')) {
-    console.log('less than 1-3-1');
-    secondBtn.classList.remove('visually-hidden');
-    nextBtn.classList.remove('visually-hidden');
-    endBtn.classList.add('visually-hidden');
-    moreBtn.classList.add('visually-hidden');
-  } else if (difr > 1) {
-    console.log('more than 1-difr');
-    secondBtn.classList.remove('visually-hidden');
-  }
-  if (page === 1) {
-    startBtn.classList.add('visually-hidden');
-    lastBtn.classList.add('visually-hidden');
-  }
-}
-
-// ------функція, що перемальовує список книг у кошику---------
-function renderBooksFromBusket(page, paginator) {
-  localStorage.page = page;
-
+  refreshTotalPages();
   list.innerHTML = '';
   showMessageIfEmpty();
-  fetchPaginator();
-  makeArrayToPaginate(page, paginator).forEach(id => {
-    renderCardFromStorage(id);
+  const data = await reedBookID(user);
+  await recordArrayOfBooks(data);
+  makeArrayToPaginate(page, data).forEach(id => {
+    renderCardFromData(id);
   });
 
   pagesToShow();
-  storageOfBooksId = JSON.parse(localStorage.getItem('id'));
 }
 
+async function renderPage(page) {
+  try {
+    const data = await reedBookID(user);
+    await recordArrayOfBooks(data);
+    recordBookInCart(data);
+    fetchPaginator();
+    refreshTotalPages();
+    checkCurrentPage();
+    list.innerHTML = '';
+    showMessageIfEmpty();
+    makeArrayToPaginate(page, data).forEach(id => {
+      renderCardFromData(id);
+    });
+
+    pagesToShow();
+  } catch (error) {
+    console.log(error);
+  }
+}
+// ------------------------------------------------------
+
+// ------------------------------------------------------
+
 // -----запит данних із серверу----
-async function renderCardFromStorage(id) {
+async function renderCardFromData(id) {
   try {
     const data = await fetchBookById(id);
     renderMarkup(data, id);
@@ -655,7 +335,7 @@ function renderMarkup(book, id) {
               </ul>
               <button class="shopping-btn-dump" type="button" data-book="${id}">
                 <svg class="shopping-btn-dump-icon" width="16" height="16">
-                  <use href="./icons-all.568e592f.svg#dump"></use>
+                  <use href="./icons-all.435abbb0.svg#dump"></use>
                 </svg>
               </button>
             </div>
@@ -683,32 +363,339 @@ refresh.addEventListener('click', refreshPage);
 
 function refreshPage() {
   refresh.style.color = 'var(--main-text-color)';
-  checkCurrentPage();
-  renderBooksFromBusket(page, paginator);
+  renderPage(page);
 }
 
 function procedureDeletingBook(event) {
   const idToDelete = event.target.dataset.book;
-  const index = storageOfBooksId.indexOf(idToDelete);
-  fetchArrayOfBookId();
-  storageOfBooksId.splice(index, 1);
-  localStorage.setItem('id', JSON.stringify(storageOfBooksId));
-  // dellBookID(idToDelete);
+  dellBookID(idToDelete, user);
+
   fetchPaginator();
-  if (storageOfBooksId.length === 0) {
+  if (booksInCart - 1 === 0) {
     return showMessageIfEmpty();
   }
-  if (page > totalPages) {
+  if (page > Math.ceil((booksInCart - 1) / paginator)) {
     return lastBtnAction();
   }
-  renderBooksFromBusket(page, paginator);
+  renderPage(page);
 }
 
-function checkForUpdate() {
-  if (storageOfBooksId.length < JSON.parse(localStorage.getItem('id')).length) {
-    refresh.style.color = 'var(--background-color-main)';
-    Notify.success(
-      `You have more new books in the busket. Click Refresh button to check`
-    );
+function paginate(event) {
+  fetchPaginator();
+
+  if (booksInCart <= paginator) {
+    return;
+  }
+
+  if (Number.parseInt(event.target.textContent) > totalPages) {
+    return;
+  }
+
+  if (Number.parseInt(event.target.textContent) === page) {
+    return;
+  }
+  if (event.target.dataset.page === 'start') {
+    if (page > 1) {
+      return startBtnAction();
+    }
+  }
+  if (event.target.dataset.page === 'last') {
+    return lastBtnAction();
+  }
+  if (event.target.dataset.page === 'first') {
+    return actionByNumeredBtns(firstBtn);
+  }
+
+  if (event.target.dataset.page === 'second') {
+    if (totalPages >= 2) {
+      return actionByNumeredBtns(secondBtn);
+    }
+  }
+  if (event.target.dataset.page === 'third') {
+    if (totalPages >= 3) {
+      return actionByNumeredBtns(thirdBtn);
+    }
+  }
+  if (event.target.dataset.page === 'more') {
+    return moreBtnAction(paginator);
+  }
+
+  if (event.target.dataset.page === 'next') {
+    return nextBtnAction();
+  }
+  if (event.target.dataset.page === 'end') {
+    return endBtnAction();
+  }
+}
+
+function actionByNumeredBtns($numeredBtn) {
+  changePage(Number.parseInt($numeredBtn.textContent) - page);
+  removingCurrentBtnStyle();
+  $numeredBtn.classList.add('current-page');
+  renderPage(page);
+}
+
+function removingCurrentBtnStyle() {
+  firstBtn.classList.remove('current-page');
+  secondBtn.classList.remove('current-page');
+  thirdBtn.classList.remove('current-page');
+}
+
+function startBtnAction() {
+  removingCurrentBtnStyle();
+  pageNumeration(1);
+  changePage(-page + 1);
+  firstBtn.classList.add('current-page');
+  renderPage(1);
+  return;
+}
+
+function lastBtnAction() {
+  if (page <= 1) {
+    return;
+  }
+  if (page === 2) {
+    return startBtnAction();
+  }
+
+  if (paginator === 3) {
+    lastBtnActionWithThreeBooksPerPage();
+  } else {
+    lastBtnActionWithFourBooksPerPage();
+  }
+  changePage(-1);
+  return renderPage(page);
+}
+
+function lastBtnActionWithThreeBooksPerPage() {
+  // if (Number.parseInt(firstBtn.textContent) <= 2) {
+  //   return startBtnAction();
+  // }
+  if (firstBtn.classList.contains('current-page')) {
+    removingCurrentBtnStyle();
+    secondBtn.classList.add('current-page');
+    changeNumeration(-2);
+  } else if (secondBtn.classList.contains('current-page')) {
+    removingCurrentBtnStyle();
+    firstBtn.classList.add('current-page');
+  } else {
+    changeNumeration(-1);
+  }
+  if (page === 3) {
+    if (firstBtn.classList.contains('current-page')) {
+      removingCurrentBtnStyle();
+      secondBtn.classList.add('current-page');
+      changeNumeration(-2);
+    } else if (secondBtn.classList.contains('current-page')) {
+      removingCurrentBtnStyle();
+      firstBtn.classList.add('current-page');
+      changeNumeration(-1);
+    }
+  }
+}
+
+function lastBtnActionWithFourBooksPerPage() {
+  if (firstBtn.classList.contains('current-page') && page !== 3) {
+    removingCurrentBtnStyle();
+    thirdBtn.classList.add('current-page');
+    changeNumeration(-3);
+  } else if (secondBtn.classList.contains('current-page') && page !== 3) {
+    removingCurrentBtnStyle();
+    firstBtn.classList.add('current-page');
+  } else if (thirdBtn.classList.contains('current-page') && page !== 3) {
+    removingCurrentBtnStyle();
+    secondBtn.classList.add('current-page');
+  }
+  if (page === 3) {
+    if (firstBtn.classList.contains('current-page')) {
+      removingCurrentBtnStyle();
+      secondBtn.classList.add('current-page');
+      changeNumeration(-2);
+    } else if (secondBtn.classList.contains('current-page')) {
+      removingCurrentBtnStyle();
+      firstBtn.classList.add('current-page');
+    } else {
+      removingCurrentBtnStyle();
+      secondBtn.classList.add('current-page');
+    }
+  }
+}
+
+function nextBtnAction() {
+  if (page >= totalPages) {
+    return;
+  }
+  if (paginator === 3) {
+    nextBtnActionWithThreeBooksPerPage();
+  } else {
+    nextBtnActionWithFourBooksPerPage();
+  }
+  console.log('next');
+  changePage(1);
+  renderPage(page);
+}
+
+function moreBtnAction() {
+  if (Number.parseInt(firstBtn.textContent) + paginator - 1 <= totalPages) {
+    console.log('more');
+    removingCurrentBtnStyle();
+    firstBtn.classList.add('current-page');
+    if (paginator === 4) {
+      changeNumeration(3);
+    } else {
+      changeNumeration(2);
+    }
+    changePage(firstBtn.textContent - page);
+    return renderPage(page);
+  }
+}
+
+function nextBtnActionWithThreeBooksPerPage() {
+  if (firstBtn.classList.contains('current-page')) {
+    removingCurrentBtnStyle();
+    secondBtn.classList.add('current-page');
+  } else if (secondBtn.classList.contains('current-page')) {
+    removingCurrentBtnStyle();
+    firstBtn.classList.add('current-page');
+    changeNumeration(2);
+  } else {
+    changeNumeration(1);
+  }
+}
+
+function nextBtnActionWithFourBooksPerPage() {
+  if (firstBtn.classList.contains('current-page')) {
+    removingCurrentBtnStyle();
+    secondBtn.classList.add('current-page');
+  } else if (secondBtn.classList.contains('current-page')) {
+    removingCurrentBtnStyle();
+    thirdBtn.classList.add('current-page');
+  } else if (thirdBtn.classList.contains('current-page')) {
+    return moreBtnAction(paginator);
+  } else {
+    changeNumeration(1);
+  }
+}
+
+function endBtnAction() {
+  if (totalPages === 2) {
+    return nextBtnAction();
+  }
+  if (page != totalPages) {
+    removingCurrentBtnStyle();
+    if (paginator === 4) {
+      thirdBtn.classList.add('current-page');
+      pageNumeration(totalPages - 2);
+    } else {
+      secondBtn.classList.add('current-page');
+      pageNumeration(totalPages - 1);
+    }
+
+    changePage(totalPages - page);
+    renderPage(page);
+  }
+}
+// --------------------
+
+function pagesToShow() {
+  if (totalPages <= 1) {
+    controller.classList.add('visually-hidden');
+    controller.removeEventListener('click', paginate);
+    return;
+  }
+  const difr = totalPages - page;
+  if (page > 1) {
+    controller.classList.remove('visually-hidden');
+    controller.addEventListener('click', paginate);
+  } else if (page > 3) {
+    startBtn.classList.remove('visually-hidden');
+  } else if ((page = 3 && firstBtn.classList.contains('current-page'))) {
+    console.log('p = 3 and 1t = c');
+    startBtn.classList.remove('visually-hidden');
+  }
+
+  if (paginator === 3) {
+    if (page > 2) {
+      startBtn.classList.remove('visually-hidden');
+    }
+    if (page > 2 && firstBtn.classList.contains('current-page')) {
+      lastBtn.classList.remove('visually-hidden');
+    }
+    if (totalPages > 3) {
+      moreBtn.classList.remove('visually-hidden');
+    }
+    if (
+      totalPages - page === 1 &&
+      secondBtn.classList.contains('current-page')
+    ) {
+      nextBtn.classList.remove('visually-hidden');
+    }
+    if (
+      totalPages - page === 1 &&
+      firstBtn.classList.contains('current-page')
+    ) {
+      nextBtn.classList.add('visually-hidden');
+    }
+    if (totalPages > 4) {
+      endBtn.classList.remove('visually-hidden');
+    }
+    if (totalPages - page < 2) {
+      endBtn.classList.add('visually-hidden');
+    }
+  }
+
+  if (paginator === 4) {
+    if (page > 3) {
+      startBtn.classList.remove('visually-hidden');
+      lastBtn.classList.remove('visually-hidden');
+    } else if (page === 3 && firstBtn.classList.contains('current-page')) {
+      console.log('1');
+      startBtn.classList.remove('visually-hidden');
+    } else if (page === 2 && firstBtn.classList.contains('current-page')) {
+      lastBtn.classList.remove('visually-hidden');
+    } else if (page > 1) {
+      firstBtn.classList.remove('visually-hidden');
+    } else if (
+      totalPages > page &&
+      secondBtn.classList.contains('current-page')
+    ) {
+      secondBtn.classList.remove('visually-hidden');
+    } else if (
+      totalPages === page &&
+      firstBtn.classList.contains('current-page')
+    ) {
+      console.log('10');
+      secondBtn.classList.add('visually-hidden');
+    } else if (
+      totalPages > page &&
+      thirdBtn.classList.contains('current-page')
+    ) {
+      thirdBtn.classList.remove('visually-hidden');
+    } else if (
+      totalPages === page &&
+      secondBtn.classList.contains('current-page')
+    ) {
+      thirdBtn.classList.add('visually-hidden');
+    } else if (totalPages > 4) {
+      moreBtn.classList.remove('visually-hidden');
+    } else if (
+      totalPages - page === 1 &&
+      thirdBtn.classList.contains('current-page')
+    ) {
+      console.log('20');
+      moreBtn.classList.add('visually-hidden');
+      nextBtn.classList.remove('visually-hidden');
+    } else if (totalPages === page) {
+      nextBtn.classList.add('visually-hidden');
+      endBtn.classList.remove('visually-hidden');
+    } else if (totalPages > 5) {
+      console.log('30');
+      endBtn.classList.remove('visually-hidden');
+    } else if (
+      totalPages - page < 3 &&
+      firstBtn.classList.contains('current-page')
+    ) {
+      endBtn.classList.add('visually-hidden');
+    }
   }
 }
