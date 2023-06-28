@@ -278,7 +278,7 @@ body .header-shopping-list.visit > a > .main-logo {
   .btn-logout.head-active {
     visibility: visible;
     position: absolute;
-    bottom: 20px;
+    top: 95vh;
     left: 20px;
     z-index: 20;
   }
