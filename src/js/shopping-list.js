@@ -1,5 +1,6 @@
 import { fetchBookById } from './serviceApi';
 import { dellBookID, reedBookID } from './authorization.js';
+import { type } from 'jquery';
 
 const list = document.querySelector('.shopping-list-list');
 const dummyMessage = document.querySelector('.shopping-dummy-message');
@@ -81,10 +82,17 @@ function refreshTotalPages() {
 function checkCurrentPage() {
   if (Number.parseInt(localStorage.getItem('page')) > 0) {
     page = Number.parseInt(localStorage.getItem('page'));
+    console.log(`cur = ${page} 1`);
+    console.log(typeof page);
+    return page;
   } else if (page > totalPages) {
     page = totalPages;
+    return page;
+    console.log(`cur = ${page} 2`);
   } else {
     page = 1;
+    return page;
+    console.log(`cur = ${page} 3`);
   }
 }
 // формування повідомлення про пустий кошик----
@@ -107,7 +115,6 @@ function showMessageIfEmpty() {
 
 async function renderLastSession() {
   try {
-    pageNumeration(page);
     const data = await reedBookID(user);
 
     recordArrayOfBooks(data);
@@ -119,7 +126,7 @@ async function renderLastSession() {
     refreshTotalPages();
 
     checkCurrentPage();
-
+    pageNumeration(page);
     list.innerHTML = '';
     showMessageIfEmpty();
 
@@ -136,6 +143,7 @@ renderLastSession();
 // -----------Функція зміни відображення кількості книжок на сторінці-------------
 function handleTabletChange(mediaQuery) {
   fetchPaginator();
+  refreshTotalPages();
   if (mediaQuery.matches) {
     console.log('do not hide');
     thirdBtn.classList.remove('visually-hidden');
@@ -157,7 +165,7 @@ function handleTabletChange(mediaQuery) {
 
   // localStorage.page = page;
   pagesToShow();
-  pageNumeration(page);
+  // pageNumeration(page);
 }
 mediaQuery.addListener(handleTabletChange);
 handleTabletChange(mediaQuery);
@@ -180,10 +188,12 @@ function changeNumeration(weight) {
   secondBtn.textContent = Number.parseInt(secondBtn.textContent) + weight;
   thirdBtn.textContent = Number.parseInt(thirdBtn.textContent) + weight;
 }
-function pageNumeration(page) {
-  firstBtn.textContent = Number.parseInt(page);
-  secondBtn.textContent = Number.parseInt(page + 1);
-  thirdBtn.textContent = Number.parseInt(page + 2);
+function pageNumeration(pageToRec) {
+  // console.log(page);
+  // console.log(typeof page);
+  firstBtn.textContent = Number.parseInt(pageToRec);
+  secondBtn.textContent = Number.parseInt(pageToRec + 1);
+  thirdBtn.textContent = Number.parseInt(pageToRec + 2);
 }
 // ------функція, що перемальовує сторінку переліку книг у кошику------------------------------------------------
 
@@ -195,6 +205,7 @@ async function renderPage(page) {
     fetchPaginator();
     refreshTotalPages();
     checkCurrentPage();
+    // pageNumeration(page);
     list.innerHTML = '';
     showMessageIfEmpty();
     makeArrayToPaginate(page, data).forEach(id => {
@@ -366,6 +377,7 @@ function rerenderPage() {
 // --------------------------Пагінація------------------------------------
 function paginate(event) {
   fetchPaginator();
+  refreshTotalPages();
 
   if (booksInCart <= paginator) {
     return;
@@ -439,6 +451,7 @@ function lastBtnAction() {
     return;
   }
   if (page === 2) {
+    console.log('page ===2');
     return startBtnAction();
   }
 
@@ -452,29 +465,16 @@ function lastBtnAction() {
 }
 
 function lastBtnActionWithThreeBooksPerPage() {
-  // if (Number.parseInt(firstBtn.textContent) <= 2) {
-  //   return startBtnAction();
-  // }
   if (firstBtn.classList.contains('current-page')) {
     removingCurrentBtnStyle();
     secondBtn.classList.add('current-page');
     changeNumeration(-2);
+    console.log('s 3 next');
   } else if (secondBtn.classList.contains('current-page')) {
     removingCurrentBtnStyle();
     firstBtn.classList.add('current-page');
   } else {
     changeNumeration(-1);
-  }
-  if (page === 3) {
-    if (firstBtn.classList.contains('current-page')) {
-      removingCurrentBtnStyle();
-      secondBtn.classList.add('current-page');
-      changeNumeration(-2);
-    } else if (secondBtn.classList.contains('current-page')) {
-      removingCurrentBtnStyle();
-      firstBtn.classList.add('current-page');
-      changeNumeration(-1);
-    }
   }
 }
 
@@ -565,25 +565,27 @@ function endBtnAction() {
   if (totalPages === 2) {
     return nextBtnAction();
   }
-  if (page != totalPages) {
-    removingCurrentBtnStyle();
-    if (paginator === 4) {
-      thirdBtn.classList.add('current-page');
-      pageNumeration(totalPages - 2);
-    } else {
-      secondBtn.classList.add('current-page');
-      pageNumeration(totalPages - 1);
-    }
 
-    changePage(totalPages - page);
-    renderPage(page);
+  removingCurrentBtnStyle();
+  if (paginator === 4) {
+    thirdBtn.classList.add('current-page');
+    console.log(`end but totalapages ${totalPages}`);
+    pageNumeration(totalPages - 2);
+  } else {
+    secondBtn.classList.add('current-page');
+    console.log(`totalapages ${totalPages}`);
+    pageNumeration(totalPages - 1);
   }
+
+  changePage(totalPages - page);
+  renderPage(page);
 }
 // --------------------
 
 function pagesToShow() {
   console.log(`total pages ${totalPages}`);
   console.log(`page ${page}`);
+  console.log(`booksInCart ${booksInCart}`);
   if (totalPages <= 1) {
     controller.classList.add('visually-hidden');
     controller.removeEventListener('click', paginate);
@@ -593,17 +595,6 @@ function pagesToShow() {
   }
 
   // const difr = totalPages - page;
-
-  if (page >= 2 && firstBtn.classList.contains('current-page')) {
-    console.log('p = 2 1=c');
-    lastBtn.classList.remove('visually-hidden');
-  }
-  if (totalPages > page) {
-    secondBtn.classList.remove('visually-hidden');
-  }
-  if (totalPages === page && firstBtn.classList.contains('current-page')) {
-    secondBtn.classList.add('visually-hidden');
-  }
 
   if (paginator === 3) {
     if (page > 2) {
@@ -620,7 +611,7 @@ function pagesToShow() {
     } else {
       lastBtn.classList.add('visually-hidden');
     }
-    if (totalPages > 3) {
+    if (totalPages - page > 2) {
       moreBtn.classList.remove('visually-hidden');
     }
     if (
@@ -628,17 +619,22 @@ function pagesToShow() {
       secondBtn.classList.contains('current-page')
     ) {
       nextBtn.classList.remove('visually-hidden');
+    } else if (totalPages - page > 1) {
+      nextBtn.classList.remove('visually-hidden');
     }
-    if (
-      totalPages - page === 1 &&
-      firstBtn.classList.contains('current-page')
-    ) {
+    if (totalPages - page <= 1 && firstBtn.classList.contains('current-page')) {
+      console.log('-next <=1 &&');
+      nextBtn.classList.add('visually-hidden');
+    } else if (totalPages - page <= 1) {
+      console.log('-next <=1');
       nextBtn.classList.add('visually-hidden');
     }
-    if (totalPages > 4) {
+    if (totalPages - page >= 3) {
       endBtn.classList.remove('visually-hidden');
     }
-    if (totalPages - page < 2) {
+    if (totalPages - page < 3 && firstBtn.classList.contains('current-page')) {
+      endBtn.classList.remove('visually-hidden');
+    } else if (totalPages - page < 3) {
       endBtn.classList.add('visually-hidden');
     }
   }
@@ -652,6 +648,7 @@ function pagesToShow() {
     }
     if (page <= 3 && thirdBtn.classList.contains('current-page')) {
       startBtn.classList.add('visually-hidden');
+      lastBtn.classList.add('visually-hidden');
     } else if (page <= 3 && secondBtn.classList.contains('current-page')) {
       startBtn.classList.add('visually-hidden');
     }
@@ -659,33 +656,83 @@ function pagesToShow() {
       lastBtn.classList.add('visually-hidden');
       startBtn.classList.add('visually-hidden');
     }
-    if (totalPages > page && thirdBtn.classList.contains('current-page')) {
+    if (totalPages === page && thirdBtn.classList.contains('current-page')) {
       thirdBtn.classList.remove('visually-hidden');
     } else if (
-      totalPages === page &&
-      secondBtn.classList.contains('current-page')
-    ) {
-      thirdBtn.classList.add('visually-hidden');
-    } else if (totalPages > 4) {
-      moreBtn.classList.remove('visually-hidden');
-    } else if (
-      totalPages - page === 1 &&
+      totalPages - page <= 1 &&
       thirdBtn.classList.contains('current-page')
     ) {
-      console.log('20');
+      thirdBtn.classList.remove('visually-hidden');
+    } else if (
+      totalPages - page <= 1 &&
+      firstBtn.classList.contains('current-page')
+    ) {
+      thirdBtn.classList.add('visually-hidden');
+    } else if (
+      totalPages === page &&
+      !thirdBtn.classList.contains('current-page')
+    ) {
+      console.log('t=p && !3c');
+      thirdBtn.classList.add('visually-hidden');
+    } else if (
+      totalPages - page >= 2 &&
+      firstBtn.classList.contains('current-page')
+    ) {
+      thirdBtn.classList.remove('visually-hidden');
+    }
+    if (totalPages - page >= 3) {
+      moreBtn.classList.remove('visually-hidden');
+    }
+    if (totalPages - page <= 2) {
       moreBtn.classList.add('visually-hidden');
-      nextBtn.classList.remove('visually-hidden');
-    } else if (totalPages === page) {
+    }
+    if (totalPages - page <= 2 && firstBtn.classList.contains('current-page')) {
       nextBtn.classList.add('visually-hidden');
-      endBtn.classList.remove('visually-hidden');
-    } else if (totalPages > 5) {
-      console.log('30');
+    }
+    if (totalPages - page <= 1 && thirdBtn.classList.contains('current-page')) {
+      nextBtn.classList.remove('visually-hidden');
+    } else if (
+      totalPages - page <= 1 &&
+      !thirdBtn.classList.contains('current-page')
+    ) {
+      console.log('<1 && 3!c');
+      nextBtn.classList.add('visually-hidden');
+    } else if (totalPages - page <= 1) {
+      nextBtn.classList.add('visually-hidden');
+    } else if (totalPages - page > 2) {
+      nextBtn.classList.remove('visually-hidden');
+    }
+    if (totalPages - page > 3) {
       endBtn.classList.remove('visually-hidden');
     } else if (
       totalPages - page < 3 &&
       firstBtn.classList.contains('current-page')
     ) {
       endBtn.classList.add('visually-hidden');
+    } else if (totalPages - page < 3) {
+      endBtn.classList.add('visually-hidden');
     }
+  }
+  if (page >= 2 && firstBtn.classList.contains('current-page')) {
+    console.log('p = 2 1=c');
+    lastBtn.classList.remove('visually-hidden');
+  }
+  if (totalPages > page) {
+    secondBtn.classList.remove('visually-hidden');
+  }
+  if (totalPages - page <= 0 && firstBtn.classList.contains('current-page')) {
+    secondBtn.classList.add('visually-hidden');
+  }
+  if (totalPages - page <= 1) {
+    moreBtn.classList.add('visually-hidden');
+  }
+  if (totalPages - page <= 0) {
+    console.log('-next');
+    moreBtn.classList.add('visually-hidden');
+    nextBtn.classList.add('visually-hidden');
+    endBtn.classList.add('visually-hidden');
+  }
+  if (totalPages - page <= 1) {
+    endBtn.classList.add('visually-hidden');
   }
 }
