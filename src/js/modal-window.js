@@ -7,9 +7,8 @@ const congratsMessage = document.querySelector('.modal-window-text');
 const closeModalBtn = document.querySelector('.cls-button');
 const backdrop = document.querySelector('[data-modal-backdrop]');
 
-let user = '';
-// let storageOfBooksIdModal = [];
-// checkLocalStorageNotEmpty();
+let user = 'GF';
+
 function closeModalByEscape(event) {
   if (event.code === 'Escape') {
     removeListeners();
@@ -17,7 +16,7 @@ function closeModalByEscape(event) {
   }
 }
 function closeModalWindow(event) {
-  if (event.currentTarget.nodeName === 'BUTTON') {
+  if ((event.currentTarget.dataset.modal = 'close')) {
     removeListeners();
     return hiddenAll();
   }
@@ -60,7 +59,6 @@ function toggleBacdropHidden() {
 async function checkBookStatus(id, user) {
   try {
     const data = await reedBookID(user);
-    console.log(data);
     if (data.includes(id)) {
       modalCard.firstElementChild.lastElementChild.textContent =
         'remove from the shopping list';
@@ -73,28 +71,15 @@ async function checkBookStatus(id, user) {
   }
 }
 
-// function checkBookStatusLocal(id) {
-//  checkLocalStorageNotEmpty();
-//  storageOfBooksIdModal = JSON.parse(localStorage.getItem('id'));
-//  if (storageOfBooksIdModal.includes(id)) {
-//    modalCard.firstElementChild.lastElementChild.textContent =
-//      'remove from the shopping list';
-//    congratsMessage.textContent = 'This book is already in your cart';
-//    congratsMessage.classList.remove('is-hidden');
-//  }
-// }
-
 function fetchUser() {
-  user = localStorage.getItem('user-id');
+  if (localStorage.getItem('user-id')) {
+    user = localStorage.getItem('user-id');
+  } else {
+    user = 'GF';
+  }
   return user;
 }
 
-//  function changeBookStatusLocal(id, event) {
-//   checkLocalStorageNotEmpty();
-//   if (storageOfBooksIdModal.includes(id)) {
-//     return (event.target.dataset.modalSubmit = 'del');
-//   }
-// }
 // -------------Функція, що визиває модальне вікно-------------
 containerBest.addEventListener('click', imageClickHandler);
 function imageClickHandler(event) {
@@ -110,7 +95,7 @@ function imageClickHandler(event) {
 }
 // -------------------------------------
 
-async function renderModalWindow(id) {
+async function renderModalWindow(id, user) {
   try {
     const dataFromServer = await fetchBookById(id);
     renderMarkupModalWindow(dataFromServer, id);
@@ -234,58 +219,49 @@ function createModalWindow({
   </div>`;
 }
 
-// function checkLocalStorageNotEmpty() {
-//   if (!JSON.parse(localStorage.getItem('id'))) {
-//     storageOfBooksIdModal = [];
-//     return localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
-//   }
-// }
-
 function addOrDeleteBook(event) {
-  const idChoosenBook = event.target.dataset.id;
-  //  changeBookStatusLocal(idChoosenBook, event);
-  if (event.target.dataset.modalSubmit === 'add') {
-    //    addingBookToBusket(idChoosenBook);
-    addBookID(idChoosenBook, user);
-    event.target.textContent = 'remove from the shopping list';
-    congratsMessage.textContent =
-      'Сongratulations! You have added the book to the shopping list. To delete, press the button "Remove from the shopping list".';
-    congratsMessage.classList.remove('is-hidden');
-    event.target.dataset.modalSubmit = 'del';
-  } else {
-    //    deletingBookFromBusket(idChoosenBook);
-    dellBookID(idChoosenBook, user);
-    event.target.textContent = 'add to shopping list';
-    congratsMessage.classList.add('is-hidden');
-    event.target.dataset.modalSubmit = 'add';
+  fetchUser();
+  if (user !== 'GF' || user == 0) {
+    const idChoosenBook = event.target.dataset.id;
+    if (event.target.dataset.modalSubmit === 'add') {
+      addBookID(idChoosenBook, user);
+      event.target.textContent = 'remove from the shopping list';
+      congratsMessage.textContent =
+        'Сongratulations! You have added the book to the shopping list. To delete, press the button "Remove from the shopping list".';
+      congratsMessage.classList.remove('is-hidden');
+      event.target.dataset.modalSubmit = 'del';
+    } else {
+      dellBookID(idChoosenBook, user);
+      event.target.textContent = 'add to shopping list';
+      congratsMessage.classList.add('is-hidden');
+      event.target.dataset.modalSubmit = 'add';
+    }
+  } else if ((user = 'underfined' || user === 'GF')) {
+    hiddenAll();
+    removeListeners();
+    toggleAuthorizationThrooModal();
   }
 }
 
-// function addingBookToBusket(idChoosenBook) {
-//   if (!JSON.parse(localStorage.getItem('id'))) {
-//    storageOfBooksIdModal = [];
-//    storageOfBooksIdModal.push(idChoosenBook);
-//    return localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
-//   }
-//   storageOfBooksIdModal = JSON.parse(localStorage.getItem('id'));
+const openAuthorizationBtn = document.querySelector(
+  '[data-authorization-open]'
+);
+const authorization = document.querySelector('[data-authorization]');
+const authorizationWindowForm = document.querySelector(
+  '.authorization-window-form'
+);
 
-//   if (storageOfBooksIdModal.includes(idChoosenBook)) {
-//     console.log('this book already in a busket');
-//   } else {
-//     storageOfBooksIdModal.push(idChoosenBook);
-//     localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
-//   }
-//   return;
-// }
+async function toggleAuthorizationThrooModal() {
+  const isAuthorizationOpen =
+    openAuthorizationBtn.getAttribute('aria-expanded') === 'true' || false;
+  openAuthorizationBtn.setAttribute('aria-expanded', !isAuthorizationOpen); // функція toggleAuthorization, змінює атрибут 'aria-expanded' кнопки відкриття вікна авторизації відповідно до стану вікна авторизації (відкрито - true, закрито - false)
 
-// function deletingBookFromBusket(idChoosenBook) {
-//   checkLocalStorageNotEmpty();
-//   storageOfBooksIdModal = JSON.parse(localStorage.getItem('id'));
-//   if (storageOfBooksIdModal.includes(idChoosenBook)) {
-//     const index = storageOfBooksIdModal.indexOf(idChoosenBook);
-//     storageOfBooksIdModal.splice(index, 1);
-//     localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
+  authorization.classList.toggle('is-hidden'); // відкриття/закриття вікна авторизації
 
-//    return;
-//  }
-// }
+  if (!isAuthorizationOpen) {
+    document.body.style.overflow = 'hidden'; // заблокувати скролл
+  } else {
+    document.body.style.overflow = 'scroll'; // розблокувати скролл
+    authorizationWindowForm.reset(); // очистити форму
+  }
+}

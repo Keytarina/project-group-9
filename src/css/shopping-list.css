@@ -161,7 +161,6 @@ body.dark .shopping-list-item-card {
   gap: 14px;
   background-color: var(--accent-bg-cl);
   box-sizing: border-box;
-  border: 2px solid inherit;
   border: 2px solid var(--border-color-dark);
   border-radius: 16px;
 }
