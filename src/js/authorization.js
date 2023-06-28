@@ -365,7 +365,7 @@ async function reedBookID(userID) {
   if (mySnapshot.exists()) {
     const docData = mySnapshot.data();
     const idBook = docData.id_book; // масив id книжок з бази даних
-    console.log(docData);
+    // console.log(docData);
     return idBook;
   } else {
     console.log('No such book!');
