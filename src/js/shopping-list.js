@@ -80,7 +80,7 @@ function refreshTotalPages() {
 }
 function checkCurrentPage() {
   if (Number.parseInt(localStorage.getItem('page')) > 0) {
-    page = localStorage.getItem('page');
+    page = Number.parseInt(localStorage.getItem('page'));
   } else if (page > totalPages) {
     page = totalPages;
   } else {
@@ -137,12 +137,16 @@ renderLastSession();
 function handleTabletChange(mediaQuery) {
   fetchPaginator();
   if (mediaQuery.matches) {
+    console.log('do not hide');
     thirdBtn.classList.remove('visually-hidden');
     // page = Math.ceil(booksOnBusket / 4);
     // localStorage.page = page;
-  } else if (list.children.length === 4) {
-    list.lastElementChild.classList.remove('visually-hidden');
+    if (list.children.length === 4) {
+      console.log('4 to hide');
+      list.lastElementChild.classList.remove('visually-hidden');
+    }
   } else {
+    console.log('tablet else');
     thirdBtn.classList.add('visually-hidden');
 
     // page = Math.ceil(booksOnBusket / 3);
@@ -177,9 +181,9 @@ function changeNumeration(weight) {
   thirdBtn.textContent = Number.parseInt(thirdBtn.textContent) + weight;
 }
 function pageNumeration(page) {
-  firstBtn.textContent = page;
-  secondBtn.textContent = page + 1;
-  thirdBtn.textContent = page + 2;
+  firstBtn.textContent = Number.parseInt(page);
+  secondBtn.textContent = Number.parseInt(page + 1);
+  thirdBtn.textContent = Number.parseInt(page + 2);
 }
 // ------функція, що перемальовує сторінку переліку книг у кошику------------------------------------------------
 
@@ -311,7 +315,7 @@ function renderMarkup(book, id) {
               </ul>
               <button class="shopping-btn-dump" type="button" data-book="${id}">
                 <svg class="shopping-btn-dump-icon"  data-book="${id}" width="16" height="16">
-                  <use  data-book="${id}" href="./icons-all.435abbb0.svg#dump"></use>
+                  <use  data-book="${id}" href="./icons-all.568e592f.svg#dump"></use>
                 </svg>
               </button>
             </div>
@@ -578,28 +582,43 @@ function endBtnAction() {
 // --------------------
 
 function pagesToShow() {
+  console.log(`total pages ${totalPages}`);
+  console.log(`page ${page}`);
   if (totalPages <= 1) {
     controller.classList.add('visually-hidden');
     controller.removeEventListener('click', paginate);
-    return;
-  }
-  const difr = totalPages - page;
-  if (page > 1) {
+  } else {
     controller.classList.remove('visually-hidden');
     controller.addEventListener('click', paginate);
-  } else if (page > 3) {
-    startBtn.classList.remove('visually-hidden');
-  } else if ((page = 3 && firstBtn.classList.contains('current-page'))) {
-    console.log('p = 3 and 1t = c');
-    startBtn.classList.remove('visually-hidden');
+  }
+
+  // const difr = totalPages - page;
+
+  if (page >= 2 && firstBtn.classList.contains('current-page')) {
+    console.log('p = 2 1=c');
+    lastBtn.classList.remove('visually-hidden');
+  }
+  if (totalPages > page) {
+    secondBtn.classList.remove('visually-hidden');
+  }
+  if (totalPages === page && firstBtn.classList.contains('current-page')) {
+    secondBtn.classList.add('visually-hidden');
   }
 
   if (paginator === 3) {
     if (page > 2) {
       startBtn.classList.remove('visually-hidden');
     }
-    if (page > 2 && firstBtn.classList.contains('current-page')) {
+    if (page <= 2) {
+      startBtn.classList.add('visually-hidden');
+    }
+    if (page > 2) {
       lastBtn.classList.remove('visually-hidden');
+    } else if (page <= 2 && !firstBtn.classList.contains('current-page')) {
+      console.log('p <= 2 1!=c');
+      lastBtn.classList.add('visually-hidden');
+    } else {
+      lastBtn.classList.add('visually-hidden');
     }
     if (totalPages > 3) {
       moreBtn.classList.remove('visually-hidden');
@@ -625,31 +644,22 @@ function pagesToShow() {
   }
 
   if (paginator === 4) {
-    if (page > 3) {
+    if (page === 3 && firstBtn.classList.contains('current-page')) {
+      startBtn.classList.remove('visually-hidden');
+    } else if (page > 3) {
       startBtn.classList.remove('visually-hidden');
       lastBtn.classList.remove('visually-hidden');
-    } else if (page === 3 && firstBtn.classList.contains('current-page')) {
-      console.log('1');
-      startBtn.classList.remove('visually-hidden');
-    } else if (page === 2 && firstBtn.classList.contains('current-page')) {
-      lastBtn.classList.remove('visually-hidden');
-    } else if (page > 1) {
-      firstBtn.classList.remove('visually-hidden');
-    } else if (
-      totalPages > page &&
-      secondBtn.classList.contains('current-page')
-    ) {
-      secondBtn.classList.remove('visually-hidden');
-    } else if (
-      totalPages === page &&
-      firstBtn.classList.contains('current-page')
-    ) {
-      console.log('10');
-      secondBtn.classList.add('visually-hidden');
-    } else if (
-      totalPages > page &&
-      thirdBtn.classList.contains('current-page')
-    ) {
+    }
+    if (page <= 3 && thirdBtn.classList.contains('current-page')) {
+      startBtn.classList.add('visually-hidden');
+    } else if (page <= 3 && secondBtn.classList.contains('current-page')) {
+      startBtn.classList.add('visually-hidden');
+    }
+    if (page < 2) {
+      lastBtn.classList.add('visually-hidden');
+      startBtn.classList.add('visually-hidden');
+    }
+    if (totalPages > page && thirdBtn.classList.contains('current-page')) {
       thirdBtn.classList.remove('visually-hidden');
     } else if (
       totalPages === page &&
