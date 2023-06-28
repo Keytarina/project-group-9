@@ -30,6 +30,8 @@
   transform: translate(-50%, -50%) scale(1);
   width: 100%;
   max-width: 335px;
+  /* height: 100vh; */
+  height: 762px;
   border-radius: 18px;
   padding-top: 40px;
   padding-right: 24px;
@@ -148,6 +150,7 @@ align-items: flex-start; */
 @media screen and (min-width: 768px) {
   .modal {
     max-width: 579px;
+    height: 501px;
     background-color: #fff;
     border: solid 2px #111111;
     border-radius: 18px;
