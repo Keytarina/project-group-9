@@ -141,6 +141,18 @@ function renderMarkupModalWindow(book, id) {
 
   return modalCard.insertAdjacentHTML('afterbegin', markup);
 }
+const amazon = new URL(
+  '../image/shopping/shop-amazon-62x19px.png',
+  import.meta.url
+);
+const applebook = new URL(
+  '../image/shopping/shop-read-33x32px.png',
+  import.meta.url
+);
+const bookshop = new URL(
+  '../image/shopping/shop-book-shop-38x36px.png',
+  import.meta.url
+);
 
 function createModalWindow({
   id,
@@ -172,7 +184,7 @@ function createModalWindow({
                     ><img
                       width="62"
                       class="shopping-card-link-icon shopping-card-link-amazon"
-                      src="./shop-amazon-62x19px.a7ec3af8.png"
+                      src=${amazon}
                       alt="Amazon" loading="lazy"
                     />
                   </a>
@@ -189,7 +201,7 @@ function createModalWindow({
                       width="32"
                       height="32"
                       class="shopping-card-link-icon"
-                      src="./shop-read-33x32px.a9f158e0.png"
+                      src=${applebook}
                       alt="Apple Books" loading="lazy"
                     />
                   </a></li>
@@ -205,7 +217,7 @@ function createModalWindow({
                       width="38"
                       height="36"
                       class="shopping-card-link-icon shopping-card-link-shopbook"
-                      src="./shop-book-shop-38x36px.eb5fbc1e.png"
+                      src=${bookshop}
                       alt="BookShop" loading="lazy"
                     />
                   </a>
