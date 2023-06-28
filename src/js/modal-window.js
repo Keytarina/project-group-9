@@ -72,17 +72,6 @@ async function checkBookStatus(id, user) {
   }
 }
 
-// function checkBookStatusLocal(id) {
-//  checkLocalStorageNotEmpty();
-//  storageOfBooksIdModal = JSON.parse(localStorage.getItem('id'));
-//  if (storageOfBooksIdModal.includes(id)) {
-//    modalCard.firstElementChild.lastElementChild.textContent =
-//      'remove from the shopping list';
-//    congratsMessage.textContent = 'This book is already in your cart';
-//    congratsMessage.classList.remove('is-hidden');
-//  }
-// }
-
 function fetchUser() {
   if (localStorage.getItem('user-id')) {
     user = localStorage.getItem('user-id');
@@ -92,12 +81,6 @@ function fetchUser() {
   return user;
 }
 
-//  function changeBookStatusLocal(id, event) {
-//   checkLocalStorageNotEmpty();
-//   if (storageOfBooksIdModal.includes(id)) {
-//     return (event.target.dataset.modalSubmit = 'del');
-//   }
-// }
 // -------------Функція, що визиває модальне вікно-------------
 containerBest.addEventListener('click', imageClickHandler);
 function imageClickHandler(event) {
@@ -237,20 +220,11 @@ function createModalWindow({
   </div>`;
 }
 
-// function checkLocalStorageNotEmpty() {
-//   if (!JSON.parse(localStorage.getItem('id'))) {
-//     storageOfBooksIdModal = [];
-//     return localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
-//   }
-// }
-
 function addOrDeleteBook(event) {
   fetchUser();
   if (user !== 'GF' || user == 0) {
     const idChoosenBook = event.target.dataset.id;
-    //  changeBookStatusLocal(idChoosenBook, event);
     if (event.target.dataset.modalSubmit === 'add') {
-      //    addingBookToBusket(idChoosenBook);
       addBookID(idChoosenBook, user);
       event.target.textContent = 'remove from the shopping list';
       congratsMessage.textContent =
@@ -258,7 +232,6 @@ function addOrDeleteBook(event) {
       congratsMessage.classList.remove('is-hidden');
       event.target.dataset.modalSubmit = 'del';
     } else {
-      //    deletingBookFromBusket(idChoosenBook);
       dellBookID(idChoosenBook, user);
       event.target.textContent = 'add to shopping list';
       congratsMessage.classList.add('is-hidden');
@@ -293,32 +266,3 @@ async function toggleAuthorizationThrooModal() {
     authorizationWindowForm.reset(); // очистити форму
   }
 }
-
-// function addingBookToBusket(idChoosenBook) {
-//   if (!JSON.parse(localStorage.getItem('id'))) {
-//    storageOfBooksIdModal = [];
-//    storageOfBooksIdModal.push(idChoosenBook);
-//    return localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
-//   }
-//   storageOfBooksIdModal = JSON.parse(localStorage.getItem('id'));
-
-//   if (storageOfBooksIdModal.includes(idChoosenBook)) {
-//     console.log('this book already in a busket');
-//   } else {
-//     storageOfBooksIdModal.push(idChoosenBook);
-//     localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
-//   }
-//   return;
-// }
-
-// function deletingBookFromBusket(idChoosenBook) {
-//   checkLocalStorageNotEmpty();
-//   storageOfBooksIdModal = JSON.parse(localStorage.getItem('id'));
-//   if (storageOfBooksIdModal.includes(idChoosenBook)) {
-//     const index = storageOfBooksIdModal.indexOf(idChoosenBook);
-//     storageOfBooksIdModal.splice(index, 1);
-//     localStorage.setItem('id', JSON.stringify(storageOfBooksIdModal));
-
-//    return;
-//  }
-// }
