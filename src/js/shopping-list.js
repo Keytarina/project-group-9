@@ -249,6 +249,19 @@ function renderMarkup(book, id) {
     description = 'Description is not available for that book';
   }
 
+  const amazon = new URL(
+    '../image/shopping/shop-amazon-62x19px.png',
+    import.meta.url
+  );
+  const applebook = new URL(
+    '../image/shopping/shop-read-33x32px.png',
+    import.meta.url
+  );
+  const bookshop = new URL(
+    '../image/shopping/shop-book-shop-38x36px.png',
+    import.meta.url
+  );
+
   let markup = '';
   markup = `<li class="shopping-list-item"><div class="shopping-list-item-card">
           <img
@@ -277,7 +290,7 @@ function renderMarkup(book, id) {
                     ><img
                       width="32"
                       class="shopping-card-link-icon shopping-card-link-amazon"
-                      src="./shop-amazon-62x19px.a7ec3af8.png"
+                      src=${amazon}
                       alt="Amazon" loading="lazy"
                     />
                   </a>
@@ -294,7 +307,7 @@ function renderMarkup(book, id) {
                       width="16"
                       height="16"
                       class="shopping-card-link-icon"
-                      src="./shop-read-33x32px.a9f158e0.png"
+                      src=${applebook}
                       alt="Apple Books" loading="lazy"
                     />
                   </a>
@@ -311,7 +324,7 @@ function renderMarkup(book, id) {
                       width="16"
                       height="16"
                       class="shopping-card-link-icon shopping-card-link-shopbook"
-                      src="./shop-book-shop-38x36px.eb5fbc1e.png"
+                      src=${bookshop}
                       alt="BookShop" loading="lazy"
                     />
                   </a>
