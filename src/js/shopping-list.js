@@ -1,8 +1,6 @@
 import { fetchBookById } from './serviceApi';
 import { dellBookID, reedBookID } from './authorization.js';
 
-console.log(localStorage.page);
-
 const list = document.querySelector('.shopping-list-list');
 const dummyMessage = document.querySelector('.shopping-dummy-message');
 const controller = document.querySelector('.shopping-paginator-list');
@@ -57,12 +55,10 @@ fetchUser();
 
 function recordArrayOfBooks(data) {
   storageOfBooksId = data;
-  console.log(storageOfBooksId);
   return storageOfBooksId;
 }
 function recordBookInCart(data) {
   booksInCart = data.length;
-  console.log(booksInCart);
   return booksInCart;
 }
 // --------Функція, що повертає кількість книг, що вміщує сторінка і загальну кількість сторінок,
@@ -79,23 +75,17 @@ function fetchPaginator() {
 }
 
 function refreshTotalPages() {
-  console.log(booksInCart);
   totalPages = Math.ceil(booksInCart / paginator);
   return totalPages;
 }
 function checkCurrentPage() {
-  if (page <= 0) {
-    page = 1;
-    console.log(page);
-  }
   if (Number.parseInt(localStorage.getItem('page')) > 0) {
     page = localStorage.getItem('page');
-    console.log(page);
-  }
-  if (page > totalPages) {
+  } else if (page > totalPages) {
     page = totalPages;
+  } else {
+    page = 1;
   }
-  console.log(page);
 }
 // формування повідомлення про пустий кошик----
 function showMessageIfEmpty() {
@@ -178,7 +168,6 @@ function changePage(adduct) {
 function makeArrayToPaginate(page, data) {
   localStorage.page = page;
   const arrayOfBooksToPaginate = data.splice((page - 1) * paginator, paginator);
-  console.log(arrayOfBooksToPaginate);
   return arrayOfBooksToPaginate;
 }
 
@@ -193,19 +182,6 @@ function pageNumeration(page) {
   thirdBtn.textContent = page + 2;
 }
 // ------функція, що перемальовує сторінку переліку книг у кошику------------------------------------------------
-async function renderPage(page) {
-  fetchPaginator();
-  refreshTotalPages();
-  list.innerHTML = '';
-  showMessageIfEmpty();
-  const data = await reedBookID(user);
-  await recordArrayOfBooks(data);
-  makeArrayToPaginate(page, data).forEach(id => {
-    renderCardFromData(id);
-  });
-
-  pagesToShow();
-}
 
 async function renderPage(page) {
   try {
@@ -334,8 +310,8 @@ function renderMarkup(book, id) {
                 </li>
               </ul>
               <button class="shopping-btn-dump" type="button" data-book="${id}">
-                <svg class="shopping-btn-dump-icon" width="16" height="16">
-                  <use href="./icons-all.435abbb0.svg#dump"></use>
+                <svg class="shopping-btn-dump-icon"  data-book="${id}" width="16" height="16">
+                  <use  data-book="${id}" href="./icons-all.435abbb0.svg#dump"></use>
                 </svg>
               </button>
             </div>
@@ -354,25 +330,28 @@ function deleteBook(event) {
     event.target.nodeName === 'svg' ||
     event.target.nodeName === 'BUTTON'
   ) {
-    procedureDeletingBook(event);
+    const idToDelete = event.target.dataset.book;
+    dellBookID(idToDelete, user);
+    rerenderPage(event);
   }
-  return;
 }
 
 refresh.addEventListener('click', refreshPage);
 
 function refreshPage() {
   refresh.style.color = 'var(--main-text-color)';
-  renderPage(page);
+  renderPage();
 }
 
-function procedureDeletingBook(event) {
-  const idToDelete = event.target.dataset.book;
-  dellBookID(idToDelete, user);
-
+function rerenderPage() {
   fetchPaginator();
+
   if (booksInCart - 1 === 0) {
-    return showMessageIfEmpty();
+    list.classList.add('visually-hidden');
+    controller.classList.add('visually-hidden');
+    dummyMessage.classList.remove('visually-hidden');
+    list.removeEventListener('click', deleteBook, { once: 'true' });
+    controller.removeEventListener('click', paginate);
   }
   if (page > Math.ceil((booksInCart - 1) / paginator)) {
     return lastBtnAction();
@@ -380,6 +359,7 @@ function procedureDeletingBook(event) {
   renderPage(page);
 }
 
+// --------------------------Пагінація------------------------------------
 function paginate(event) {
   fetchPaginator();
 
