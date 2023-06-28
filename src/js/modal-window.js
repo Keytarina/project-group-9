@@ -153,7 +153,6 @@ const bookshop = new URL(
   '../image/shopping/shop-book-shop-38x36px.png',
   import.meta.url
 );
-const dump = new URL('../image/icons-all.svg#dump', import.meta.url);
 
 function createModalWindow({
   id,
