@@ -59,7 +59,6 @@ function toggleBacdropHidden() {
 async function checkBookStatus(id, user) {
   try {
     const data = await reedBookID(user);
-    console.log(data);
     if (data.includes(id)) {
       modalCard.firstElementChild.lastElementChild.textContent =
         'remove from the shopping list';
