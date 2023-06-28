@@ -7,9 +7,8 @@ const congratsMessage = document.querySelector('.modal-window-text');
 const closeModalBtn = document.querySelector('.cls-button');
 const backdrop = document.querySelector('[data-modal-backdrop]');
 
-let user = '';
-// let storageOfBooksIdModal = [];
-// checkLocalStorageNotEmpty();
+let user = 'GF';
+
 function closeModalByEscape(event) {
   if (event.code === 'Escape') {
     removeListeners();
@@ -17,7 +16,7 @@ function closeModalByEscape(event) {
   }
 }
 function closeModalWindow(event) {
-  if (event.currentTarget.nodeName === 'BUTTON') {
+  if ((event.currentTarget.dataset.modal = 'close')) {
     removeListeners();
     return hiddenAll();
   }
@@ -85,7 +84,11 @@ async function checkBookStatus(id, user) {
 // }
 
 function fetchUser() {
-  user = localStorage.getItem('user-id');
+  if (localStorage.getItem('user-id')) {
+    user = localStorage.getItem('user-id');
+  } else {
+    user = 'GF';
+  }
   return user;
 }
 
@@ -110,7 +113,7 @@ function imageClickHandler(event) {
 }
 // -------------------------------------
 
-async function renderModalWindow(id) {
+async function renderModalWindow(id, user) {
   try {
     const dataFromServer = await fetchBookById(id);
     renderMarkupModalWindow(dataFromServer, id);
@@ -242,22 +245,52 @@ function createModalWindow({
 // }
 
 function addOrDeleteBook(event) {
-  const idChoosenBook = event.target.dataset.id;
-  //  changeBookStatusLocal(idChoosenBook, event);
-  if (event.target.dataset.modalSubmit === 'add') {
-    //    addingBookToBusket(idChoosenBook);
-    addBookID(idChoosenBook, user);
-    event.target.textContent = 'remove from the shopping list';
-    congratsMessage.textContent =
-      'Сongratulations! You have added the book to the shopping list. To delete, press the button "Remove from the shopping list".';
-    congratsMessage.classList.remove('is-hidden');
-    event.target.dataset.modalSubmit = 'del';
+  fetchUser();
+  if (user !== 'GF' || user == 0) {
+    const idChoosenBook = event.target.dataset.id;
+    //  changeBookStatusLocal(idChoosenBook, event);
+    if (event.target.dataset.modalSubmit === 'add') {
+      //    addingBookToBusket(idChoosenBook);
+      addBookID(idChoosenBook, user);
+      event.target.textContent = 'remove from the shopping list';
+      congratsMessage.textContent =
+        'Сongratulations! You have added the book to the shopping list. To delete, press the button "Remove from the shopping list".';
+      congratsMessage.classList.remove('is-hidden');
+      event.target.dataset.modalSubmit = 'del';
+    } else {
+      //    deletingBookFromBusket(idChoosenBook);
+      dellBookID(idChoosenBook, user);
+      event.target.textContent = 'add to shopping list';
+      congratsMessage.classList.add('is-hidden');
+      event.target.dataset.modalSubmit = 'add';
+    }
+  } else if ((user = 'underfined' || user === 'GF')) {
+    hiddenAll();
+    removeListeners();
+    toggleAuthorizationThrooModal();
+  }
+}
+
+const openAuthorizationBtn = document.querySelector(
+  '[data-authorization-open]'
+);
+const authorization = document.querySelector('[data-authorization]');
+const authorizationWindowForm = document.querySelector(
+  '.authorization-window-form'
+);
+
+async function toggleAuthorizationThrooModal() {
+  const isAuthorizationOpen =
+    openAuthorizationBtn.getAttribute('aria-expanded') === 'true' || false;
+  openAuthorizationBtn.setAttribute('aria-expanded', !isAuthorizationOpen); // функція toggleAuthorization, змінює атрибут 'aria-expanded' кнопки відкриття вікна авторизації відповідно до стану вікна авторизації (відкрито - true, закрито - false)
+
+  authorization.classList.toggle('is-hidden'); // відкриття/закриття вікна авторизації
+
+  if (!isAuthorizationOpen) {
+    document.body.style.overflow = 'hidden'; // заблокувати скролл
   } else {
-    //    deletingBookFromBusket(idChoosenBook);
-    dellBookID(idChoosenBook, user);
-    event.target.textContent = 'add to shopping list';
-    congratsMessage.classList.add('is-hidden');
-    event.target.dataset.modalSubmit = 'add';
+    document.body.style.overflow = 'scroll'; // розблокувати скролл
+    authorizationWindowForm.reset(); // очистити форму
   }
 }
 
